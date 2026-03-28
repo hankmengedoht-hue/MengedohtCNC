@@ -1,5 +1,6 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: hankmengedoht-hue/MengedohtCNC
   branch: main
 
 media_folder: "images/uploads"
