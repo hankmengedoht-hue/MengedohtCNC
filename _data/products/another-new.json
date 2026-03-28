@@ -1,0 +1,15 @@
+{
+  "title": "Another New",
+  "category": "marine",
+  "material": "Baltic Birch Plywood",
+  "description": "New New",
+  "image": "",
+  "retail_available": true,
+  "retail_price": "$10",
+  "wholesale_available": true,
+  "moq": "25",
+  "fits": "",
+  "featured": false,
+  "published": true,
+  "order": 99
+}
