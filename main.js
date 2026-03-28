@@ -1,4 +1,4 @@
-/* =====================================================
+/* ===================================================== 
    MENGEDOHT CNC — main.js
    Loads content from _data JSON files and renders
    products/pages dynamically so the CMS drives the site.
