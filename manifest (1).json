@@ -1,8 +1,8 @@
 {
-  "title": "Instrument Panel Blank",
+  "title": "Switch Console Insert",
   "category": "marine",
   "material": "HDPE",
-  "description": "Marine-grade HDPE instrument panel with custom cutouts for gauges, switches, and USB ports. UV stable.",
+  "description": "HDPE toggle switch panel insert. Pre-drilled and routed for standard 12V marine switches. Fits most consoles.",
   "image": "",
   "retail_available": false,
   "retail_price": "",
@@ -11,5 +11,5 @@
   "fits": "",
   "featured": false,
   "published": true,
-  "order": 5
+  "order": 6
 }

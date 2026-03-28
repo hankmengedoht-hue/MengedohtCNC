@@ -1,137 +1,184 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Buy Direct — Mengedoht CNC</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
-</head>
-<body data-page="retail">
+backend:
+  name: github
+  repo: hankmengedoht-hue/MengedohtCNC
+  branch: main
+  base_url: https://cms-auth.hankmengedoht.workers.dev
+  squash_merges: true
+  commit_messages:
+    create: 'Create {{collection}} "{{slug}}"'
+    update: 'Update {{collection}} "{{slug}}"'
+    delete: 'Delete {{collection}} "{{slug}}"'
+    uploadMedia: 'Upload "{{path}}"'
+    deleteMedia: 'Delete "{{path}}"'
 
-  <header class="site-header" id="site-header">
-    <div class="container nav-inner">
-      <a href="index.html" class="logo"><span class="logo-mark">M</span><span class="logo-text">MENGEDOHT <em>CNC</em></span></a>
-      <nav class="main-nav" id="main-nav">
-        <a href="index.html" class="nav-link">Home</a>
-        <a href="products.html" class="nav-link">Products</a>
-        <a href="retail.html" class="nav-link active">Buy Direct</a>
-        <a href="wholesale.html" class="nav-link">Wholesale</a>
-        <a href="contact.html" class="nav-link">Contact</a>
-      </nav>
-      <a href="contact.html" class="btn btn-primary nav-cta">Get a Quote</a>
-      <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
-    </div>
-  </header>
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
 
-  <section class="page-hero">
-    <div class="container">
-      <div class="section-tag">Buy Direct</div>
-      <h1 data-cms="retail-headline">Buy Direct — No Minimums</h1>
-      <p data-cms="retail-sub">Select products are available for individual purchase. No bulk order required. Ships directly to your door.</p>
-    </div>
-  </section>
+collections:
 
-  <!-- RETAIL INFO STRIP -->
-  <div class="retail-info-strip">
-    <div class="container retail-info-inner">
-      <div class="retail-info-item">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12l5 5L19 7"/></svg>
-        <span>No minimum order</span>
-      </div>
-      <div class="retail-info-item">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-4 0v2M8 7V5a2 2 0 00-4 0v2"/></svg>
-        <span>Ships within 5–10 days</span>
-      </div>
-      <div class="retail-info-item">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
-        <span>Made to order — precision CNC cut</span>
-      </div>
-      <div class="retail-info-item">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
-        <span data-cms="retail-shipping">Standard shipping 3–7 business days</span>
-      </div>
-    </div>
-  </div>
+  # ─────────────────────────────────────────
+  # PRODUCTS
+  # ─────────────────────────────────────────
+  - name: "products"
+    label: "Products"
+    label_singular: "Product"
+    folder: "_data/products"
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    summary: "{{title}} — {{category}}"
+    fields:
+      - { label: "Product Name", name: "title", widget: "string" }
+      - label: "Category"
+        name: "category"
+        widget: "select"
+        options:
+          - { label: "Tool Organizers", value: "tools" }
+          - { label: "Marine", value: "marine" }
+          - { label: "Pegboard Accessories", value: "pegboard" }
+          - { label: "Custom / Other", value: "custom" }
+      - label: "Material"
+        name: "material"
+        widget: "select"
+        options:
+          - "Baltic Birch Plywood"
+          - "HDPE"
+          - "Acrylic"
+          - "MDF"
+          - "HDF"
+          - "Hardwood"
+          - "Softwood"
+          - "G10 / FR4"
+          - "Carbon Fiber"
+          - "Delrin"
+          - "PVC"
+          - "Polycarbonate / Lexan"
+          - "Colorcore"
+          - "Phenolic"
+          - "Composites"
+          - "Expanded Foam"
+          - "Cork"
+      - { label: "Short Description", name: "description", widget: "text" }
+      - { label: "Product Image", name: "image", widget: "image", required: false, hint: "Upload a product photo. Recommended: 800x600px JPG or PNG." }
+      - label: "Available for Retail (Individual Sales)"
+        name: "retail_available"
+        widget: "boolean"
+        default: false
+        hint: "Turn ON if individuals can buy single units."
+      - label: "Retail Price"
+        name: "retail_price"
+        widget: "string"
+        required: false
+        hint: "e.g. $34.99 — only shown if Retail is ON"
+      - label: "Available for Wholesale"
+        name: "wholesale_available"
+        widget: "boolean"
+        default: true
+      - { label: "Minimum Order Quantity (MOQ)", name: "moq", widget: "string", default: "25" }
+      - label: "Fits / Compatible With"
+        name: "fits"
+        widget: "string"
+        required: false
+        hint: "e.g. Fits 15-17ft Boston Whaler CC"
+      - label: "Featured Product"
+        name: "featured"
+        widget: "boolean"
+        default: false
+        hint: "Featured products appear first with a highlighted border"
+      - label: "Published"
+        name: "published"
+        widget: "boolean"
+        default: true
+        hint: "Unpublish to hide without deleting"
+      - label: "Sort Order"
+        name: "order"
+        widget: "number"
+        default: 99
+        hint: "Lower numbers appear first"
 
-  <!-- RETAIL PRODUCTS -->
-  <section class="products-section section">
-    <div class="container">
-      <div class="section-header">
-        <div class="section-tag">Available Now</div>
-        <h2 class="section-title">Products Available to Individuals</h2>
-        <p class="section-sub">These items ship direct to you — no business account or bulk order required.</p>
-      </div>
-      <div class="products-grid" id="retail-products-grid">
-        <div class="products-loading">Loading products…</div>
-      </div>
-    </div>
-  </section>
+  # ─────────────────────────────────────────
+  # PAGE CONTENT
+  # ─────────────────────────────────────────
+  - name: "pages"
+    label: "Page Content"
+    files:
 
-  <!-- RETURNS / POLICY -->
-  <section class="retail-policy section">
-    <div class="container">
-      <div class="retail-policy-grid">
-        <div class="policy-card">
-          <div class="policy-icon">📦</div>
-          <h4>Shipping</h4>
-          <p data-cms="retail-shipping">We ship via UPS and FedEx. Standard shipping 3–7 business days. Expedited options available.</p>
-        </div>
-        <div class="policy-card">
-          <div class="policy-icon">✅</div>
-          <h4>Quality Guarantee</h4>
-          <p data-cms="retail-returns">We stand behind every product. If something arrives damaged or defective, contact us within 14 days and we'll make it right.</p>
-        </div>
-        <div class="policy-card">
-          <div class="policy-icon">🔧</div>
-          <h4>Made to Order</h4>
-          <p>All products are CNC-cut fresh for your order — not pulled from dusty shelf stock. Expect the same quality as our wholesale runs.</p>
-        </div>
-        <div class="policy-card">
-          <div class="policy-icon">💬</div>
-          <h4>Questions?</h4>
-          <p>Not sure if a product fits your application? <a href="contact.html" style="color:var(--accent)">Send us a message</a> — we respond within 24 hours.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+      - label: "Homepage"
+        name: "home"
+        file: "_data/pages/home.json"
+        fields:
+          - { label: "Hero Headline", name: "hero_headline", widget: "string" }
+          - { label: "Hero Subheadline", name: "hero_sub", widget: "text" }
+          - { label: "Hero CTA Button Text", name: "hero_cta", widget: "string" }
+          - { label: "Stat 1 Number", name: "stat1_num", widget: "string" }
+          - { label: "Stat 1 Label", name: "stat1_label", widget: "string" }
+          - { label: "Stat 2 Number", name: "stat2_num", widget: "string" }
+          - { label: "Stat 2 Label", name: "stat2_label", widget: "string" }
+          - { label: "Stat 3 Number", name: "stat3_num", widget: "string" }
+          - { label: "Stat 3 Label", name: "stat3_label", widget: "string" }
+          - { label: "Bottom CTA Headline", name: "cta_headline", widget: "string" }
+          - { label: "Bottom CTA Subtext", name: "cta_sub", widget: "string" }
 
-  <!-- WHOLESALE PITCH -->
-  <section class="cta-banner">
-    <div class="container cta-inner">
-      <div>
-        <h2>Buying for a business?</h2>
-        <p>Wholesale pricing starts at 25 units with significant per-unit savings. Hardware stores, marine shops, and retailers — we've got you.</p>
-      </div>
-      <a href="wholesale.html" class="btn btn-accent btn-lg">View Wholesale Pricing</a>
-    </div>
-  </section>
+      - label: "Wholesale Page"
+        name: "wholesale"
+        file: "_data/pages/wholesale.json"
+        fields:
+          - { label: "Page Headline", name: "headline", widget: "string" }
+          - { label: "Page Subtext", name: "sub", widget: "text" }
+          - { label: "MOQ Details", name: "moq_details", widget: "text" }
+          - { label: "Lead Time Details", name: "lead_time", widget: "text" }
+          - { label: "Payment Terms", name: "payment_terms", widget: "text" }
+          - { label: "Shipping Info", name: "shipping", widget: "text" }
 
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <div class="footer-brand">
-        <a href="index.html" class="logo logo-footer"><span class="logo-mark">M</span><span class="logo-text">MENGEDOHT <em>CNC</em></span></a>
-        <p data-cms="footer-tagline">Precision CNC manufacturing for wholesale buyers.</p>
-      </div>
-      <div class="footer-links">
-        <h5>Pages</h5>
-        <a href="index.html">Home</a><a href="products.html">Products</a><a href="retail.html">Buy Direct</a><a href="wholesale.html">Wholesale</a><a href="contact.html">Contact</a>
-      </div>
-      <div class="footer-links">
-        <h5>Products</h5>
-        <a href="products.html">Tool Organizers</a><a href="products.html">Marine Products</a><a href="products.html">Pegboard Accessories</a>
-      </div>
-      <div class="footer-contact">
-        <h5>Contact</h5>
-        <a href="mailto:hankmengedoht@gmail.com" data-cms="email" class="footer-email">hankmengedoht@gmail.com</a>
-        <p>MOQ: 25 units (wholesale)</p>
-      </div>
-    </div>
-    <div class="footer-bottom container"><p>© 2025 Mengedoht CNC. All rights reserved.</p></div>
-  </footer>
+      - label: "Retail Page"
+        name: "retail"
+        file: "_data/pages/retail.json"
+        fields:
+          - { label: "Page Headline", name: "headline", widget: "string" }
+          - { label: "Page Subtext", name: "sub", widget: "text" }
+          - { label: "Shipping Info", name: "shipping", widget: "text" }
+          - { label: "Return Policy", name: "returns", widget: "text" }
 
-  <script src="main.js"></script>
-</body>
-</html>
+      - label: "Site Settings"
+        name: "settings"
+        file: "_data/pages/settings.json"
+        fields:
+          - { label: "Business Name", name: "business_name", widget: "string" }
+          - { label: "Contact Email", name: "email", widget: "string" }
+          - { label: "Footer Tagline", name: "footer_tagline", widget: "text" }
+          - label: "Materials List"
+            name: "materials"
+            widget: "list"
+            hint: "Add or remove materials shown in the homepage bar"
+            field: { label: "Material", name: "material", widget: "string" }
+
+  # ─────────────────────────────────────────
+  # GALLERY
+  # ─────────────────────────────────────────
+  - name: "gallery"
+    label: "Gallery"
+    label_singular: "Photo"
+    folder: "_data/gallery"
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    extension: "json"
+    format: "json"
+    summary: "{{title}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - label: "Category"
+        name: "category"
+        widget: "select"
+        options:
+          - { label: "Marine", value: "marine" }
+          - { label: "Tool Organizers", value: "tools" }
+          - { label: "Automotive", value: "automotive" }
+          - { label: "Custom", value: "custom" }
+      - { label: "Photo", name: "image", widget: "image", hint: "Upload a high quality photo. Recommended: 1200x900px JPG or PNG." }
+      - { label: "Description", name: "description", widget: "text", required: false, hint: "Optional caption shown in the lightbox." }
+      - label: "Published"
+        name: "published"
+        widget: "boolean"
+        default: true
+        hint: "Unpublish to hide without deleting"
