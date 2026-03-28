@@ -1,0 +1,15 @@
+{
+  "title": "New Product!!",
+  "category": "marine",
+  "material": "HDPE",
+  "description": "This is a new product test!",
+  "image": "",
+  "retail_available": true,
+  "retail_price": "1 Brazillion Dollars",
+  "wholesale_available": true,
+  "moq": "1",
+  "fits": "13 boston whaler",
+  "featured": true,
+  "published": true,
+  "order": 99
+}
