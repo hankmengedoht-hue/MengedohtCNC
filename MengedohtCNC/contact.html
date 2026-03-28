@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — Mengedoht CNC</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body data-page="contact">
+
+  <header class="site-header" id="site-header">
+    <div class="container nav-inner">
+      <a href="index.html" class="logo"><span class="logo-mark">M</span><span class="logo-text">MENGEDOHT <em>CNC</em></span></a>
+      <nav class="main-nav" id="main-nav">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="products.html" class="nav-link">Products</a>
+        <a href="retail.html" class="nav-link">Buy Direct</a>
+        <a href="wholesale.html" class="nav-link">Wholesale</a>
+        <a href="contact.html" class="nav-link active">Contact</a>
+      </nav>
+      <a href="contact.html" class="btn btn-primary nav-cta">Get a Quote</a>
+      <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="container">
+      <div class="section-tag">Request a Quote</div>
+      <h1>Let's Talk</h1>
+      <p>Fill out the form below and we'll respond with pricing within 24 hours. No commitment required to ask.</p>
+    </div>
+  </section>
+
+  <section class="contact-section section">
+    <div class="container contact-layout">
+      <div class="contact-form-wrap">
+        <h2>Request Pricing</h2>
+        <p class="contact-intro">Tell us what you're looking for — existing products, custom designs, wholesale or retail — and we'll get back to you fast.</p>
+
+        <form name="wholesale-quote" method="POST" action="/success.html" netlify data-netlify-honeypot="bot-field" class="contact-form">
+          <input type="hidden" name="form-name" value="wholesale-quote" />
+          <div style="display:none;"><label>Don't fill this out: <input name="bot-field" /></label></div>
+
+          <div class="form-row">
+            <div class="form-group"><label for="name">Full Name *</label><input type="text" id="name" name="name" placeholder="Your name" required /></div>
+            <div class="form-group"><label for="email">Email Address *</label><input type="email" id="email" name="email" placeholder="your@email.com" required /></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label for="phone">Phone Number</label><input type="tel" id="phone" name="phone" placeholder="(555) 000-0000" /></div>
+            <div class="form-group"><label for="business">Business Name <span class="label-optional">(optional)</span></label><input type="text" id="business" name="business" placeholder="Your company or store name" /></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="type">I am a...</label>
+              <select id="type" name="type">
+                <option value="">Select one...</option>
+                <option>Individual / Personal</option>
+                <option>Hardware Store</option>
+                <option>Marine Shop</option>
+                <option>Contractor / Trade</option>
+                <option>Retail / Online Store</option>
+                <option>Distributor</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="quantity">Estimated Quantity</label>
+              <select id="quantity" name="quantity">
+                <option value="">Select a range...</option>
+                <option>Less than 25 units</option>
+                <option>25–99 units</option>
+                <option>100–499 units</option>
+                <option>500+ units</option>
+                <option>Not sure yet</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Products of Interest</label>
+            <div class="checkbox-group">
+              <label class="checkbox-label"><input type="checkbox" name="products[]" value="Tool Organizers" /> Tool Organizers</label>
+              <label class="checkbox-label"><input type="checkbox" name="products[]" value="Marine Products" /> Marine Products</label>
+              <label class="checkbox-label"><input type="checkbox" name="products[]" value="Boston Whaler Cooler Chocks" /> Boston Whaler Cooler Chocks</label>
+              <label class="checkbox-label"><input type="checkbox" name="products[]" value="Pegboard Accessories" /> Pegboard Accessories</label>
+              <label class="checkbox-label"><input type="checkbox" name="products[]" value="Custom Product/Project" /> Custom Product/Project</label>
+            </div>
+          </div>
+          <div class="form-group"><label for="message">Message / Project Details *</label><textarea id="message" name="message" rows="5" placeholder="Describe what you're looking for — product type, material preferences, dimensions, timeline, or any custom requirements." required></textarea></div>
+          <button type="submit" class="btn btn-accent btn-lg btn-block">Send My Request</button>
+          <p class="form-note">We respond within 24 hours, Monday–Friday. No spam, no pressure.</p>
+        </form>
+      </div>
+
+      <div class="contact-info">
+        <div class="info-card">
+          <h3>What Happens Next</h3>
+          <div class="next-steps">
+            <div class="next-step"><span class="next-num">1</span><div><strong>We review your request</strong><p>Usually within a few hours during business days.</p></div></div>
+            <div class="next-step"><span class="next-num">2</span><div><strong>You receive pricing</strong><p>Itemized quote with quantity tiers and lead times.</p></div></div>
+            <div class="next-step"><span class="next-num">3</span><div><strong>Approve &amp; we produce</strong><p>Once approved, we go into production. No surprises.</p></div></div>
+            <div class="next-step"><span class="next-num">4</span><div><strong>Ships to your door</strong><p>Packaged and ready for your shelf or job site.</p></div></div>
+          </div>
+        </div>
+        <div class="info-card info-card-light">
+          <h4>Quick Facts</h4>
+          <ul class="quick-facts">
+            <li><strong>MOQ:</strong> 25 units per SKU (wholesale)</li>
+            <li><strong>Retail:</strong> No minimum on select items</li>
+            <li><strong>Lead Time:</strong> 5–10 business days</li>
+            <li><strong>Custom Work:</strong> Yes — prototype in days</li>
+            <li><strong>Branding:</strong> Logo engraving available</li>
+            <li><strong>Response Time:</strong> Within 24 hours</li>
+          </ul>
+        </div>
+        <div class="info-card info-card-dark">
+          <h4>Email Us Directly</h4>
+          <p>Prefer email? Reach us at:</p>
+          <a href="mailto:hankmengedoht@gmail.com" data-cms="email" class="direct-email">hankmengedoht@gmail.com</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="logo logo-footer"><span class="logo-mark">M</span><span class="logo-text">MENGEDOHT <em>CNC</em></span></a>
+        <p data-cms="footer-tagline">Precision CNC manufacturing for wholesale buyers.</p>
+      </div>
+      <div class="footer-links">
+        <h5>Pages</h5>
+        <a href="index.html">Home</a><a href="products.html">Products</a><a href="retail.html">Buy Direct</a><a href="wholesale.html">Wholesale</a><a href="contact.html">Contact</a>
+      </div>
+      <div class="footer-links">
+        <h5>Products</h5>
+        <a href="products.html">Tool Organizers</a><a href="products.html">Marine Products</a><a href="products.html">Pegboard Accessories</a>
+      </div>
+      <div class="footer-contact">
+        <h5>Contact</h5>
+        <a href="mailto:hankmengedoht@gmail.com" data-cms="email" class="footer-email">hankmengedoht@gmail.com</a>
+        <p>MOQ: 25 units</p>
+      </div>
+    </div>
+    <div class="footer-bottom container"><p>© 2025 Mengedoht CNC. All rights reserved.</p></div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
