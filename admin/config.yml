@@ -2,7 +2,7 @@ backend:
   name: github
   repo: hankmengedoht-hue/MengedohtCNC
   branch: main
-  base_url: https://sveltia-cms-auth.pages.dev
+  base_url: https://cms-auth.hankmengedoht.workers.dev
 
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
