@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — Mengedoht CNC</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    .about-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    .about-photo {
+      width: 100%;
+      aspect-ratio: 4/3;
+      background: #2a2a28;
+      border-radius: 4px;
+      overflow: hidden;
+      border: 1px solid #3a3a35;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #666;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .about-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .about-bio h2 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: #f4f1ea;
+      text-transform: uppercase;
+      line-height: 1.1;
+      margin-bottom: 0.5rem;
+    }
+    .about-bio .bio-title {
+      color: #e8a020;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+    .about-bio p {
+      color: #b0aa9e;
+      line-height: 1.8;
+      margin-bottom: 1.25rem;
+      font-size: 1rem;
+    }
+    .equipment-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+    .equipment-card {
+      background: #2a2a28;
+      border: 1px solid #3a3a35;
+      border-radius: 4px;
+      padding: 1.5rem;
+      text-align: center;
+    }
+    .equipment-card .eq-icon {
+      font-size: 2rem;
+      margin-bottom: 0.75rem;
+    }
+    .equipment-card h4 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: #f4f1ea;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+    }
+    .equipment-card p {
+      color: #888;
+      font-size: 0.875rem;
+      line-height: 1.5;
+    }
+    .shop-photos {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .shop-photo {
+      aspect-ratio: 4/3;
+      background: #2a2a28;
+      border: 1px solid #3a3a35;
+      border-radius: 4px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #555;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .shop-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+    }
+    .value-card {
+      background: #2a2a28;
+      border: 1px solid #3a3a35;
+      border-top: 3px solid #e8a020;
+      border-radius: 4px;
+      padding: 1.75rem 1.5rem;
+    }
+    .value-card h4 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #f4f1ea;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+    }
+    .value-card p {
+      color: #888;
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+    @media (max-width: 900px) {
+      .about-layout { grid-template-columns: 1fr; gap: 2rem; }
+      .equipment-grid { grid-template-columns: repeat(2, 1fr); }
+      .values-grid { grid-template-columns: repeat(2, 1fr); }
+      .shop-photos { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .equipment-grid { grid-template-columns: 1fr; }
+      .values-grid { grid-template-columns: 1fr; }
+      .shop-photos { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body data-page="about">
+
+  <header class="site-header" id="site-header">
+    <div class="container nav-inner">
+      <a href="index.html" class="logo"><span class="logo-mark">M</span><span class="logo-text">MENGEDOHT <em>CNC</em></span></a>
+      <nav class="main-nav" id="main-nav">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="products.html" class="nav-link">Products</a>
+        <a href="retail.html" class="nav-link">Buy Direct</a>
+        <a href="wholesale.html" class="nav-link">Wholesale</a>
+        <a href="gallery.html" class="nav-link">Gallery</a>
+        <a href="about.html" class="nav-link active">About</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+      <a href="contact.html" class="btn btn-primary nav-cta">Get a Quote</a>
+      <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="container">
+      <div class="section-tag">About Us</div>
+      <h1>Built by Hand.<br>Driven by Precision.</h1>
+      <p>Charleston, South Carolina — CNC machining, custom fabrication, and scalable production.</p>
+    </div>
+  </section>
+
+  <!-- Bio Section -->
+  <section class="section">
+    <div class="container">
+      <div class="about-layout">
+        <div class="about-photo">
+          <!-- Replace this with an <img> tag when you have a photo -->
+          Photo Coming Soon
+        </div>
+        <div class="about-bio">
+          <div class="section-tag">The Builder</div>
+          <h2>Hank Mengedoht</h2>
+          <div class="bio-title">Founder & Machinist — Mengedoht CNC</div>
+          <p>My name is Hank Mengedoht, and I was born and raised in Charleston, South Carolina. With a strong background in CAD design and CNC machining, I've spent years developing the skills needed to bring ideas from concept to reality with precision and efficiency.</p>
+          <p>I have extensive experience designing and building custom projects across a wide range of applications. From working on cars and boats to producing one-off custom parts and repeatable production pieces, I enjoy solving problems and creating high-quality results tailored to each customer's needs.</p>
+          <p>I'm especially interested in bridging the gap between custom craftsmanship and efficient mass production — delivering the quality of handmade work at the consistency of industrial manufacturing.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Company Story -->
+  <section class="section" style="background:#222220;">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Our Story</div>
+        <h2 class="section-title">How Mengedoht CNC Came to Be</h2>
+        <p class="section-sub">What started as a passion for design and fabrication has grown into a full-scale CNC manufacturing operation.</p>
+      </div>
+      <div class="about-layout" style="align-items:center;">
+        <div>
+          <p style="color:#b0aa9e; line-height:1.8; margin-bottom:1.25rem;">Mengedoht CNC was founded out of a genuine passion for creativity and hands-on manufacturing. What started as an interest in designing and building has grown into a business focused not only on custom work, but also on scalable production and industrial supply.</p>
+          <p style="color:#b0aa9e; line-height:1.8; margin-bottom:1.25rem;">Based in Charleston, South Carolina, we serve both individual customers who want a single custom part and wholesale buyers who need consistent, repeatable production runs. Every product that leaves our shop meets the same standard of quality — whether it's one unit or five hundred.</p>
+          <p style="color:#b0aa9e; line-height:1.8;">Mengedoht CNC is committed to delivering quality, reliability, and craftsmanship in every project — no shortcuts, no compromises.</p>
+        </div>
+        <div class="values-grid" style="grid-template-columns: repeat(2,1fr);">
+          <div class="value-card"><h4>Precision</h4><p>Every cut is dialed in to exact tolerances. CNC means repeatable accuracy — every time.</p></div>
+          <div class="value-card"><h4>Quality</h4><p>Premium materials, professional-grade equipment, and attention to detail on every order.</p></div>
+          <div class="value-card"><h4>Reliability</h4><p>Consistent lead times, clear communication, and products that perform exactly as described.</p></div>
+          <div class="value-card"><h4>Craftsmanship</h4><p>Built by someone who cares about the work — not just the output.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Equipment -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">The Shop</div>
+        <h2 class="section-title">Equipment & Capabilities</h2>
+        <p class="section-sub">Professional-grade tools producing professional-grade results.</p>
+      </div>
+      <div class="equipment-grid">
+        <div class="equipment-card">
+          <div class="eq-icon">⚙️</div>
+          <h4>Camaster Cobra CR-510 ATC</h4>
+          <p>Our primary CNC machine. Automatic tool changer, professional-grade precision, and built for production runs.</p>
+        </div>
+        <div class="equipment-card">
+          <div class="eq-icon">🖥️</div>
+          <h4>Vectric Aspire</h4>
+          <p>Industry-leading CAD/CAM software for 2D and 3D design, toolpath generation, and production-ready files.</p>
+        </div>
+        <div class="equipment-card">
+          <div class="eq-icon">🪵</div>
+          <h4>17+ Materials</h4>
+          <p>From Baltic Birch and HDPE to carbon fiber and Delrin — we work across a wide range of materials.</p>
+        </div>
+      </div>
+
+      <div class="section-header" style="margin-top:3rem;">
+        <h3 class="section-title" style="font-size:1.5rem;">The Shop</h3>
+        <p class="section-sub">Add your shop photos through the admin panel — coming soon.</p>
+      </div>
+      <div class="shop-photos">
+        <div class="shop-photo">Shop Photo</div>
+        <div class="shop-photo">Shop Photo</div>
+        <div class="shop-photo">Shop Photo</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-banner">
+    <div class="container cta-inner">
+      <div><h2>Ready to work together?</h2><p>Whether you need one custom part or a full production run — let's talk.</p></div>
+      <a href="contact.html" class="btn btn-accent btn-lg">Get a Quote</a>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="logo logo-footer"><span class="logo-mark">M</span><span class="logo-text">MENGEDOHT <em>CNC</em></span></a>
+        <p data-cms="footer-tagline">Precision CNC manufacturing for wholesale buyers.</p>
+      </div>
+      <div class="footer-links">
+        <h5>Pages</h5>
+        <a href="index.html">Home</a><a href="products.html">Products</a><a href="retail.html">Buy Direct</a><a href="wholesale.html">Wholesale</a><a href="gallery.html">Gallery</a><a href="about.html">About</a><a href="contact.html">Contact</a>
+      </div>
+      <div class="footer-links">
+        <h5>Products</h5>
+        <a href="products.html">Tool Organizers</a><a href="products.html">Marine Products</a><a href="products.html">Pegboard Accessories</a>
+      </div>
+      <div class="footer-contact">
+        <h5>Contact</h5>
+        <a href="mailto:hankmengedoht@gmail.com" data-cms="email" class="footer-email">hankmengedoht@gmail.com</a>
+        <p>MOQ: 25 units</p>
+        <a href="contact.html" class="btn btn-ghost mt-1">Request a Quote</a>
+      </div>
+    </div>
+    <div class="footer-bottom container"><p>© 2025 Mengedoht CNC. All rights reserved.</p></div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

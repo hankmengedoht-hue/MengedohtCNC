@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gallery — Mengedoht CNC</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    .gallery-filters {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+    }
+    .gallery-filter-btn {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.5rem 1.25rem;
+      border: 1px solid #3a3a35;
+      border-radius: 2px;
+      background: transparent;
+      color: #888;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .gallery-filter-btn:hover,
+    .gallery-filter-btn.active {
+      background: #e8a020;
+      border-color: #e8a020;
+      color: #1e1e1c;
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+    .gallery-item {
+      position: relative;
+      aspect-ratio: 4/3;
+      background: #2a2a28;
+      border: 1px solid #3a3a35;
+      border-radius: 4px;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    .gallery-item:hover img {
+      transform: scale(1.05);
+    }
+    .gallery-item-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.3s;
+      display: flex;
+      align-items: flex-end;
+      padding: 1.25rem;
+    }
+    .gallery-item:hover .gallery-item-overlay {
+      opacity: 1;
+    }
+    .gallery-item-overlay h4 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: #f4f1ea;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.25rem;
+    }
+    .gallery-item-overlay span {
+      font-size: 0.8rem;
+      color: #e8a020;
+      font-family: 'Barlow Condensed', sans-serif;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .gallery-empty {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 4rem 2rem;
+      color: #555;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border: 1px dashed #333;
+      border-radius: 4px;
+    }
+    /* Lightbox */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.92);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+    .lightbox.open {
+      display: flex;
+    }
+    .lightbox-inner {
+      max-width: 900px;
+      width: 100%;
+      position: relative;
+    }
+    .lightbox-inner img {
+      width: 100%;
+      height: auto;
+      max-height: 80vh;
+      object-fit: contain;
+      border-radius: 4px;
+    }
+    .lightbox-close {
+      position: absolute;
+      top: -2.5rem;
+      right: 0;
+      background: none;
+      border: none;
+      color: #f4f1ea;
+      font-size: 1.5rem;
+      cursor: pointer;
+      font-family: 'Barlow Condensed', sans-serif;
+      letter-spacing: 0.1em;
+    }
+    .lightbox-caption {
+      margin-top: 1rem;
+      text-align: center;
+    }
+    .lightbox-caption h4 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #f4f1ea;
+      text-transform: uppercase;
+    }
+    .lightbox-caption p {
+      color: #888;
+      font-size: 0.9rem;
+      margin-top: 0.25rem;
+    }
+    @media (max-width: 900px) {
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .gallery-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body data-page="gallery">
+
+  <header class="site-header" id="site-header">
+    <div class="container nav-inner">
+      <a href="index.html" class="logo"><span class="logo-mark">M</span><span class="logo-text">MENGEDOHT <em>CNC</em></span></a>
+      <nav class="main-nav" id="main-nav">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="products.html" class="nav-link">Products</a>
+        <a href="retail.html" class="nav-link">Buy Direct</a>
+        <a href="wholesale.html" class="nav-link">Wholesale</a>
+        <a href="gallery.html" class="nav-link active">Gallery</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+      <a href="contact.html" class="btn btn-primary nav-cta">Get a Quote</a>
+      <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="container">
+      <div class="section-tag">Our Work</div>
+      <h1>The Gallery</h1>
+      <p>A look at past projects, custom work, and production pieces made at Mengedoht CNC.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="gallery-filters" id="gallery-filters">
+        <button class="gallery-filter-btn active" data-filter="all">All Work</button>
+        <button class="gallery-filter-btn" data-filter="marine">Marine</button>
+        <button class="gallery-filter-btn" data-filter="tools">Tool Organizers</button>
+        <button class="gallery-filter-btn" data-filter="automotive">Automotive</button>
+        <button class="gallery-filter-btn" data-filter="custom">Custom</button>
+      </div>
+      <div class="gallery-grid" id="gallery-grid">
+        <div class="gallery-empty">Photos coming soon — check back shortly.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <div class="lightbox-inner">
+      <button class="lightbox-close" id="lightbox-close">✕ Close</button>
+      <img id="lightbox-img" src="" alt="" />
+      <div class="lightbox-caption">
+        <h4 id="lightbox-title"></h4>
+        <p id="lightbox-desc"></p>
+      </div>
+    </div>
+  </div>
+
+  <section class="cta-banner">
+    <div class="container cta-inner">
+      <div><h2>Like what you see?</h2><p>Get in touch to discuss your project — custom or production run.</p></div>
+      <a href="contact.html" class="btn btn-accent btn-lg">Start a Project</a>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="logo logo-footer"><span class="logo-mark">M</span><span class="logo-text">MENGEDOHT <em>CNC</em></span></a>
+        <p data-cms="footer-tagline">Precision CNC manufacturing for wholesale buyers.</p>
+      </div>
+      <div class="footer-links">
+        <h5>Pages</h5>
+        <a href="index.html">Home</a><a href="products.html">Products</a><a href="retail.html">Buy Direct</a><a href="wholesale.html">Wholesale</a><a href="gallery.html">Gallery</a><a href="about.html">About</a><a href="contact.html">Contact</a>
+      </div>
+      <div class="footer-links">
+        <h5>Products</h5>
+        <a href="products.html">Tool Organizers</a><a href="products.html">Marine Products</a><a href="products.html">Pegboard Accessories</a>
+      </div>
+      <div class="footer-contact">
+        <h5>Contact</h5>
+        <a href="mailto:hankmengedoht@gmail.com" data-cms="email" class="footer-email">hankmengedoht@gmail.com</a>
+        <p>MOQ: 25 units</p>
+        <a href="contact.html" class="btn btn-ghost mt-1">Request a Quote</a>
+      </div>
+    </div>
+    <div class="footer-bottom container"><p>© 2025 Mengedoht CNC. All rights reserved.</p></div>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+    // Load gallery from CMS data
+    async function loadGallery() {
+      try {
+        const manifestRes = await fetch('/_data/gallery/manifest.json');
+        if (!manifestRes.ok) return;
+        const files = await manifestRes.json();
+        const items = await Promise.all(
+          files.map(f => fetch(`/_data/gallery/${f}`).then(r => r.json()))
+        );
+        renderGallery(items.filter(i => i.published !== false));
+      } catch (e) {
+        console.log('Gallery not yet configured.');
+      }
+    }
+
+    function renderGallery(items) {
+      const grid = document.getElementById('gallery-grid');
+      if (!items.length) return;
+      grid.innerHTML = items.map((item, i) => `
+        <div class="gallery-item" data-category="${item.category || 'custom'}" onclick="openLightbox(${i})">
+          <img src="${item.image}" alt="${item.title}" loading="lazy" />
+          <div class="gallery-item-overlay">
+            <div>
+              <h4>${item.title}</h4>
+              <span>${item.category || 'Custom Work'}</span>
+            </div>
+          </div>
+        </div>
+      `).join('');
+      window._galleryItems = items;
+      setupFilters();
+    }
+
+    function setupFilters() {
+      document.querySelectorAll('.gallery-filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.gallery-filter-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          const filter = btn.dataset.filter;
+          document.querySelectorAll('.gallery-item').forEach(item => {
+            item.style.display = (filter === 'all' || item.dataset.category === filter) ? '' : 'none';
+          });
+        });
+      });
+    }
+
+    function openLightbox(i) {
+      const item = window._galleryItems[i];
+      document.getElementById('lightbox-img').src = item.image;
+      document.getElementById('lightbox-title').textContent = item.title;
+      document.getElementById('lightbox-desc').textContent = item.description || '';
+      document.getElementById('lightbox').classList.add('open');
+    }
+
+    document.getElementById('lightbox-close').addEventListener('click', () => {
+      document.getElementById('lightbox').classList.remove('open');
+    });
+    document.getElementById('lightbox').addEventListener('click', (e) => {
+      if (e.target === e.currentTarget) e.currentTarget.classList.remove('open');
+    });
+
+    loadGallery();
+  </script>
+</body>
+</html>
