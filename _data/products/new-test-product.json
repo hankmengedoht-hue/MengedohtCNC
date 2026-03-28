@@ -1,0 +1,15 @@
+{
+  "title": "New Test Product",
+  "category": "marine",
+  "material": "HDF",
+  "description": "Another test",
+  "image": "",
+  "retail_available": true,
+  "retail_price": "",
+  "wholesale_available": true,
+  "moq": "25",
+  "fits": "",
+  "featured": false,
+  "published": true,
+  "order": 99
+}
