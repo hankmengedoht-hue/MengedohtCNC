@@ -3,6 +3,13 @@ backend:
   repo: hankmengedoht-hue/MengedohtCNC
   branch: main
   base_url: https://cms-auth.hankmengedoht.workers.dev
+  squash_merges: true
+  commit_messages:
+    create: 'Create {{collection}} "{{slug}}"'
+    update: 'Update {{collection}} "{{slug}}"'
+    delete: 'Delete {{collection}} "{{slug}}"'
+    uploadMedia: 'Upload "{{path}}"'
+    deleteMedia: 'Delete "{{path}}"'
 
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
