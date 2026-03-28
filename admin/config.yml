@@ -22,13 +22,11 @@ collections:
   - name: "products"
     label: "Products"
     label_singular: "Product"
-    folder: "_data/products"
+    folder: "data/products"
     create: true
     delete: true
     slug: "{{slug}}"
     summary: "{{title}} — {{category}}"
-    extension: "json"
-    format: "json"
     fields:
       - { label: "Product Name", name: "title", widget: "string" }
       - label: "Category"
@@ -38,7 +36,6 @@ collections:
           - { label: "Tool Organizers", value: "tools" }
           - { label: "Marine", value: "marine" }
           - { label: "Pegboard Accessories", value: "pegboard" }
-          - { label: "Automotive Dashboards", value: "automotive" }
           - { label: "Custom / Other", value: "custom" }
       - label: "Material"
         name: "material"
@@ -108,7 +105,7 @@ collections:
 
       - label: "Homepage"
         name: "home"
-        file: "_data/pages/home.json"
+        file: "data/pages/home.json"
         fields:
           - { label: "Hero Headline", name: "hero_headline", widget: "string" }
           - { label: "Hero Subheadline", name: "hero_sub", widget: "text" }
@@ -124,7 +121,7 @@ collections:
 
       - label: "Wholesale Page"
         name: "wholesale"
-        file: "_data/pages/wholesale.json"
+        file: "data/pages/wholesale.json"
         fields:
           - { label: "Page Headline", name: "headline", widget: "string" }
           - { label: "Page Subtext", name: "sub", widget: "text" }
@@ -135,7 +132,7 @@ collections:
 
       - label: "Retail Page"
         name: "retail"
-        file: "_data/pages/retail.json"
+        file: "data/pages/retail.json"
         fields:
           - { label: "Page Headline", name: "headline", widget: "string" }
           - { label: "Page Subtext", name: "sub", widget: "text" }
@@ -144,7 +141,7 @@ collections:
 
       - label: "Site Settings"
         name: "settings"
-        file: "_data/pages/settings.json"
+        file: "data/pages/settings.json"
         fields:
           - { label: "Business Name", name: "business_name", widget: "string" }
           - { label: "Contact Email", name: "email", widget: "string" }
@@ -154,3 +151,34 @@ collections:
             widget: "list"
             hint: "Add or remove materials shown in the homepage bar"
             field: { label: "Material", name: "material", widget: "string" }
+
+  # ─────────────────────────────────────────
+  # GALLERY
+  # ─────────────────────────────────────────
+  - name: "gallery"
+    label: "Gallery"
+    label_singular: "Photo"
+    folder: "data/gallery"
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    extension: "json"
+    format: "json"
+    summary: "{{title}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - label: "Category"
+        name: "category"
+        widget: "select"
+        options:
+          - { label: "Marine", value: "marine" }
+          - { label: "Tool Organizers", value: "tools" }
+          - { label: "Automotive", value: "automotive" }
+          - { label: "Custom", value: "custom" }
+      - { label: "Photo", name: "image", widget: "image", hint: "Upload a high quality photo. Recommended: 1200x900px JPG or PNG." }
+      - { label: "Description", name: "description", widget: "text", required: false, hint: "Optional caption shown in the lightbox." }
+      - label: "Published"
+        name: "published"
+        widget: "boolean"
+        default: true
+        hint: "Unpublish to hide without deleting"

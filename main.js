@@ -1,4 +1,4 @@
-/* ===================================================== 
+/* =====================================================
    MENGEDOHT CNC — main.js
    Loads content from _data JSON files and renders
    products/pages dynamically so the CMS drives the site.
@@ -52,7 +52,7 @@ async function fetchJSON(url) {
 }
 
 async function fetchProductList() {
-  const manifest = await fetchJSON('/_data/products/manifest.json');
+  const manifest = await fetchJSON('/data/products/manifest.json');
   if (manifest && Array.isArray(manifest)) return manifest;
   return [];
 }
@@ -64,7 +64,7 @@ function categoryLabel(cat) {
 
 // ── SITE SETTINGS ──
 async function applySettings() {
-  const settings = await fetchJSON('/_data/pages/settings.json');
+  const settings = await fetchJSON('/data/pages/settings.json');
   if (!settings) return;
   document.querySelectorAll('[data-cms="email"]').forEach(el => {
     if (el.tagName === 'A') el.href = `mailto:${settings.email}`;
@@ -82,7 +82,7 @@ async function applySettings() {
 
 // ── HOME PAGE ──
 async function applyHomeContent() {
-  const home = await fetchJSON('/_data/pages/home.json');
+  const home = await fetchJSON('/data/pages/home.json');
   if (!home) return;
   const set = (sel, val) => document.querySelectorAll(sel).forEach(el => { el.textContent = val; });
   set('[data-cms="hero-headline"]', home.hero_headline);
@@ -100,7 +100,7 @@ async function applyHomeContent() {
 
 // ── WHOLESALE PAGE ──
 async function applyWholesaleContent() {
-  const ws = await fetchJSON('/_data/pages/wholesale.json');
+  const ws = await fetchJSON('/data/pages/wholesale.json');
   if (!ws) return;
   const set = (sel, val) => document.querySelectorAll(sel).forEach(el => { el.textContent = val; });
   set('[data-cms="ws-headline"]', ws.headline);
@@ -113,7 +113,7 @@ async function applyWholesaleContent() {
 
 // ── RETAIL PAGE ──
 async function applyRetailContent() {
-  const retail = await fetchJSON('/_data/pages/retail.json');
+  const retail = await fetchJSON('/data/pages/retail.json');
   if (!retail) return;
   const set = (sel, val) => document.querySelectorAll(sel).forEach(el => { el.textContent = val; });
   set('[data-cms="retail-headline"]', retail.headline);
@@ -197,7 +197,7 @@ async function loadAndRenderProducts(gridId, filterFn) {
   }
 
   const all = (await Promise.all(
-    manifest.map(f => fetchJSON(`/_data/products/${f}`))
+    manifest.map(f => fetchJSON(`/data/products/${f}`))
   )).filter(p => p && p.published !== false);
 
   const products = filterFn ? all.filter(filterFn) : all;

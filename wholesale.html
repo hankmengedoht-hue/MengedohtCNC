@@ -3,160 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>About — Mengedoht CNC</title>
+  <title>Wholesale — Mengedoht CNC</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <style>
-    .about-layout {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: start;
-    }
-    .about-photo {
-      width: 100%;
-      aspect-ratio: 4/3;
-      background: #2a2a28;
-      border-radius: 4px;
-      overflow: hidden;
-      border: 1px solid #3a3a35;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #666;
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 1rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-    }
-    .about-photo img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    .about-bio h2 {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 2.5rem;
-      font-weight: 800;
-      color: #f4f1ea;
-      text-transform: uppercase;
-      line-height: 1.1;
-      margin-bottom: 0.5rem;
-    }
-    .about-bio .bio-title {
-      color: #e8a020;
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 1rem;
-      font-weight: 600;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      margin-bottom: 1.5rem;
-    }
-    .about-bio p {
-      color: #b0aa9e;
-      line-height: 1.8;
-      margin-bottom: 1.25rem;
-      font-size: 1rem;
-    }
-    .equipment-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-      margin-top: 1rem;
-    }
-    .equipment-card {
-      background: #2a2a28;
-      border: 1px solid #3a3a35;
-      border-radius: 4px;
-      padding: 1.5rem;
-      text-align: center;
-    }
-    .equipment-card .eq-icon {
-      font-size: 2rem;
-      margin-bottom: 0.75rem;
-    }
-    .equipment-card h4 {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 1rem;
-      font-weight: 700;
-      color: #f4f1ea;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 0.5rem;
-    }
-    .equipment-card p {
-      color: #888;
-      font-size: 0.875rem;
-      line-height: 1.5;
-    }
-    .shop-photos {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1rem;
-      margin-top: 1rem;
-    }
-    .shop-photo {
-      aspect-ratio: 4/3;
-      background: #2a2a28;
-      border: 1px solid #3a3a35;
-      border-radius: 4px;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #555;
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.8rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-    }
-    .shop-photo img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    .values-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1.5rem;
-    }
-    .value-card {
-      background: #2a2a28;
-      border: 1px solid #3a3a35;
-      border-top: 3px solid #e8a020;
-      border-radius: 4px;
-      padding: 1.75rem 1.5rem;
-    }
-    .value-card h4 {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: #f4f1ea;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 0.5rem;
-    }
-    .value-card p {
-      color: #888;
-      font-size: 0.9rem;
-      line-height: 1.6;
-    }
-    @media (max-width: 900px) {
-      .about-layout { grid-template-columns: 1fr; gap: 2rem; }
-      .equipment-grid { grid-template-columns: repeat(2, 1fr); }
-      .values-grid { grid-template-columns: repeat(2, 1fr); }
-      .shop-photos { grid-template-columns: repeat(2, 1fr); }
-    }
-    @media (max-width: 600px) {
-      .equipment-grid { grid-template-columns: 1fr; }
-      .values-grid { grid-template-columns: 1fr; }
-      .shop-photos { grid-template-columns: 1fr; }
-    }
-  </style>
 </head>
-<body data-page="about">
+<body data-page="wholesale">
 
   <header class="site-header" id="site-header">
     <div class="container nav-inner">
@@ -165,9 +18,9 @@
         <a href="index.html" class="nav-link">Home</a>
         <a href="products.html" class="nav-link">Products</a>
         <a href="retail.html" class="nav-link">Buy Direct</a>
-        <a href="wholesale.html" class="nav-link">Wholesale</a>
+        <a href="wholesale.html" class="nav-link active">Wholesale</a>
         <a href="gallery.html" class="nav-link">Gallery</a>
-        <a href="about.html" class="nav-link active">About</a>
+        <a href="about.html" class="nav-link">About</a>
         <a href="contact.html" class="nav-link">Contact</a>
       </nav>
       <a href="contact.html" class="btn btn-primary nav-cta">Get a Quote</a>
@@ -177,98 +30,87 @@
 
   <section class="page-hero">
     <div class="container">
-      <div class="section-tag">About Us</div>
-      <h1>Built by Hand.<br>Driven by Precision.</h1>
-      <p>Charleston, South Carolina — CNC machining, custom fabrication, and scalable production.</p>
+      <div class="section-tag">Wholesale Program</div>
+      <h1 data-cms="ws-headline">Built for Buyers Who Sell Volume</h1>
+      <p data-cms="ws-sub">We work with wholesale accounts and individual customers alike.</p>
     </div>
   </section>
 
-  <!-- Bio Section -->
-  <section class="section">
-    <div class="container">
-      <div class="about-layout">
-        <div class="about-photo">
-          <!-- Replace this with an <img> tag when you have a photo -->
-          Photo Coming Soon
-        </div>
-        <div class="about-bio">
-          <div class="section-tag">The Builder</div>
-          <h2>Hank Mengedoht</h2>
-          <div class="bio-title">Founder & Machinist — Mengedoht CNC</div>
-          <p>My name is Hank Mengedoht, and I was born and raised in Charleston, South Carolina. With a strong background in CAD design and CNC machining, I've spent years developing the skills needed to bring ideas from concept to reality with precision and efficiency.</p>
-          <p>I have extensive experience designing and building custom projects across a wide range of applications. From working on cars and boats to producing one-off custom parts and repeatable production pieces, I enjoy solving problems and creating high-quality results tailored to each customer's needs.</p>
-          <p>I'm especially interested in bridging the gap between custom craftsmanship and efficient mass production — delivering the quality of handmade work at the consistency of industrial manufacturing.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Company Story -->
-  <section class="section" style="background:#222220;">
-    <div class="container">
-      <div class="section-header">
-        <div class="section-tag">Our Story</div>
-        <h2 class="section-title">How Mengedoht CNC Came to Be</h2>
-        <p class="section-sub">What started as a passion for design and fabrication has grown into a full-scale CNC manufacturing operation.</p>
-      </div>
-      <div class="about-layout" style="align-items:center;">
-        <div>
-          <p style="color:#b0aa9e; line-height:1.8; margin-bottom:1.25rem;">Mengedoht CNC was founded out of a genuine passion for creativity and hands-on manufacturing. What started as an interest in designing and building has grown into a business focused not only on custom work, but also on scalable production and industrial supply.</p>
-          <p style="color:#b0aa9e; line-height:1.8; margin-bottom:1.25rem;">Based in Charleston, South Carolina, we serve both individual customers who want a single custom part and wholesale buyers who need consistent, repeatable production runs. Every product that leaves our shop meets the same standard of quality — whether it's one unit or five hundred.</p>
-          <p style="color:#b0aa9e; line-height:1.8;">Mengedoht CNC is committed to delivering quality, reliability, and craftsmanship in every project — no shortcuts, no compromises.</p>
-        </div>
-        <div class="values-grid" style="grid-template-columns: repeat(2,1fr);">
-          <div class="value-card"><h4>Precision</h4><p>Every cut is dialed in to exact tolerances. CNC means repeatable accuracy — every time.</p></div>
-          <div class="value-card"><h4>Quality</h4><p>Premium materials, professional-grade equipment, and attention to detail on every order.</p></div>
-          <div class="value-card"><h4>Reliability</h4><p>Consistent lead times, clear communication, and products that perform exactly as described.</p></div>
-          <div class="value-card"><h4>Craftsmanship</h4><p>Built by someone who cares about the work — not just the output.</p></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Equipment -->
   <section class="section">
     <div class="container">
       <div class="section-header">
-        <div class="section-tag">The Shop</div>
-        <h2 class="section-title">Equipment & Capabilities</h2>
-        <p class="section-sub">Professional-grade tools producing professional-grade results.</p>
+        <div class="section-tag">Pricing Tiers</div>
+        <h2 class="section-title">The More You Order,<br>The Better Your Margin</h2>
+        <p class="section-sub">All pricing is per-unit and decreases as quantity increases. Contact us for exact pricing on specific SKUs.</p>
       </div>
-      <div class="equipment-grid">
-        <div class="equipment-card">
-          <div class="eq-icon">⚙️</div>
-          <h4>Camaster Cobra CR-510 ATC</h4>
-          <p>Our primary CNC machine. Automatic tool changer, professional-grade precision, and built for production runs.</p>
+      <div class="pricing-tiers">
+        <div class="tier-card">
+          <div class="tier-label">Starter</div>
+          <div class="tier-qty">25–99 <span>units</span></div>
+          <div class="tier-desc">Minimum opening order. Great for testing new SKUs or trialing a product line in your store.</div>
+          <ul class="tier-features"><li>Standard pricing</li><li>5–10 day lead time</li><li>Standard packaging</li><li>Reorder any time</li></ul>
+          <a href="contact.html" class="btn btn-outline">Request Quote</a>
         </div>
-        <div class="equipment-card">
-          <div class="eq-icon">🖥️</div>
-          <h4>Vectric Aspire</h4>
-          <p>Industry-leading CAD/CAM software for 2D and 3D design, toolpath generation, and production-ready files.</p>
+        <div class="tier-card tier-featured">
+          <div class="tier-badge-top">Most Popular</div>
+          <div class="tier-label">Volume</div>
+          <div class="tier-qty">100–499 <span>units</span></div>
+          <div class="tier-desc">Our most popular tier for established retailers. Meaningful per-unit savings and faster restocking.</div>
+          <ul class="tier-features"><li>~15% off Starter pricing</li><li>5–7 day lead time</li><li>Custom packaging available</li><li>Priority reorder processing</li></ul>
+          <a href="contact.html" class="btn btn-accent">Request Quote</a>
         </div>
-        <div class="equipment-card">
-          <div class="eq-icon">🪵</div>
-          <h4>17+ Materials</h4>
-          <p>From Baltic Birch and HDPE to carbon fiber and Delrin — we work across a wide range of materials.</p>
+        <div class="tier-card">
+          <div class="tier-label">High Volume</div>
+          <div class="tier-qty">500+ <span>units</span></div>
+          <div class="tier-desc">Maximum margin, minimum lead time. Ideal for chain retail, catalog buyers, and distributors.</div>
+          <ul class="tier-features"><li>Best available pricing</li><li>Dedicated production slot</li><li>White-label branding</li><li>Net 30 terms available</li></ul>
+          <a href="contact.html" class="btn btn-outline">Request Quote</a>
         </div>
       </div>
+    </div>
+  </section>
 
-      <div class="section-header" style="margin-top:3rem;">
-        <h3 class="section-title" style="font-size:1.5rem;">The Shop</h3>
-        <p class="section-sub">Add your shop photos through the admin panel — coming soon.</p>
+  <section class="section wholesale-details">
+    <div class="container">
+      <div class="wholesale-grid">
+        <div class="wholesale-col">
+          <div class="section-tag">Order Details</div>
+          <h2 class="section-title">What to Expect</h2>
+          <div class="detail-block"><h4>Minimum Order Quantity</h4><p data-cms="ws-moq">Our MOQ is 25 units per SKU.</p></div>
+          <div class="detail-block"><h4>Lead Times</h4><p data-cms="ws-lead-time">Standard production runs ship within 5–10 business days.</p></div>
+          <div class="detail-block"><h4>Payment Terms</h4><p data-cms="ws-payment">New accounts: payment due at time of order.</p></div>
+          <div class="detail-block"><h4>Shipping</h4><p data-cms="ws-shipping">We ship via UPS and FedEx Ground.</p></div>
+        </div>
+        <div class="wholesale-col">
+          <div class="section-tag">Custom Options</div>
+          <h2 class="section-title">Make It Yours</h2>
+          <div class="custom-options">
+            <div class="custom-option"><div class="custom-icon"><svg viewBox="0 0 32 32" fill="none"><rect x="4" y="8" width="24" height="18" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M10 14h12M10 18h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div><div><h4>Logo Engraving</h4><p>Add your store or brand logo via CNC engraving. One-time setup fee, then no added cost per unit at volume tiers.</p></div></div>
+            <div class="custom-option"><div class="custom-icon"><svg viewBox="0 0 32 32" fill="none"><path d="M16 4l3 9h9l-7 5 3 9-8-6-8 6 3-9-7-5h9z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></div><div><h4>White-Label Branding</h4><p>Sell under your own brand name. We remove all Mengedoht branding and apply your identity.</p></div></div>
+            <div class="custom-option"><div class="custom-icon"><svg viewBox="0 0 32 32" fill="none"><rect x="4" y="4" width="24" height="24" rx="3" stroke="currentColor" stroke-width="1.5"/><path d="M10 16h12M16 10v12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div><div><h4>Custom Dimensions</h4><p>Modify existing designs or create new cut files to your specs at no added per-unit cost.</p></div></div>
+            <div class="custom-option"><div class="custom-icon"><svg viewBox="0 0 32 32" fill="none"><path d="M8 26V12l8-8 8 8v14H8z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><rect x="13" y="18" width="6" height="8" rx="1" stroke="currentColor" stroke-width="1.5"/></svg></div><div><h4>New Product Development</h4><p>Send us a concept and we'll have a sample cut and shipped within 3–5 business days.</p></div></div>
+          </div>
+        </div>
       </div>
-      <div class="shop-photos">
-        <div class="shop-photo">Shop Photo</div>
-        <div class="shop-photo">Shop Photo</div>
-        <div class="shop-photo">Shop Photo</div>
+    </div>
+  </section>
+
+  <section class="section who-section">
+    <div class="container">
+      <div class="section-header"><div class="section-tag">Our Customers</div><h2 class="section-title">Who We Work With</h2></div>
+      <div class="who-grid">
+        <div class="who-card"><div class="who-icon">🔧</div><h4>Hardware Stores</h4><p>Tool organizers and shop organization products that sell well as margin-positive accessories.</p></div>
+        <div class="who-card"><div class="who-icon">⚓</div><h4>Marine Shops</h4><p>HDPE and acrylic instrument panels, switch plates, cooler chocks, and mounting hardware.</p></div>
+        <div class="who-card"><div class="who-icon">🏗️</div><h4>Contractor Suppliers</h4><p>Jigs, templates, and layout tools for professional contractors who need repeatable, accurate work.</p></div>
+        <div class="who-card"><div class="who-icon">🏪</div><h4>Retail Buyers</h4><p>Catalog and online retailers looking for unique, high-quality accessories to expand their product line.</p></div>
       </div>
     </div>
   </section>
 
   <section class="cta-banner">
     <div class="container cta-inner">
-      <div><h2>Ready to work together?</h2><p>Whether you need one custom part or a full production run — let's talk.</p></div>
-      <a href="contact.html" class="btn btn-accent btn-lg">Get a Quote</a>
+      <div><h2>Ready to open a wholesale account?</h2><p>Tell us what you sell and how many you need. We'll have pricing to you within 24 hours.</p></div>
+      <a href="contact.html" class="btn btn-accent btn-lg">Start Your Account</a>
     </div>
   </section>
 
@@ -280,7 +122,7 @@
       </div>
       <div class="footer-links">
         <h5>Pages</h5>
-        <a href="index.html">Home</a><a href="products.html">Products</a><a href="retail.html">Buy Direct</a><a href="wholesale.html">Wholesale</a><a href="gallery.html">Gallery</a><a href="about.html">About</a><a href="contact.html">Contact</a>
+        <a href="index.html">Home</a><a href="products.html">Products</a><a href="retail.html">Buy Direct</a><a href="wholesale.html">Wholesale</a><a href="contact.html">Contact</a>
       </div>
       <div class="footer-links">
         <h5>Products</h5>
