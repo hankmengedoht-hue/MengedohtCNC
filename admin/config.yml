@@ -38,6 +38,7 @@ collections:
           - { label: "Tool Organizers", value: "tools" }
           - { label: "Marine", value: "marine" }
           - { label: "Pegboard Accessories", value: "pegboard" }
+          - { label: "Automotive Dashboards", value: "automotive" }
           - { label: "Custom / Other", value: "custom" }
       - label: "Material"
         name: "material"
