@@ -170,3 +170,19 @@ collections:
     fields:
       - { label: "Photo", name: "image", widget: "image" }
       - { label: "Published", name: "published", widget: "boolean", default: true }
+
+# ─────────────────────────────────────────
+  # SHOP PHOTOS
+  # ─────────────────────────────────────────
+  - name: "shop-photos"
+    label: "Shop Photos"
+    label_singular: "Shop Photo"
+    folder: "_data/shop-photos"
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    extension: "json"
+    format: "json"
+    fields:
+      - { label: "Photo", name: "image", widget: "image" }
+      - { label: "Published", name: "published", widget: "boolean", default: true }
