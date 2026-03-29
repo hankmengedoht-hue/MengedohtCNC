@@ -154,34 +154,3 @@ collections:
             widget: "list"
             hint: "Add or remove materials shown in the homepage bar"
             field: { label: "Material", name: "material", widget: "string" }
-
-  # ─────────────────────────────────────────
-  # GALLERY
-  # ─────────────────────────────────────────
-  - name: "gallery"
-    label: "Gallery"
-    label_singular: "Photo"
-    folder: "_data/gallery"
-    create: true
-    delete: true
-    slug: "{{slug}}"
-    extension: "json"
-    format: "json"
-    summary: "{{title}}"
-    fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - label: "Category"
-        name: "category"
-        widget: "select"
-        options:
-          - { label: "Marine", value: "marine" }
-          - { label: "Tool Organizers", value: "tools" }
-          - { label: "Automotive", value: "automotive" }
-          - { label: "Custom", value: "custom" }
-      - { label: "Photo", name: "image", widget: "image", hint: "Upload a high quality photo. Recommended: 1200x900px JPG or PNG." }
-      - { label: "Description", name: "description", widget: "text", required: false, hint: "Optional caption shown in the lightbox." }
-      - label: "Published"
-        name: "published"
-        widget: "boolean"
-        default: true
-        hint: "Unpublish to hide without deleting"
