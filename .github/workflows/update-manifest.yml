@@ -1,26 +1,39 @@
-name: Update Product Manifest
+name: Update Manifests
 
 on:
   push:
     paths:
       - '_data/products/**.json'
+      - '_data/gallery/**.json'
 
 jobs:
-  update-manifest:
+  update-manifests:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
 
-      - name: Update manifest.json
+      - name: Update product manifest
         run: |
           cd _data/products
           ls *.json | grep -v manifest.json | sort | jq -R . | jq -s . > manifest.json
+          echo "Product manifest updated:"
           cat manifest.json
 
-      - name: Commit manifest
+      - name: Update gallery manifest
+        run: |
+          cd _data/gallery
+          if ls *.json 2>/dev/null | grep -v manifest.json > /dev/null 2>&1; then
+            ls *.json | grep -v manifest.json | sort | jq -R . | jq -s . > manifest.json
+          else
+            echo "[]" > manifest.json
+          fi
+          echo "Gallery manifest updated:"
+          cat manifest.json
+
+      - name: Commit manifests
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
-          git add _data/products/manifest.json
-          git diff --staged --quiet || git commit -m "Auto-update product manifest"
+          git add _data/products/manifest.json _data/gallery/manifest.json
+          git diff --staged --quiet || git commit -m "Auto-update manifests"
           git push
