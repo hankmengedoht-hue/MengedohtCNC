@@ -9,32 +9,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
-    .gallery-filters {
-      display: flex;
-      gap: 0.75rem;
-      flex-wrap: wrap;
-      margin-bottom: 2.5rem;
-    }
-    .gallery-filter-btn {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.85rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 0.5rem 1.25rem;
-      border: 1px solid #3a3a35;
-      border-radius: 2px;
-      background: transparent;
-      color: #888;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    .gallery-filter-btn:hover,
-    .gallery-filter-btn.active {
-      background: #e8a020;
-      border-color: #e8a020;
-      color: #1e1e1c;
-    }
     .gallery-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -190,13 +164,6 @@
 
   <section class="section">
     <div class="container">
-      <div class="gallery-filters" id="gallery-filters">
-        <button class="gallery-filter-btn active" data-filter="all">All Work</button>
-        <button class="gallery-filter-btn" data-filter="marine">Marine</button>
-        <button class="gallery-filter-btn" data-filter="tools">Tool Organizers</button>
-        <button class="gallery-filter-btn" data-filter="automotive">Automotive</button>
-        <button class="gallery-filter-btn" data-filter="custom">Custom</button>
-      </div>
       <div class="gallery-grid" id="gallery-grid">
         <div class="gallery-empty">Photos coming soon — check back shortly.</div>
       </div>
@@ -278,20 +245,6 @@
         </div>
       `).join('');
       window._galleryItems = items;
-      setupFilters();
-    }
-
-    function setupFilters() {
-      document.querySelectorAll('.gallery-filter-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-          document.querySelectorAll('.gallery-filter-btn').forEach(b => b.classList.remove('active'));
-          btn.classList.add('active');
-          const filter = btn.dataset.filter;
-          document.querySelectorAll('.gallery-item').forEach(item => {
-            item.style.display = (filter === 'all' || item.dataset.category === filter) ? '' : 'none';
-          });
-        });
-      });
     }
 
     function openLightbox(i) {
