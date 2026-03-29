@@ -52,7 +52,7 @@ async function fetchJSON(url) {
 }
 
 async function fetchProductList() {
-  const manifest = await fetchJSON('/data/products/manifest.json');
+  const manifest = await fetchJSON('/_data/products/manifest.json');
   if (manifest && Array.isArray(manifest)) return manifest;
   return [];
 }
