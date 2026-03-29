@@ -17,8 +17,6 @@ jobs:
         run: |
           cd _data/products
           ls *.json | grep -v manifest.json | sort | jq -R . | jq -s . > manifest.json
-          echo "Product manifest updated:"
-          cat manifest.json
 
       - name: Update gallery manifest
         run: |
@@ -28,8 +26,6 @@ jobs:
           else
             echo "[]" > manifest.json
           fi
-          echo "Gallery manifest updated:"
-          cat manifest.json
 
       - name: Update shop photos manifest
         run: |
@@ -39,8 +35,6 @@ jobs:
           else
             echo "[]" > manifest.json
           fi
-          echo "Shop photos manifest updated:"
-          cat manifest.json
 
       - name: Commit manifests
         run: |
@@ -48,4 +42,5 @@ jobs:
           git config user.email "actions@github.com"
           git add _data/products/manifest.json _data/gallery/manifest.json _data/shop-photos/manifest.json
           git diff --staged --quiet || git commit -m "Auto-update manifests"
+          git pull --rebase
           git push
