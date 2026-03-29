@@ -188,7 +188,6 @@
     <div class="container">
       <div class="about-layout">
         <div class="about-photo">
-          <!-- Replace this with an <img> tag when you have a photo -->
           Photo Coming Soon
         </div>
         <div class="about-bio">
@@ -255,12 +254,10 @@
 
       <div class="section-header" style="margin-top:3rem;">
         <h3 class="section-title" style="font-size:1.5rem;">The Shop</h3>
-        <p class="section-sub">Located on Spruill Avenue in North Charleston, SC. </p>
+        <p class="section-sub">Located on Spruill Avenue in North Charleston, SC.</p>
       </div>
-      <div class="shop-photos">
-        <div class="shop-photo">Shop Photo</div>
-        <div class="shop-photo">Shop Photo</div>
-        <div class="shop-photo">Shop Photo</div>
+      <div class="shop-photos" id="shop-photos-grid">
+        <div class="shop-photo">Photos coming soon.</div>
       </div>
     </div>
   </section>
@@ -297,5 +294,29 @@
   </footer>
 
   <script src="main.js"></script>
+  <script>
+    async function loadShopPhotos() {
+      try {
+        const res = await fetch('/_data/shop-photos/manifest.json');
+        if (!res.ok) return;
+        const files = await res.json();
+        if (!files.length) return;
+        const items = await Promise.all(
+          files.map(f => fetch('/_data/shop-photos/' + f).then(r => r.json()))
+        );
+        const published = items.filter(i => i.published !== false);
+        if (!published.length) return;
+        const grid = document.getElementById('shop-photos-grid');
+        grid.innerHTML = published.map(item => `
+          <div class="shop-photo">
+            <img src="${item.image}" alt="Shop photo" style="width:100%;height:100%;object-fit:cover;" loading="lazy" />
+          </div>
+        `).join('');
+      } catch(e) {
+        console.log('Shop photos not loaded.');
+      }
+    }
+    loadShopPhotos();
+  </script>
 </body>
 </html>
