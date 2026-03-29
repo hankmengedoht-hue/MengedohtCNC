@@ -22,7 +22,7 @@ collections:
   - name: "products"
     label: "Products"
     label_singular: "Product"
-   folder: "_data/products"
+    folder: "_data/products"
     create: true
     delete: true
     slug: "{{slug}}"
@@ -38,6 +38,7 @@ collections:
           - { label: "Tool Organizers", value: "tools" }
           - { label: "Marine", value: "marine" }
           - { label: "Pegboard Accessories", value: "pegboard" }
+          - { label: "Automotive Dashboards", value: "automotive" }
           - { label: "Custom / Other", value: "custom" }
       - label: "Material"
         name: "material"
@@ -107,7 +108,7 @@ collections:
 
       - label: "Homepage"
         name: "home"
-        file: "data/pages/home.json"
+        file: "_data/pages/home.json"
         fields:
           - { label: "Hero Headline", name: "hero_headline", widget: "string" }
           - { label: "Hero Subheadline", name: "hero_sub", widget: "text" }
@@ -123,7 +124,7 @@ collections:
 
       - label: "Wholesale Page"
         name: "wholesale"
-        file: "data/pages/wholesale.json"
+        file: "_data/pages/wholesale.json"
         fields:
           - { label: "Page Headline", name: "headline", widget: "string" }
           - { label: "Page Subtext", name: "sub", widget: "text" }
@@ -134,7 +135,7 @@ collections:
 
       - label: "Retail Page"
         name: "retail"
-        file: "data/pages/retail.json"
+        file: "_data/pages/retail.json"
         fields:
           - { label: "Page Headline", name: "headline", widget: "string" }
           - { label: "Page Subtext", name: "sub", widget: "text" }
@@ -143,7 +144,7 @@ collections:
 
       - label: "Site Settings"
         name: "settings"
-        file: "data/pages/settings.json"
+        file: "_data/pages/settings.json"
         fields:
           - { label: "Business Name", name: "business_name", widget: "string" }
           - { label: "Contact Email", name: "email", widget: "string" }
@@ -160,7 +161,7 @@ collections:
   - name: "gallery"
     label: "Gallery"
     label_singular: "Photo"
-    folder: "data/gallery"
+    folder: "_data/gallery"
     create: true
     delete: true
     slug: "{{slug}}"
