@@ -31,10 +31,21 @@ jobs:
           echo "Gallery manifest updated:"
           cat manifest.json
 
+      - name: Update shop photos manifest
+        run: |
+          cd _data/shop-photos
+          if ls *.json 2>/dev/null | grep -v manifest.json > /dev/null 2>&1; then
+            ls *.json | grep -v manifest.json | sort | jq -R . | jq -s . > manifest.json
+          else
+            echo "[]" > manifest.json
+          fi
+          echo "Shop photos manifest updated:"
+          cat manifest.json
+
       - name: Commit manifests
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
-          git add _data/products/manifest.json _data/gallery/manifest.json
+          git add _data/products/manifest.json _data/gallery/manifest.json _data/shop-photos/manifest.json
           git diff --staged --quiet || git commit -m "Auto-update manifests"
           git push
