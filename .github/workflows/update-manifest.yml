@@ -5,6 +5,7 @@ on:
     paths:
       - '_data/products/**.json'
       - '_data/gallery/**.json'
+      - '_data/shop-photos/**.json'
 
 jobs:
   update-manifests:
