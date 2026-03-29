@@ -173,6 +173,11 @@ collections:
       - label: "Category"
         name: "category"
         widget: "select"
+        options:
+          - { label: "Marine", value: "marine" }
+          - { label: "Tool Organizers", value: "tools" }
+          - { label: "Automotive", value: "automotive" }
+          - { label: "Custom", value: "custom" }
       - { label: "Photo", name: "image", widget: "image", hint: "Upload a high quality photo. Recommended: 1200x900px JPG or PNG." }
       - { label: "Description", name: "description", widget: "text", required: false, hint: "Optional caption shown in the lightbox." }
       - label: "Published"
