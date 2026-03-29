@@ -64,13 +64,13 @@ function categoryLabel(cat) {
 
 // ── SITE SETTINGS ──
 async function applySettings() {
-  const settings = await fetchJSON('/data/pages/settings.json');
+  const settings = await fetchJSON('/_data/pages/settings.json');
   if (!settings) return;
-  document.querySelectorAll('[data-cms="email"]').forEach(el => {
+  document.querySelectorAll('[_data-cms="email"]').forEach(el => {
     if (el.tagName === 'A') el.href = `mailto:${settings.email}`;
     el.textContent = settings.email;
   });
-  document.querySelectorAll('[data-cms="footer-tagline"]').forEach(el => {
+  document.querySelectorAll('[_data-cms="footer-tagline"]').forEach(el => {
     el.textContent = settings.footer_tagline;
   });
   const matBar = document.getElementById('materials-bar');
@@ -82,44 +82,44 @@ async function applySettings() {
 
 // ── HOME PAGE ──
 async function applyHomeContent() {
-  const home = await fetchJSON('/data/pages/home.json');
+  const home = await fetchJSON('/_data/pages/home.json');
   if (!home) return;
   const set = (sel, val) => document.querySelectorAll(sel).forEach(el => { el.textContent = val; });
-  set('[data-cms="hero-headline"]', home.hero_headline);
-  set('[data-cms="hero-sub"]', home.hero_sub);
-  set('[data-cms="hero-cta"]', home.hero_cta);
-  set('[data-cms="stat1-num"]', home.stat1_num);
-  set('[data-cms="stat1-label"]', home.stat1_label);
-  set('[data-cms="stat2-num"]', home.stat2_num);
-  set('[data-cms="stat2-label"]', home.stat2_label);
-  set('[data-cms="stat3-num"]', home.stat3_num);
-  set('[data-cms="stat3-label"]', home.stat3_label);
-  set('[data-cms="cta-headline"]', home.cta_headline);
-  set('[data-cms="cta-sub"]', home.cta_sub);
+  set('[_data-cms="hero-headline"]', home.hero_headline);
+  set('[_data-cms="hero-sub"]', home.hero_sub);
+  set('[_data-cms="hero-cta"]', home.hero_cta);
+  set('[_data-cms="stat1-num"]', home.stat1_num);
+  set('[_data-cms="stat1-label"]', home.stat1_label);
+  set('[_data-cms="stat2-num"]', home.stat2_num);
+  set('[_data-cms="stat2-label"]', home.stat2_label);
+  set('[_data-cms="stat3-num"]', home.stat3_num);
+  set('[_data-cms="stat3-label"]', home.stat3_label);
+  set('[_data-cms="cta-headline"]', home.cta_headline);
+  set('[_data-cms="cta-sub"]', home.cta_sub);
 }
 
 // ── WHOLESALE PAGE ──
 async function applyWholesaleContent() {
-  const ws = await fetchJSON('/data/pages/wholesale.json');
+  const ws = await fetchJSON('/_data/pages/wholesale.json');
   if (!ws) return;
   const set = (sel, val) => document.querySelectorAll(sel).forEach(el => { el.textContent = val; });
-  set('[data-cms="ws-headline"]', ws.headline);
-  set('[data-cms="ws-sub"]', ws.sub);
-  set('[data-cms="ws-moq"]', ws.moq_details);
-  set('[data-cms="ws-lead-time"]', ws.lead_time);
-  set('[data-cms="ws-payment"]', ws.payment_terms);
-  set('[data-cms="ws-shipping"]', ws.shipping);
+  set('[_data-cms="ws-headline"]', ws.headline);
+  set('[_data-cms="ws-sub"]', ws.sub);
+  set('[_data-cms="ws-moq"]', ws.moq_details);
+  set('[_data-cms="ws-lead-time"]', ws.lead_time);
+  set('[_data-cms="ws-payment"]', ws.payment_terms);
+  set('[_data-cms="ws-shipping"]', ws.shipping);
 }
 
 // ── RETAIL PAGE ──
 async function applyRetailContent() {
-  const retail = await fetchJSON('/data/pages/retail.json');
+  const retail = await fetchJSON('/_data/pages/retail.json');
   if (!retail) return;
   const set = (sel, val) => document.querySelectorAll(sel).forEach(el => { el.textContent = val; });
-  set('[data-cms="retail-headline"]', retail.headline);
-  set('[data-cms="retail-sub"]', retail.sub);
-  set('[data-cms="retail-shipping"]', retail.shipping);
-  set('[data-cms="retail-returns"]', retail.returns);
+  set('[_data-cms="retail-headline"]', retail.headline);
+  set('[_data-cms="retail-sub"]', retail.sub);
+  set('[_data-cms="retail-shipping"]', retail.shipping);
+  set('[_data-cms="retail-returns"]', retail.returns);
 }
 
 // ── PRODUCT CARD BUILDER ──
