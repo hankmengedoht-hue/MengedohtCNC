@@ -1,0 +1,15 @@
+{
+  "title": "BB Test two",
+  "category": "tools",
+  "material": "PVC",
+  "description": "Need this field",
+  "image": "",
+  "retail_available": true,
+  "retail_price": "",
+  "wholesale_available": true,
+  "moq": "25",
+  "fits": "",
+  "featured": false,
+  "published": true,
+  "order": 99
+}
