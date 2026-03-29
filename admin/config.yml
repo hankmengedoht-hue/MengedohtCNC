@@ -22,11 +22,13 @@ collections:
   - name: "products"
     label: "Products"
     label_singular: "Product"
-    folder: "data/products"
+   folder: "_data/products"
     create: true
     delete: true
     slug: "{{slug}}"
     summary: "{{title}} — {{category}}"
+    extension: "json"
+    format: "json"
     fields:
       - { label: "Product Name", name: "title", widget: "string" }
       - label: "Category"
