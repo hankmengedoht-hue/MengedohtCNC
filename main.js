@@ -58,7 +58,7 @@ async function fetchProductList() {
 }
 
 function categoryLabel(cat) {
-  const map = { tools: 'Tool Organizers', marine: 'Marine', pegboard: 'Pegboard Accessories', custom: 'Custom / Other' };
+  const map = { tools: 'Tool Organizers', marine: 'Marine', pegboard: 'Pegboard Accessories', custom: 'Custom / Other', automotive: 'Automotive Dashboards' };
   return map[cat] || cat;
 }
 
@@ -66,11 +66,11 @@ function categoryLabel(cat) {
 async function applySettings() {
   const settings = await fetchJSON('/_data/pages/settings.json');
   if (!settings) return;
-  document.querySelectorAll('[_data-cms="email"]').forEach(el => {
+  document.querySelectorAll('[data-cms="email"]').forEach(el => {
     if (el.tagName === 'A') el.href = `mailto:${settings.email}`;
     el.textContent = settings.email;
   });
-  document.querySelectorAll('[_data-cms="footer-tagline"]').forEach(el => {
+  document.querySelectorAll('[data-cms="footer-tagline"]').forEach(el => {
     el.textContent = settings.footer_tagline;
   });
   const matBar = document.getElementById('materials-bar');
@@ -85,17 +85,17 @@ async function applyHomeContent() {
   const home = await fetchJSON('/_data/pages/home.json');
   if (!home) return;
   const set = (sel, val) => document.querySelectorAll(sel).forEach(el => { el.textContent = val; });
-  set('[_data-cms="hero-headline"]', home.hero_headline);
-  set('[_data-cms="hero-sub"]', home.hero_sub);
-  set('[_data-cms="hero-cta"]', home.hero_cta);
-  set('[_data-cms="stat1-num"]', home.stat1_num);
-  set('[_data-cms="stat1-label"]', home.stat1_label);
-  set('[_data-cms="stat2-num"]', home.stat2_num);
-  set('[_data-cms="stat2-label"]', home.stat2_label);
-  set('[_data-cms="stat3-num"]', home.stat3_num);
-  set('[_data-cms="stat3-label"]', home.stat3_label);
-  set('[_data-cms="cta-headline"]', home.cta_headline);
-  set('[_data-cms="cta-sub"]', home.cta_sub);
+  set('[data-cms="hero-headline"]', home.hero_headline);
+  set('[data-cms="hero-sub"]', home.hero_sub);
+  set('[data-cms="hero-cta"]', home.hero_cta);
+  set('[data-cms="stat1-num"]', home.stat1_num);
+  set('[data-cms="stat1-label"]', home.stat1_label);
+  set('[data-cms="stat2-num"]', home.stat2_num);
+  set('[data-cms="stat2-label"]', home.stat2_label);
+  set('[data-cms="stat3-num"]', home.stat3_num);
+  set('[data-cms="stat3-label"]', home.stat3_label);
+  set('[data-cms="cta-headline"]', home.cta_headline);
+  set('[data-cms="cta-sub"]', home.cta_sub);
 }
 
 // ── WHOLESALE PAGE ──
@@ -103,12 +103,12 @@ async function applyWholesaleContent() {
   const ws = await fetchJSON('/_data/pages/wholesale.json');
   if (!ws) return;
   const set = (sel, val) => document.querySelectorAll(sel).forEach(el => { el.textContent = val; });
-  set('[_data-cms="ws-headline"]', ws.headline);
-  set('[_data-cms="ws-sub"]', ws.sub);
-  set('[_data-cms="ws-moq"]', ws.moq_details);
-  set('[_data-cms="ws-lead-time"]', ws.lead_time);
-  set('[_data-cms="ws-payment"]', ws.payment_terms);
-  set('[_data-cms="ws-shipping"]', ws.shipping);
+  set('[data-cms="ws-headline"]', ws.headline);
+  set('[data-cms="ws-sub"]', ws.sub);
+  set('[data-cms="ws-moq"]', ws.moq_details);
+  set('[data-cms="ws-lead-time"]', ws.lead_time);
+  set('[data-cms="ws-payment"]', ws.payment_terms);
+  set('[data-cms="ws-shipping"]', ws.shipping);
 }
 
 // ── RETAIL PAGE ──
@@ -116,10 +116,10 @@ async function applyRetailContent() {
   const retail = await fetchJSON('/_data/pages/retail.json');
   if (!retail) return;
   const set = (sel, val) => document.querySelectorAll(sel).forEach(el => { el.textContent = val; });
-  set('[_data-cms="retail-headline"]', retail.headline);
-  set('[_data-cms="retail-sub"]', retail.sub);
-  set('[_data-cms="retail-shipping"]', retail.shipping);
-  set('[_data-cms="retail-returns"]', retail.returns);
+  set('[data-cms="retail-headline"]', retail.headline);
+  set('[data-cms="retail-sub"]', retail.sub);
+  set('[data-cms="retail-shipping"]', retail.shipping);
+  set('[data-cms="retail-returns"]', retail.returns);
 }
 
 // ── PRODUCT CARD BUILDER ──
@@ -197,7 +197,7 @@ async function loadAndRenderProducts(gridId, filterFn) {
   }
 
   const all = (await Promise.all(
-    manifest.map(f => fetchJSON(`/data/products/${f}`))
+    manifest.map(f => fetchJSON(`/_data/products/${f}`))
   )).filter(p => p && p.published !== false);
 
   const products = filterFn ? all.filter(filterFn) : all;
