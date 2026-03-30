@@ -169,7 +169,7 @@ function buildProductCard(p) {
         ${imgHtml}
         <div class="product-badge">${p.material}</div>
         ${retailBadge}
-        ${(p.images && p.images.length > 1) ? `<div class="product-img-count">+${p.images.length - 1} photos</div>` : ''}
+       ${(() => { const total = (p.image ? 1 : 0) + (p.images ? p.images.length : 0); return total > 1 ? `<div class="product-img-count">+${total - 1} photos</div>` : ''; })()}
       </div>
       <div class="product-info">
         <div class="product-cat">${categoryLabel(p.category)}</div>
