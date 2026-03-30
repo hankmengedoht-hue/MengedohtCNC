@@ -377,7 +377,6 @@ async function loadProductDetail() {
   set('detail-weight', p.weight || 'Not specified');
   set('detail-description', p.description);
   set('detail-story', p.story || '');
-  set('detail-moq', p.moq ? `${p.moq} units` : '—');
   set('detail-fits', p.fits || '—');
 
   const storySection = document.getElementById('detail-story-section');
