@@ -202,3 +202,15 @@ collections:
     fields:
       - { label: "Photo", name: "image", widget: "image" }
       - { label: "Published", name: "published", widget: "boolean", default: true }
+
+      # ─────────────────────────────────────────
+  # FOUNDER PHOTO
+  # ─────────────────────────────────────────
+  - name: "founder"
+    label: "Founder Photo"
+    files:
+      - label: "Founder Photo"
+        name: "founder-photo"
+        file: "_data/founder.json"
+        fields:
+          - { label: "Photo", name: "image", widget: "image", hint: "Upload your profile/founder photo. Recommended: square or 4:3 ratio." }
