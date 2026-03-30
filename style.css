@@ -1309,4 +1309,6 @@ strong { color: var(--text); }
 @media (max-width: 600px) {
   .retail-info-inner { gap: 16px; }
   .retail-policy-grid { grid-template-columns: 1fr; }
+/* ── HIDE NAV CTA BUTTON ── */
+.nav-cta { display: none !important; }
 }
