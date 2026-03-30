@@ -344,7 +344,7 @@ async function loadProductDetail() {
       carouselEl.innerHTML = `
         <div class="carousel-main">
           <button class="carousel-btn carousel-prev" id="carousel-prev">&#8249;</button>
-          <img src="${images[0]}" alt="${p.title}" class="carousel-main-img" id="carousel-main-img" />
+          <img src="${images[0]}" alt="${p.title}" class="carousel-main-img" id="carousel-main-img" onclick="openLightbox(this.src)" style="cursor:zoom-in;" />
           <button class="carousel-btn carousel-next" id="carousel-next">&#8250;</button>
           <div class="carousel-counter" id="carousel-counter">1 / ${images.length}</div>
         </div>
