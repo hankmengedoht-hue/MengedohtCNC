@@ -326,5 +326,19 @@
     }
     loadShopPhotos();
   </script>
+<script>
+  async function loadFounderPhoto() {
+    try {
+      const res = await fetch('/_data/founder.json');
+      if (!res.ok) return;
+      const data = await res.json();
+      if (!data.image) return;
+      const wrap = document.getElementById('founder-photo-wrap');
+      if (wrap) wrap.innerHTML = `<img src="${data.image}" alt="Hank Mengedoht" style="width:100%;height:100%;object-fit:cover;" />`;
+    } catch(e) {}
+  }
+  loadFounderPhoto();
+</script>
+
 </body>
 </html>
