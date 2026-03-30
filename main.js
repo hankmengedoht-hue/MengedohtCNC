@@ -127,8 +127,11 @@ function buildProductCard(p) {
   const categories = [p.category];
   if (p.retail_available) categories.push('retail');
 
-  const imgHtml = p.image
-    ? `<img src="${p.image}" alt="${p.title}" loading="lazy" style="width:100%;height:100%;object-fit:cover;" />`
+  // Use first image from images array, fall back to legacy image field
+  const primaryImg = (p.images && p.images.length > 0) ? p.images[0].image : p.image;
+
+  const imgHtml = primaryImg
+    ? `<img src="${primaryImg}" alt="${p.title}" loading="lazy" style="width:100%;height:100%;object-fit:cover;" />`
     : `<div class="product-img-placeholder">
         <svg viewBox="0 0 120 100" fill="none" xmlns="http://www.w3.org/2000/svg">
           <rect x="20" y="20" width="80" height="60" rx="4" fill="currentColor" opacity=".15" stroke="currentColor" stroke-width="1.5"/>
@@ -139,6 +142,8 @@ function buildProductCard(p) {
 
   const retailBadge = p.retail_available ? `<div class="product-badge-retail">Retail Available</div>` : '';
 
+  const slug = p._filename ? p._filename.replace('.json','') : p.title.toLowerCase().replace(/[^a-z0-9]+/g,'-');
+
   let pricingHtml = '';
   if (p.retail_available && p.wholesale_available) {
     const priceLabel = p.retail_price ? p.retail_price : 'Contact for price';
@@ -147,27 +152,24 @@ function buildProductCard(p) {
         <div class="price-option price-option--retail">
           <div class="price-label">Individual / Retail</div>
           <div class="price-desc">${priceLabel} — No minimum. Ships direct.</div>
-          <a href="contact.html" class="btn btn-accent btn-sm">Buy Single Unit</a>
         </div>
         <div class="price-option price-option--wholesale">
           <div class="price-label">Wholesale / Bulk</div>
           <div class="price-desc">MOQ ${p.moq} units. Tiered pricing available.</div>
-          <a href="contact.html" class="btn btn-outline btn-sm">Wholesale Pricing</a>
         </div>
       </div>`;
   } else if (p.retail_available) {
     const priceLabel = p.retail_price ? `<div class="retail-price-display">${p.retail_price}</div>` : '';
-    pricingHtml = `<div class="retail-only-pricing">${priceLabel}<a href="contact.html" class="btn btn-accent btn-block">Order Now</a></div>`;
-  } else {
-    pricingHtml = `<a href="contact.html" class="btn btn-primary btn-block">Request Pricing</a>`;
+    pricingHtml = priceLabel;
   }
 
   return `
-    <div class="product-card${p.featured ? ' product-card--featured' : ''}" data-category="${categories.join(' ')}">
+    <div class="product-card${p.featured ? ' product-card--featured' : ''}" data-category="${categories.join(' ')}" onclick="window.location='product.html?id=${slug}'" style="cursor:pointer;">
       <div class="product-img">
         ${imgHtml}
         <div class="product-badge">${p.material}</div>
         ${retailBadge}
+        ${(p.images && p.images.length > 1) ? `<div class="product-img-count">+${p.images.length - 1} photos</div>` : ''}
       </div>
       <div class="product-info">
         <div class="product-cat">${categoryLabel(p.category)}</div>
@@ -179,6 +181,7 @@ function buildProductCard(p) {
           ${p.fits ? `<span class="meta-item">${p.fits}</span>` : ''}
         </div>
         ${pricingHtml}
+        <div class="view-details-btn">View Details →</div>
       </div>
     </div>`;
 }
