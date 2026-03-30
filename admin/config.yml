@@ -93,7 +93,6 @@ collections:
         name: "wholesale_available"
         widget: "boolean"
         default: true
-      - { label: "Minimum Order Quantity (MOQ)", name: "moq", widget: "string", default: "25" }
       - label: "Fits / Compatible With"
         name: "fits"
         widget: "string"
