@@ -29,7 +29,7 @@ collections:
     summary: "{{title}} — {{category}}"
     extension: "json"
     format: "json"
-    fields:
+  fields:
       - { label: "Product Name", name: "title", widget: "string" }
       - label: "Category"
         name: "category"
@@ -62,7 +62,23 @@ collections:
           - "Expanded Foam"
           - "Cork"
       - { label: "Short Description", name: "description", widget: "text" }
-      - { label: "Product Image", name: "image", widget: "image", required: false, hint: "Upload a product photo. Recommended: 800x600px JPG or PNG." }
+      - label: "Full Story / Inspiration"
+        name: "story"
+        widget: "text"
+        required: false
+        hint: "A longer description — the inspiration, use case, and story behind this product."
+      - label: "Product Images"
+        name: "images"
+        widget: "list"
+        required: false
+        hint: "Add multiple photos. First image is shown on the product card."
+        field: { label: "Image", name: "image", widget: "image" }
+      - { label: "Primary Image (card thumbnail)", name: "image", widget: "image", required: false, hint: "Used on product cards and featured grids." }
+      - label: "Approximate Weight"
+        name: "weight"
+        widget: "string"
+        required: false
+        hint: "e.g. 1.2 lbs, 450g"
       - label: "Available for Retail (Individual Sales)"
         name: "retail_available"
         widget: "boolean"
@@ -98,7 +114,7 @@ collections:
         widget: "number"
         default: 99
         hint: "Lower numbers appear first"
-
+        
   # ─────────────────────────────────────────
   # PAGE CONTENT
   # ─────────────────────────────────────────
