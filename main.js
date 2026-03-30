@@ -305,11 +305,16 @@ async function loadProductDetail() {
   document.title = `${p.title} — Mengedoht CNC`;
 
   // Build image list — support both new images[] array and legacy image field
+ // Build image list — combine thumbnail + images array
   let images = [];
+  // Add thumbnail first if it exists
+  if (p.image) images.push(p.image);
+  // Add additional images, supporting both string and object formats
   if (p.images && p.images.length > 0) {
-    images = p.images.map(i => i.image);
-  } else if (p.image) {
-    images = [p.image];
+    p.images.forEach(i => {
+      const src = typeof i === 'string' ? i : i.image;
+      if (src && !images.includes(src)) images.push(src);
+    });
   }
 
   // ── CAROUSEL ──
