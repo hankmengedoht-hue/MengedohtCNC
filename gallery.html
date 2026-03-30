@@ -215,53 +215,81 @@
   <script src="main.js"></script>
   <script>
     // Load gallery from CMS data
-    async function loadGallery() {
-      try {
-        const manifestRes = await fetch('/_data/gallery/manifest.json');
-        if (!manifestRes.ok) return;
-        const files = await manifestRes.json();
-        const items = await Promise.all(
-          files.map(f => fetch(`/_data/gallery/${f}`).then(r => r.json()))
-        );
-        renderGallery(items.filter(i => i.published !== false));
-      } catch (e) {
-        console.log('Gallery not yet configured.');
-      }
-    }
+    const PAGE_SIZE = 15;
+  let allItems = [];
+  let loaded = 0;
 
-    function renderGallery(items) {
-      const grid = document.getElementById('gallery-grid');
-      if (!items.length) return;
-      grid.innerHTML = items.map((item, i) => `
-        <div class="gallery-item" data-category="${item.category || 'custom'}" onclick="openLightbox(${i})">
-          <img src="${item.image}" alt="${item.title}" loading="lazy" />
-          <div class="gallery-item-overlay">
-            <div>
-              <h4>${item.title}</h4>
-              <span>${item.category || 'Custom Work'}</span>
-            </div>
+  async function loadGallery() {
+    try {
+      const manifestRes = await fetch('/_data/gallery/manifest.json');
+      if (!manifestRes.ok) return;
+      const files = await manifestRes.json();
+      if (!files.length) return;
+      const items = await Promise.all(
+        files.map(f => fetch(`/_data/gallery/${f}`).then(r => r.json()).catch(() => null))
+      );
+      allItems = items.filter(i => i && i.published !== false);
+      if (!allItems.length) return;
+      renderBatch();
+      updateLoadMoreBtn();
+    } catch(e) {
+      console.log('Gallery not loaded.');
+    }
+  }
+
+  function renderBatch() {
+    const grid = document.getElementById('gallery-grid');
+    const batch = allItems.slice(loaded, loaded + PAGE_SIZE);
+    if (loaded === 0) grid.innerHTML = '';
+    batch.forEach((item, i) => {
+      const div = document.createElement('div');
+      div.className = 'gallery-item';
+      div.innerHTML = `
+        <img src="${item.image}" alt="Gallery photo" loading="lazy" />
+        <div class="gallery-item-overlay">
+          <div>
+            <h4>${item.title || ''}</h4>
+            <span>${item.description || ''}</span>
           </div>
-        </div>
-      `).join('');
-      window._galleryItems = items;
-    }
-
-    function openLightbox(i) {
-      const item = window._galleryItems[i];
-      document.getElementById('lightbox-img').src = item.image;
-      document.getElementById('lightbox-title').textContent = item.title;
-      document.getElementById('lightbox-desc').textContent = item.description || '';
-      document.getElementById('lightbox').classList.add('open');
-    }
-
-    document.getElementById('lightbox-close').addEventListener('click', () => {
-      document.getElementById('lightbox').classList.remove('open');
+        </div>`;
+      div.addEventListener('click', () => openLightbox(loaded + i));
+      grid.appendChild(div);
     });
-    document.getElementById('lightbox').addEventListener('click', (e) => {
-      if (e.target === e.currentTarget) e.currentTarget.classList.remove('open');
-    });
+    loaded += batch.length;
+  }
 
-    loadGallery();
+  function updateLoadMoreBtn() {
+    const btn = document.getElementById('load-more-btn');
+    if (!btn) return;
+    if (loaded >= allItems.length) {
+      btn.style.display = 'none';
+    } else {
+      btn.style.display = 'inline-flex';
+      btn.textContent = `Load More (${allItems.length - loaded} remaining)`;
+    }
+  }
+
+  function openLightbox(i) {
+    const item = allItems[i];
+    document.getElementById('lightbox-img').src = item.image;
+    document.getElementById('lightbox-title').textContent = item.title || '';
+    document.getElementById('lightbox-desc').textContent = item.description || '';
+    document.getElementById('lightbox').classList.add('open');
+  }
+
+  document.getElementById('lightbox-close').addEventListener('click', () => {
+    document.getElementById('lightbox').classList.remove('open');
+  });
+  document.getElementById('lightbox').addEventListener('click', (e) => {
+    if (e.target === e.currentTarget) e.currentTarget.classList.remove('open');
+  });
+
+  document.getElementById('load-more-btn').addEventListener('click', () => {
+    renderBatch();
+    updateLoadMoreBtn();
+  });
+
+  loadGallery();
   </script>
 </body>
 </html>
