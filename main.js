@@ -128,7 +128,7 @@ function buildProductCard(p) {
   if (p.retail_available) categories.push('retail');
 
   // Use first image from images array, fall back to legacy image field
-  const primaryImg = (p.images && p.images.length > 0) ? p.images[0].image : p.image;
+  const primaryImg = p.image || (p.images && p.images.length > 0 ? (typeof p.images[0] === 'string' ? p.images[0] : p.images[0].image) : null);
 
   const imgHtml = primaryImg
     ? `<img src="${primaryImg}" alt="${p.title}" loading="lazy" style="width:100%;height:100%;object-fit:cover;" />`
