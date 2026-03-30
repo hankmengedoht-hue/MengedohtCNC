@@ -3,9 +3,15 @@
   "category": "marine",
   "material": "HDPE",
   "description": "CNC-machined HDPE replacement chocks for Boston Whaler 15-17ft center console coolers. Drop-in fit replaces the original wooden chocks that rot, warp, and fail over time. UV-stable, non-absorbent, and built to last.",
+  "story": "This cooler chock was designed by Caleb Fisher who has since passed away.",
+  "images": [
+    "/images/uploads/IMG_1602.jpg",
+    "/images/uploads/IMG_2930.jpg"
+  ],
   "image": "/images/uploads/IMG_0218.JPEG",
+  "weight": "2.2 lbs",
   "retail_available": true,
-  "retail_price": "",
+  "retail_price": "$75",
   "wholesale_available": true,
   "moq": "25",
   "fits": "Fits 15-17ft Boston Whaler CC",
