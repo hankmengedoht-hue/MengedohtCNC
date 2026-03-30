@@ -28,7 +28,7 @@ collections:
     slug: "{{slug}}"
     summary: "{{title}} — {{category}}"
     extension: "json"
-  format: "json"
+    format: "json"
     fields:
       - { label: "Product Name", name: "title", widget: "string" }
       - label: "Category"
@@ -114,7 +114,7 @@ collections:
         widget: "number"
         default: 99
         hint: "Lower numbers appear first"
-        
+
   # ─────────────────────────────────────────
   # PAGE CONTENT
   # ─────────────────────────────────────────
@@ -171,7 +171,7 @@ collections:
             hint: "Add or remove materials shown in the homepage bar"
             field: { label: "Material", name: "material", widget: "string" }
 
-# ─────────────────────────────────────────
+  # ─────────────────────────────────────────
   # GALLERY
   # ─────────────────────────────────────────
   - name: "gallery"
@@ -187,7 +187,7 @@ collections:
       - { label: "Photo", name: "image", widget: "image" }
       - { label: "Published", name: "published", widget: "boolean", default: true }
 
-# ─────────────────────────────────────────
+  # ─────────────────────────────────────────
   # SHOP PHOTOS
   # ─────────────────────────────────────────
   - name: "shop-photos"
