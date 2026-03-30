@@ -287,4 +287,115 @@ document.addEventListener('DOMContentLoaded', async () => {
   if (page === 'wholesale') {
     await applyWholesaleContent();
   }
+  if (page === 'product') {
+    await loadProductDetail();
+  }
 });
+
+// ── PRODUCT DETAIL PAGE ──
+async function loadProductDetail() {
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get('id');
+  if (!id) { window.location = 'products.html'; return; }
+
+  const p = await fetchJSON(`/_data/products/${id}.json`);
+  if (!p) { window.location = 'products.html'; return; }
+
+  // Set page title
+  document.title = `${p.title} — Mengedoht CNC`;
+
+  // Build image list — support both new images[] array and legacy image field
+  let images = [];
+  if (p.images && p.images.length > 0) {
+    images = p.images.map(i => i.image);
+  } else if (p.image) {
+    images = [p.image];
+  }
+
+  // ── CAROUSEL ──
+  const carouselEl = document.getElementById('product-carousel');
+  if (carouselEl) {
+    if (images.length === 0) {
+      carouselEl.innerHTML = `
+        <div class="carousel-main">
+          <div class="carousel-placeholder">
+            <svg viewBox="0 0 120 100" fill="none"><rect x="20" y="20" width="80" height="60" rx="4" fill="currentColor" opacity=".15" stroke="currentColor" stroke-width="1.5"/><circle cx="60" cy="50" r="18" fill="currentColor" opacity=".2"/><circle cx="60" cy="50" r="8" fill="currentColor" opacity=".4"/></svg>
+          </div>
+        </div>`;
+    } else if (images.length === 1) {
+      carouselEl.innerHTML = `
+        <div class="carousel-main">
+          <img src="${images[0]}" alt="${p.title}" class="carousel-main-img" />
+        </div>`;
+    } else {
+      let current = 0;
+      const update = () => {
+        document.getElementById('carousel-main-img').src = images[current];
+        document.querySelectorAll('.carousel-thumb').forEach((t, i) => {
+          t.classList.toggle('active', i === current);
+        });
+        document.getElementById('carousel-counter').textContent = `${current + 1} / ${images.length}`;
+      };
+      carouselEl.innerHTML = `
+        <div class="carousel-main">
+          <button class="carousel-btn carousel-prev" id="carousel-prev">&#8249;</button>
+          <img src="${images[0]}" alt="${p.title}" class="carousel-main-img" id="carousel-main-img" />
+          <button class="carousel-btn carousel-next" id="carousel-next">&#8250;</button>
+          <div class="carousel-counter" id="carousel-counter">1 / ${images.length}</div>
+        </div>
+        <div class="carousel-thumbs">
+          ${images.map((img, i) => `<img src="${img}" class="carousel-thumb${i === 0 ? ' active' : ''}" data-index="${i}" alt="Photo ${i+1}" />`).join('')}
+        </div>`;
+      document.getElementById('carousel-prev').addEventListener('click', () => {
+        current = (current - 1 + images.length) % images.length;
+        update();
+      });
+      document.getElementById('carousel-next').addEventListener('click', () => {
+        current = (current + 1) % images.length;
+        update();
+      });
+      document.querySelectorAll('.carousel-thumb').forEach(thumb => {
+        thumb.addEventListener('click', () => {
+          current = parseInt(thumb.dataset.index);
+          update();
+        });
+      });
+    }
+  }
+
+  // ── PRODUCT INFO ──
+  const set = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val || ''; };
+  const setHtml = (id, val) => { const el = document.getElementById(id); if (el) el.innerHTML = val || ''; };
+
+  set('detail-title', p.title);
+  set('detail-category', categoryLabel(p.category));
+  set('detail-material', p.material);
+  set('detail-weight', p.weight || 'Not specified');
+  set('detail-description', p.description);
+  set('detail-story', p.story || '');
+  set('detail-moq', p.moq ? `${p.moq} units` : '—');
+  set('detail-fits', p.fits || '—');
+
+  const storySection = document.getElementById('detail-story-section');
+  if (storySection) storySection.style.display = p.story ? '' : 'none';
+
+  // Pricing
+  const pricingEl = document.getElementById('detail-pricing');
+  if (pricingEl) {
+    let html = '';
+    if (p.retail_available && p.retail_price) {
+      html += `<div class="detail-price-row"><span class="detail-price-label">Retail Price</span><span class="detail-price-value">${p.retail_price}</span></div>`;
+    }
+    if (p.retail_available) {
+      html += `<div class="detail-price-row"><span class="detail-price-label">Individual Orders</span><span class="detail-price-value">Available — No minimum</span></div>`;
+    }
+    if (p.wholesale_available) {
+      html += `<div class="detail-price-row"><span class="detail-price-label">Wholesale</span><span class="detail-price-value">Available — MOQ ${p.moq} units</span></div>`;
+    }
+    pricingEl.innerHTML = html;
+  }
+
+  // Breadcrumb
+  const bc = document.getElementById('detail-breadcrumb');
+  if (bc) bc.textContent = p.title;
+}
