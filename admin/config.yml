@@ -28,8 +28,8 @@ collections:
     slug: "{{slug}}"
     summary: "{{title}} — {{category}}"
     extension: "json"
-    format: "json"
-  fields:
+  format: "json"
+    fields:
       - { label: "Product Name", name: "title", widget: "string" }
       - label: "Category"
         name: "category"
