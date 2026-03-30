@@ -1,0 +1,50 @@
+name: Rename Gallery Files
+
+on:
+  workflow_dispatch:
+
+jobs:
+  rename:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Rename long gallery filenames
+        run: |
+          python3 << 'PYEOF'
+          import os, json, hashlib
+
+          gallery_dir = '_data/gallery'
+          renamed = 0
+
+          for fname in os.listdir(gallery_dir):
+            if fname == 'manifest.json' or not fname.endswith('.json'):
+              continue
+            # Only rename files with timestamp pattern (longer than 20 chars)
+            if len(fname.replace('.json','')) > 20:
+              old_path = os.path.join(gallery_dir, fname)
+              # Generate short hash from filename
+              short = hashlib.md5(fname.encode()).hexdigest()[:12]
+              new_fname = f"{short}.json"
+              new_path = os.path.join(gallery_dir, new_fname)
+              os.rename(old_path, new_path)
+              renamed += 1
+              print(f"Renamed {fname} -> {new_fname}")
+
+          print(f"Total renamed: {renamed}")
+          PYEOF
+
+      - name: Update gallery manifest
+        run: |
+          cd _data/gallery
+          ls *.json | grep -v manifest.json | sort | jq -R . | jq -s . > manifest.json
+          echo "Gallery manifest updated with $(cat manifest.json | jq length) entries"
+
+      - name: Commit
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add _data/gallery/
+          git diff --staged --quiet || git commit -m "Rename long gallery filenames for CMS compatibility"
+          git pull --rebase
+          git push
