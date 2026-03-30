@@ -330,7 +330,7 @@ async function loadProductDetail() {
     } else if (images.length === 1) {
       carouselEl.innerHTML = `
         <div class="carousel-main">
-          <img src="${images[0]}" alt="${p.title}" class="carousel-main-img" />
+          <img src="${images[0]}" alt="${p.title}" class="carousel-main-img" onclick="openLightbox(this.src)" style="cursor:zoom-in;" />
         </div>`;
     } else {
       let current = 0;
