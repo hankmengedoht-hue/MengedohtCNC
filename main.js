@@ -176,7 +176,6 @@ function buildProductCard(p) {
         <h3>${p.title}</h3>
         <p>${p.description}</p>
         <div class="product-meta">
-          ${p.wholesale_available ? `<span class="meta-item">MOQ: ${p.moq}</span>` : ''}
           <span class="meta-item">${p.material}</span>
           ${p.fits ? `<span class="meta-item">${p.fits}</span>` : ''}
         </div>
