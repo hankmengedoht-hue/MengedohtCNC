@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bulk Gallery Import — Mengedoht CNC</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #1e1e1c;
+      color: #f4f1ea;
+      font-family: 'Barlow', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+    .card {
+      background: #2a2a28;
+      border: 1px solid #3a3a35;
+      border-radius: 6px;
+      padding: 2.5rem;
+      width: 100%;
+      max-width: 600px;
+    }
+    h1 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 2rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+    }
+    .subtitle {
+      color: #888;
+      font-size: 0.9rem;
+      margin-bottom: 2rem;
+    }
+    .accent { color: #e8a020; }
+    label.file-label {
+      display: block;
+      border: 2px dashed #3a3a35;
+      border-radius: 4px;
+      padding: 2rem;
+      text-align: center;
+      cursor: pointer;
+      transition: border-color 0.2s;
+      margin-bottom: 1.5rem;
+    }
+    label.file-label:hover { border-color: #e8a020; }
+    label.file-label input { display: none; }
+    .file-label-text {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #888;
+    }
+    .file-count {
+      margin-top: 0.5rem;
+      font-size: 0.85rem;
+      color: #e8a020;
+    }
+    .preview-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .preview-item {
+      aspect-ratio: 1;
+      border-radius: 3px;
+      overflow: hidden;
+      background: #1e1e1c;
+    }
+    .preview-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .token-section {
+      margin-bottom: 1.5rem;
+    }
+    .token-section label {
+      display: block;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #888;
+      margin-bottom: 0.5rem;
+    }
+    .token-section input {
+      width: 100%;
+      background: #1e1e1c;
+      border: 1px solid #3a3a35;
+      border-radius: 3px;
+      padding: 0.6rem 0.8rem;
+      color: #f4f1ea;
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.85rem;
+    }
+    .token-section input:focus {
+      outline: none;
+      border-color: #e8a020;
+    }
+    .token-hint {
+      font-size: 0.75rem;
+      color: #666;
+      margin-top: 0.4rem;
+      line-height: 1.5;
+    }
+    .token-hint a { color: #e8a020; }
+    button {
+      width: 100%;
+      background: #e8a020;
+      color: #1e1e1c;
+      border: none;
+      border-radius: 3px;
+      padding: 0.85rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    button:hover { background: #d4911c; }
+    button:disabled { background: #555; cursor: not-allowed; }
+    .progress {
+      margin-top: 1.5rem;
+      display: none;
+    }
+    .progress-bar-wrap {
+      background: #1e1e1c;
+      border-radius: 3px;
+      height: 6px;
+      margin-bottom: 0.75rem;
+      overflow: hidden;
+    }
+    .progress-bar {
+      background: #e8a020;
+      height: 100%;
+      width: 0%;
+      transition: width 0.3s;
+    }
+    .progress-log {
+      font-size: 0.8rem;
+      color: #888;
+      max-height: 150px;
+      overflow-y: auto;
+      line-height: 1.8;
+    }
+    .progress-log .ok { color: #6bcf7f; }
+    .progress-log .err { color: #f87171; }
+    .done-msg {
+      margin-top: 1rem;
+      padding: 0.75rem 1rem;
+      background: rgba(107, 207, 127, 0.1);
+      border: 1px solid rgba(107, 207, 127, 0.3);
+      border-radius: 3px;
+      font-size: 0.9rem;
+      color: #6bcf7f;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+<div class="card">
+  <h1>Bulk Gallery <span class="accent">Import</span></h1>
+  <p class="subtitle">Upload multiple photos to the gallery at once. Photos will appear on the gallery page within ~60 seconds.</p>
+
+  <div class="token-section">
+    <label>GitHub Personal Access Token</label>
+    <input type="password" id="token" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" />
+    <div class="token-hint">
+      Need a token? Go to <a href="https://github.com/settings/tokens/new" target="_blank">GitHub → Settings → Developer Settings → Personal Access Tokens → Tokens (classic)</a>. 
+      Give it <strong>repo</strong> scope. Paste it here — it's only used locally and never stored.
+    </div>
+  </div>
+
+  <label class="file-label">
+    <input type="file" id="file-input" multiple accept="image/*" />
+    <div class="file-label-text">Click to select photos — or drag and drop</div>
+    <div class="file-count" id="file-count"></div>
+  </label>
+
+  <div class="preview-grid" id="preview-grid"></div>
+
+  <button id="import-btn" disabled>Import All Photos</button>
+
+  <div class="progress" id="progress">
+    <div class="progress-bar-wrap"><div class="progress-bar" id="progress-bar"></div></div>
+    <div class="progress-log" id="progress-log"></div>
+  </div>
+  <div class="done-msg" id="done-msg">
+    ✅ All photos imported! The gallery will update within ~60 seconds.
+  </div>
+</div>
+
+<script>
+  const REPO = 'hankmengedoht-hue/MengedohtCNC';
+  const BRANCH = 'main';
+
+  const fileInput = document.getElementById('file-input');
+  const previewGrid = document.getElementById('preview-grid');
+  const fileCount = document.getElementById('file-count');
+  const importBtn = document.getElementById('import-btn');
+  const progressEl = document.getElementById('progress');
+  const progressBar = document.getElementById('progress-bar');
+  const progressLog = document.getElementById('progress-log');
+  const doneMsg = document.getElementById('done-msg');
+  const tokenInput = document.getElementById('token');
+
+  let selectedFiles = [];
+
+  fileInput.addEventListener('change', () => {
+    selectedFiles = Array.from(fileInput.files);
+    fileCount.textContent = `${selectedFiles.length} photo${selectedFiles.length !== 1 ? 's' : ''} selected`;
+    previewGrid.innerHTML = '';
+    selectedFiles.slice(0, 12).forEach(file => {
+      const div = document.createElement('div');
+      div.className = 'preview-item';
+      const img = document.createElement('img');
+      img.src = URL.createObjectURL(file);
+      div.appendChild(img);
+      previewGrid.appendChild(div);
+    });
+    importBtn.disabled = selectedFiles.length === 0;
+  });
+
+  function log(msg, type = '') {
+    const line = document.createElement('div');
+    if (type) line.className = type;
+    line.textContent = msg;
+    progressLog.appendChild(line);
+    progressLog.scrollTop = progressLog.scrollHeight;
+  }
+
+  function toBase64(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result.split(',')[1]);
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+  }
+
+  function slugify(name) {
+    return name.toLowerCase()
+      .replace(/\.[^.]+$/, '')
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '')
+      .substring(0, 50);
+  }
+
+  async function githubPut(token, path, content, message) {
+    const url = `https://api.github.com/repos/${REPO}/contents/${path}`;
+    // Check if file exists to get SHA
+    let sha = undefined;
+    try {
+      const check = await fetch(url, {
+        headers: { Authorization: `token ${token}`, Accept: 'application/vnd.github.v3+json' }
+      });
+      if (check.ok) {
+        const data = await check.json();
+        sha = data.sha;
+      }
+    } catch(e) {}
+
+    const body = { message, content, branch: BRANCH };
+    if (sha) body.sha = sha;
+
+    const res = await fetch(url, {
+      method: 'PUT',
+      headers: {
+        Authorization: `token ${token}`,
+        Accept: 'application/vnd.github.v3+json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(body)
+    });
+    if (!res.ok) throw new Error(`GitHub API error: ${res.status}`);
+    return res.json();
+  }
+
+  importBtn.addEventListener('click', async () => {
+    const token = tokenInput.value.trim();
+    if (!token) { alert('Please enter your GitHub token.'); return; }
+    if (selectedFiles.length === 0) { alert('Please select photos first.'); return; }
+
+    importBtn.disabled = true;
+    progressEl.style.display = 'block';
+    doneMsg.style.display = 'none';
+    progressLog.innerHTML = '';
+
+    let completed = 0;
+
+    for (const file of selectedFiles) {
+      const slug = slugify(file.name) + '-' + Date.now();
+      const ext = file.name.split('.').pop().toLowerCase();
+      const imagePath = `images/uploads/${slug}.${ext}`;
+      const jsonPath = `_data/gallery/${slug}.json`;
+
+      try {
+        // Upload image
+        log(`Uploading ${file.name}...`);
+        const imageBase64 = await toBase64(file);
+        await githubPut(token, imagePath, imageBase64, `Upload gallery image: ${file.name}`);
+
+        // Create JSON entry
+        const jsonContent = btoa(JSON.stringify({
+          image: `/${imagePath}`,
+          published: true
+        }, null, 2));
+        await githubPut(token, jsonPath, jsonContent, `Add gallery entry: ${slug}`);
+
+        completed++;
+        const pct = Math.round((completed / selectedFiles.length) * 100);
+        progressBar.style.width = pct + '%';
+        log(`✓ ${file.name}`, 'ok');
+      } catch(e) {
+        log(`✗ ${file.name} — ${e.message}`, 'err');
+      }
+
+      // Small delay to avoid rate limiting
+      await new Promise(r => setTimeout(r, 500));
+    }
+
+    doneMsg.style.display = 'block';
+    importBtn.disabled = false;
+  });
+</script>
+</body>
+</html>
