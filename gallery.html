@@ -73,7 +73,6 @@
       border: 1px dashed #333;
       border-radius: 4px;
     }
-    /* Lightbox */
     .lightbox {
       display: none;
       position: fixed;
@@ -157,7 +156,7 @@
   <section class="page-hero">
     <div class="container">
       <div class="section-tag">Our Work</div>
-      <h1>The Gallery:</h1>
+      <h1>The Gallery</h1>
       <p>A look at past projects, custom work, and production pieces made at Mengedoht CNC.</p>
     </div>
   </section>
@@ -167,13 +166,12 @@
       <div class="gallery-grid" id="gallery-grid">
         <div class="gallery-empty">Photos coming soon — check back shortly.</div>
       </div>
-   </div>
+    </div>
     <div style="text-align:center; margin-top:2.5rem;">
       <button id="load-more-btn" class="btn btn-outline btn-lg" style="display:none;">Load More</button>
     </div>
   </section>
 
-  <div class="lightbox"
   <div class="lightbox" id="lightbox">
     <div class="lightbox-inner">
       <button class="lightbox-close" id="lightbox-close">✕ Close</button>
@@ -200,7 +198,7 @@
       </div>
       <div class="footer-links">
         <h5>Pages</h5>
-        <a href="index.html">Home</a><a href="products.html">Products</a><a href="retail.html">Buy Direct</a><a href="wholesale.html">Wholesale</a><a href="gallery.html">Gallery</a><a href="about.html">About</a><a href="contact.html">Contact</a>
+        <a href="index.html">Home</a><a href="products.html">Products</a><a href="custom-parts.html">Custom Parts</a><a href="retail.html">Buy Direct</a><a href="wholesale.html">Wholesale</a><a href="gallery.html">Gallery</a><a href="about.html">About</a><a href="contact.html">Contact</a>
       </div>
       <div class="footer-links">
         <h5>Products</h5>
@@ -209,6 +207,7 @@
       <div class="footer-contact">
         <h5>Contact</h5>
         <a href="mailto:hankmengedoht@gmail.com" data-cms="email" class="footer-email">hankmengedoht@gmail.com</a>
+        <a href="https://instagram.com/mengedohtcnc" target="_blank" class="footer-email" style="color:#e8a020;">📷 @mengedohtcnc</a>
         <p>MOQ for Wholesale Pricing: 25 Units</p>
         <a href="contact.html" class="btn btn-ghost mt-1">Request a Quote</a>
       </div>
@@ -218,82 +217,82 @@
 
   <script src="main.js"></script>
   <script>
-    // Load gallery from CMS data
     const PAGE_SIZE = 15;
-  let allItems = [];
-  let loaded = 0;
+    let allItems = [];
+    let loaded = 0;
 
-  async function loadGallery() {
-    try {
-      const manifestRes = await fetch('/_data/gallery/manifest.json');
-      if (!manifestRes.ok) return;
-      const files = await manifestRes.json();
-      if (!files.length) return;
-      const items = await Promise.all(
-        files.map(f => fetch(`/_data/gallery/${f}`).then(r => r.json()).catch(() => null))
-      );
-      allItems = items.filter(i => i && i.published !== false);
-      if (!allItems.length) return;
+    async function loadGallery() {
+      try {
+        const manifestRes = await fetch('/_data/gallery/manifest.json');
+        if (!manifestRes.ok) return;
+        const files = await manifestRes.json();
+        if (!files.length) return;
+        const items = await Promise.all(
+          files.map(f => fetch(`/_data/gallery/${f}`).then(r => r.json()).catch(() => null))
+        );
+        allItems = items.filter(i => i && i.published !== false);
+        if (!allItems.length) return;
+        renderBatch();
+        updateLoadMoreBtn();
+      } catch(e) {
+        console.log('Gallery not loaded.');
+      }
+    }
+
+    function renderBatch() {
+      const grid = document.getElementById('gallery-grid');
+      const batch = allItems.slice(loaded, loaded + PAGE_SIZE);
+      if (loaded === 0) grid.innerHTML = '';
+      batch.forEach((item, i) => {
+        const actualIndex = loaded + i;
+        const div = document.createElement('div');
+        div.className = 'gallery-item';
+        div.innerHTML = `
+          <img src="${item.image}" alt="Gallery photo" loading="lazy" />
+          <div class="gallery-item-overlay">
+            <div>
+              <h4>${item.title || ''}</h4>
+              <span>${item.description || ''}</span>
+            </div>
+          </div>`;
+        div.addEventListener('click', () => openLightbox(actualIndex));
+        grid.appendChild(div);
+      });
+      loaded += batch.length;
+    }
+
+    function updateLoadMoreBtn() {
+      const btn = document.getElementById('load-more-btn');
+      if (!btn) return;
+      if (loaded >= allItems.length) {
+        btn.style.display = 'none';
+      } else {
+        btn.style.display = 'inline-flex';
+        btn.textContent = `Load More (${allItems.length - loaded} remaining)`;
+      }
+    }
+
+    function openLightbox(i) {
+      const item = allItems[i];
+      document.getElementById('lightbox-img').src = item.image;
+      document.getElementById('lightbox-title').textContent = item.title || '';
+      document.getElementById('lightbox-desc').textContent = item.description || '';
+      document.getElementById('lightbox').classList.add('open');
+    }
+
+    document.getElementById('lightbox-close').addEventListener('click', () => {
+      document.getElementById('lightbox').classList.remove('open');
+    });
+    document.getElementById('lightbox').addEventListener('click', (e) => {
+      if (e.target === e.currentTarget) e.currentTarget.classList.remove('open');
+    });
+
+    document.getElementById('load-more-btn').addEventListener('click', () => {
       renderBatch();
       updateLoadMoreBtn();
-    } catch(e) {
-      console.log('Gallery not loaded.');
-    }
-  }
-
-  function renderBatch() {
-    const grid = document.getElementById('gallery-grid');
-    const batch = allItems.slice(loaded, loaded + PAGE_SIZE);
-    if (loaded === 0) grid.innerHTML = '';
-   batch.forEach((item, i) => {
-      const actualIndex = loaded + i;
-      const div = document.createElement('div');
-      div.className = 'gallery-item';
-      div.innerHTML = `
-        <img src="${item.image}" alt="Gallery photo" loading="lazy" />
-        <div class="gallery-item-overlay">
-          <div>
-            <h4>${item.title || ''}</h4>
-            <span>${item.description || ''}</span>
-          </div>
-        </div>`;
-      div.addEventListener('click', () => openLightbox(actualIndex));
-      grid.appendChild(div);
     });
-    loaded += batch.length;
 
-  function updateLoadMoreBtn() {
-    const btn = document.getElementById('load-more-btn');
-    if (!btn) return;
-    if (loaded >= allItems.length) {
-      btn.style.display = 'none';
-    } else {
-      btn.style.display = 'inline-flex';
-      btn.textContent = `Load More (${allItems.length - loaded} remaining)`;
-    }
-  }
-
-  function openLightbox(i) {
-    const item = allItems[i];
-    document.getElementById('lightbox-img').src = item.image;
-    document.getElementById('lightbox-title').textContent = item.title || '';
-    document.getElementById('lightbox-desc').textContent = item.description || '';
-    document.getElementById('lightbox').classList.add('open');
-  }
-
-  document.getElementById('lightbox-close').addEventListener('click', () => {
-    document.getElementById('lightbox').classList.remove('open');
-  });
-  document.getElementById('lightbox').addEventListener('click', (e) => {
-    if (e.target === e.currentTarget) e.currentTarget.classList.remove('open');
-  });
-
-  document.getElementById('load-more-btn').addEventListener('click', () => {
-    renderBatch();
-    updateLoadMoreBtn();
-  });
-
-  loadGallery();
+    loadGallery();
   </script>
 </body>
 </html>
