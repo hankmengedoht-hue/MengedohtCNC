@@ -245,7 +245,8 @@
     const grid = document.getElementById('gallery-grid');
     const batch = allItems.slice(loaded, loaded + PAGE_SIZE);
     if (loaded === 0) grid.innerHTML = '';
-    batch.forEach((item, i) => {
+   batch.forEach((item, i) => {
+      const actualIndex = loaded + i;
       const div = document.createElement('div');
       div.className = 'gallery-item';
       div.innerHTML = `
@@ -256,11 +257,10 @@
             <span>${item.description || ''}</span>
           </div>
         </div>`;
-      div.addEventListener('click', () => openLightbox(loaded + i));
+      div.addEventListener('click', () => openLightbox(actualIndex));
       grid.appendChild(div);
     });
     loaded += batch.length;
-  }
 
   function updateLoadMoreBtn() {
     const btn = document.getElementById('load-more-btn');
