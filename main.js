@@ -58,7 +58,7 @@ async function fetchProductList() {
 }
 
 function categoryLabel(cat) {
-  const map = { tools: 'Tool Organizers', marine: 'Marine', pegboard: 'Pegboard Accessories', custom: 'Custom / Other', automotive: 'Automotive Dashboards' };
+  const map = { tools: 'Tool Organizers', marine: 'Marine', pegboard: 'Shelving / Storage', custom: 'Custom / Other', automotive: 'Automotive Dashboards' };
   return map[cat] || cat;
 }
 
