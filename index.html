@@ -523,7 +523,7 @@
         const res  = await fetch(REVIEW_WORKER_URL, { method: 'POST', body: formData });
         const data = await res.json();
         if (data.success) {
-          showReviewMsg('Thank you! Your review has been submitted and will appear once approved.', 'success');
+          showReviewMsg('Thank you! Your review has been submitted and will appear shortly.', 'success');
           reviewForm.reset();
         } else {
           showReviewMsg(data.error || 'Something went wrong. Please try again.', 'error');
