@@ -209,6 +209,37 @@ collections:
       - { label: "Published", name: "published", widget: "boolean", default: true }
 
   # ─────────────────────────────────────────
+  # REVIEWS
+  # ─────────────────────────────────────────
+  - name: "reviews"
+    label: "Reviews"
+    label_singular: "Review"
+    folder: "_data/reviews"
+    create: true
+    delete: true
+    identifier_field: "name"
+    extension: "json"
+    format: "json"
+    summary: "{{name}} — {{rating}} stars"
+    fields:
+      - { label: "Reviewer Name", name: "name", widget: "string" }
+      - { label: "Title / Location", name: "title", widget: "string", required: false, hint: "e.g. Hardware Store Owner, Ohio" }
+      - label: "Star Rating"
+        name: "rating"
+        widget: "select"
+        options:
+          - { label: "★★★★★  5 stars", value: 5 }
+          - { label: "★★★★  4 stars", value: 4 }
+          - { label: "★★★  3 stars", value: 3 }
+          - { label: "★★  2 stars", value: 2 }
+          - { label: "★  1 star", value: 1 }
+        default: 5
+      - { label: "Review", name: "body", widget: "text" }
+      - { label: "Photo", name: "image", widget: "image", required: false, hint: "Optional photo submitted with the review." }
+      - { label: "Published", name: "published", widget: "boolean", default: false, hint: "Toggle ON to show this review on the homepage." }
+      - { label: "Date", name: "date", widget: "string", required: false }
+
+  # ─────────────────────────────────────────
   # FOUNDER PHOTO
   # ─────────────────────────────────────────
   - name: "founder"
