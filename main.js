@@ -85,7 +85,7 @@ async function applyHomeContent() {
   const home = await fetchJSON('/_data/pages/home.json');
   if (!home) return;
   const set = (sel, val) => document.querySelectorAll(sel).forEach(el => { el.textContent = val; });
-  set('[data-cms="hero-headline"]', home.hero_headline);
+  document.querySelectorAll('[data-cms="hero-headline"]').forEach(el => { el.innerHTML = home.hero_headline; });
   set('[data-cms="hero-sub"]', home.hero_sub);
   set('[data-cms="hero-cta"]', home.hero_cta);
   set('[data-cms="stat1-num"]', home.stat1_num);
