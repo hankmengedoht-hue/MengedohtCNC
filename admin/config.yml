@@ -84,11 +84,16 @@ collections:
         widget: "boolean"
         default: false
         hint: "Turn ON if individuals can buy single units."
-      - label: "Retail Price"
+     - label: "Retail Price"
         name: "retail_price"
         widget: "string"
         required: false
-        hint: "e.g. $34.99 — only shown if Retail is ON"
+        hint: "e.g. $34.99 — displayed on the product page"
+      - label: "Stripe Payment Link"
+        name: "stripe_link"
+        widget: "string"
+        required: false
+        hint: "Paste your Stripe payment link here e.g. https://buy.stripe.com/xxxx"
       - label: "Available for Wholesale"
         name: "wholesale_available"
         widget: "boolean"
