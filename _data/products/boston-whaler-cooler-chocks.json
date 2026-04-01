@@ -12,10 +12,11 @@
   "weight": "2.2 lbs",
   "retail_available": true,
   "retail_price": "$75",
+  "stripe_link": "https://buy.stripe.com/test_28E00k6zO8qZ1rU4crb3q00",
   "wholesale_available": true,
-  "moq": "25",
   "fits": "Fits 15-17ft Boston Whaler CC",
   "featured": true,
   "published": true,
-  "order": 1
+  "order": 1,
+  "moq": "25"
 }
