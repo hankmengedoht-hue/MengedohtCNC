@@ -383,19 +383,30 @@ async function loadProductDetail() {
   if (storySection) storySection.style.display = p.story ? '' : 'none';
 
   // Pricing
-  const pricingEl = document.getElementById('detail-pricing');
+ const pricingEl = document.getElementById('detail-pricing');
   if (pricingEl) {
     let html = '';
-    if (p.retail_available && p.retail_price) {
-      html += `<div class="detail-price-row"><span class="detail-price-label">Retail Price</span><span class="detail-price-value">${p.retail_price}</span></div>`;
+    if (p.retail_price) {
+      html += `<div class="detail-price-row"><span class="detail-price-label">Retail Price</span><span class="detail-price-value" style="color:#e8a020; font-size:1.2rem; font-weight:800;">${p.retail_price}</span></div>`;
     }
-    if (p.retail_available) {
-      html += `<div class="detail-price-row"><span class="detail-price-label">Individual Orders</span><span class="detail-price-value">Available — No minimum</span></div>`;
-    }
+    html += `<div class="detail-price-row"><span class="detail-price-label">Individual Orders</span><span class="detail-price-value">Available — No minimum</span></div>`;
     if (p.wholesale_available) {
-      html += `<div class="detail-price-row"><span class="detail-price-label">Wholesale</span><span class="detail-price-value">Available — MOQ ${p.moq} units</span></div>`;
+      html += `<div class="detail-price-row"><span class="detail-price-label">Wholesale / Bulk</span><span class="detail-price-value">Contact for pricing — MOQ 25 units</span></div>`;
     }
     pricingEl.innerHTML = html;
+  }
+
+  // Actions — Stripe or contact
+  const actionsEl = document.getElementById('detail-actions');
+  if (actionsEl) {
+    if (p.stripe_link) {
+      actionsEl.innerHTML = `
+        <a href="${p.stripe_link}" target="_blank" class="btn btn-accent btn-block" style="margin-bottom:0.75rem;">Buy Now — ${p.retail_price || 'Pay Online'}</a>
+        <a href="contact.html" class="btn btn-outline btn-block">Request Wholesale Pricing</a>`;
+    } else {
+      actionsEl.innerHTML = `
+        <a href="contact.html" class="btn btn-accent btn-block">Place Order / Request Pricing</a>`;
+    }
   }
 
   // Breadcrumb
