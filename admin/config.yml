@@ -190,6 +190,7 @@ collections:
     fields:
       - { label: "Photo", name: "image", widget: "image" }
       - { label: "Published", name: "published", widget: "boolean", default: true }
+      - { label: "Feature on Custom Parts Page", name: "custom_parts_featured", widget: "boolean", default: false, hint: "Show this photo in the Recent Work section on the Custom Parts page." }
 
   # ─────────────────────────────────────────
   # SHOP PHOTOS
