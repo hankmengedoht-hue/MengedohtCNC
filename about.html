@@ -71,17 +71,12 @@
       border: 1px solid #3a3a35;
       border-radius: 4px;
       padding: 1.5rem;
-      text-align: center;
-    }
-    .equipment-card .eq-icon {
-      font-size: 2rem;
-      margin-bottom: 0.75rem;
     }
     .equipment-card h4 {
       font-family: 'Barlow Condensed', sans-serif;
       font-size: 1rem;
       font-weight: 700;
-      color: #f4f1ea;
+      color: #e8a020;
       text-transform: uppercase;
       letter-spacing: 0.05em;
       margin-bottom: 0.5rem;
@@ -89,7 +84,22 @@
     .equipment-card p {
       color: #888;
       font-size: 0.875rem;
-      line-height: 1.5;
+      line-height: 1.6;
+    }
+    .spec-row {
+      display: flex;
+      gap: 0.5rem;
+      font-size: 0.875rem;
+      color: #b0aa9e;
+      margin-bottom: 0.3rem;
+    }
+    .spec-row strong {
+      color: #f4f1ea;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      flex-shrink: 0;
     }
     .shop-photos {
       display: grid;
@@ -119,8 +129,9 @@
     }
     .values-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: 1.5rem;
+      margin-top: 2.5rem;
     }
     .value-card {
       background: #2a2a28;
@@ -143,15 +154,41 @@
       font-size: 0.9rem;
       line-height: 1.6;
     }
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      margin-top: 1rem;
+    }
+    .faq-item {
+      background: #2a2a28;
+      border: 1px solid #3a3a35;
+      border-radius: 4px;
+      padding: 1.5rem;
+    }
+    .faq-item h4 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: #e8a020;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+    }
+    .faq-item p {
+      color: #b0aa9e;
+      font-size: 0.92rem;
+      line-height: 1.7;
+      margin: 0;
+    }
     @media (max-width: 900px) {
       .about-layout { grid-template-columns: 1fr; gap: 2rem; }
       .equipment-grid { grid-template-columns: repeat(2, 1fr); }
-      .values-grid { grid-template-columns: repeat(2, 1fr); }
+      .values-grid { grid-template-columns: 1fr; }
       .shop-photos { grid-template-columns: repeat(2, 1fr); }
     }
     @media (max-width: 600px) {
       .equipment-grid { grid-template-columns: 1fr; }
-      .values-grid { grid-template-columns: 1fr; }
       .shop-photos { grid-template-columns: 1fr; }
     }
   </style>
@@ -177,9 +214,9 @@
   <section class="page-hero">
     <div class="container" style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:1rem;">
       <div>
-        <div class="section-tag">About Us</div>
+        <div class="section-tag">About</div>
         <h1>Built by Hand.<br>Driven by Precision.</h1>
-        <p>Charleston, South Carolina — CNC machining, custom fabrication, and scalable production.</p>
+        <p>One shop. One machinist. Charleston, South Carolina.</p>
       </div>
       <div style="text-align:right; padding-bottom:0.25rem;">
         <a href="https://instagram.com/mengedohtcnc" target="_blank" style="font-family:'Barlow Condensed',sans-serif; font-size:1.1rem; font-weight:600; letter-spacing:0.05em; color:#e8a020; text-decoration:none;">
@@ -200,68 +237,78 @@
         <div class="about-bio">
           <div class="section-tag">The Builder</div>
           <h2>Hank Mengedoht</h2>
-          <div class="bio-title">Founder & Machinist — Mengedoht CNC</div>
-          <p>My name is Hank Mengedoht, and I was born and raised in Charleston, South Carolina. With a strong background in CAD design and CNC machining, I've spent years developing the skills needed to bring ideas from concept to reality with precision and efficiency.</p>
-          <p>I have extensive experience designing and building custom projects across a wide range of applications. From working on cars and boats to producing one-off custom parts and repeatable production pieces, I enjoy solving problems and creating high-quality results tailored to each customer's needs.</p>
-          <p>I'm especially interested in bridging the gap between custom craftsmanship and efficient mass production. My goal is to deliver the quality of handmade work at the consistency of industrial manufacturing.</p>
+          <div class="bio-title">Founder &amp; Machinist — Mengedoht CNC</div>
+          <p>Hank Mengedoht grew up in Charleston, South Carolina, around boats and the water. He started with 3D printing as a kid and by high school was deep into CAD design and CNC machining. The range of projects since then has been wide: marine hardware, classic car restoration parts, custom furniture, company signage, and dashboards rebuilt from scratch for 1960s British cars. That last category, making a part that simply does not exist anymore, is where the work gets interesting.</p>
+          <p>Mengedoht CNC operates out of High and Dry Boatworks at 2728 Spruill Ave in North Charleston. It is a fitting location for a shop that grew out of years of working on and around boats, and one that keeps Hank close to the marine community he has been part of his whole life.</p>
+          <p>The most rewarding jobs are the ones where a customer comes in without a finished design, just a problem to solve. That back-and-forth process, working through what something needs to do and figuring out how to build it right, is something a larger shop with a sales team in the middle cannot replicate.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Company Story -->
+  <!-- Why Work With Us -->
   <section class="section" style="background:#222220;">
     <div class="container">
       <div class="section-header">
-        <div class="section-tag">Our Story</div>
-        <h2 class="section-title">How Mengedoht CNC Came to Be</h2>
-        <p class="section-sub">What started as a passion for design and fabrication has grown into a full-scale CNC manufacturing operation.</p>
+        <div class="section-tag">Why Mengedoht CNC</div>
+        <h2 class="section-title">What Sets This Shop Apart</h2>
+        <p class="section-sub">There are larger shops. There are cheaper options. Here is what you actually get working with Mengedoht CNC.</p>
       </div>
-      <div class="about-layout" style="align-items:center;">
-        <div>
-          <p style="color:#b0aa9e; line-height:1.8; margin-bottom:1.25rem;">Mengedoht CNC was founded out of a genuine passion for creativity and hands-on manufacturing. What started as an interest in designing and building has grown into a business focused not only on custom work, but also on scalable production and industrial supply.</p>
-          <p style="color:#b0aa9e; line-height:1.8; margin-bottom:1.25rem;">Based in Charleston, South Carolina, we serve both individual customers who want a single custom part and wholesale buyers who need consistent, repeatable production runs. Every product that leaves our shop meets the same standard of quality — whether it's one unit or five hundred.</p>
-          <p style="color:#b0aa9e; line-height:1.8;">Mengedoht CNC is committed to delivering quality, reliability, and craftsmanship in every project — no shortcuts, no compromises.</p>
+      <div class="values-grid" style="margin-top:0;">
+        <div class="value-card">
+          <h4>Direct Access to the Machinist</h4>
+          <p>You talk to the person running the machine. Every detail gets worked out on the spot, and nothing gets lost in translation between a salesperson and a shop floor.</p>
         </div>
-        <div class="values-grid" style="grid-template-columns: repeat(2,1fr);">
-          <div class="value-card"><h4>Precision</h4><p>Every cut is dialed in to exact tolerances. CNC means repeatable accuracy — every time.</p></div>
-          <div class="value-card"><h4>Quality</h4><p>Premium materials, professional-grade equipment, and attention to detail on every order.</p></div>
-          <div class="value-card"><h4>Reliability</h4><p>Consistent lead times, clear communication, and products that perform exactly as described.</p></div>
-          <div class="value-card"><h4>Craftsmanship</h4><p>Built by someone who cares about the work — not just the output.</p></div>
+        <div class="value-card">
+          <h4>No Minimum Orders</h4>
+          <p>One part or five hundred. Single-unit jobs get the same attention as a full production run. If you need one piece, bring it.</p>
+        </div>
+        <div class="value-card">
+          <h4>Creative Problem Solving</h4>
+          <p>No CAD files? No problem. Projects start from sketches, photos, dimensions, or descriptions. If you can explain what you need, we can figure out how to build it.</p>
+        </div>
+        <div class="value-card">
+          <h4>Broad Material and Industry Experience</h4>
+          <p>Wood, acrylic, fiberglass, carbon fiber, Delrin, foam, plastics. Projects across marine, automotive, furniture, signage, and art. Not a single-category shop.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Equipment -->
+  <!-- Equipment & Capabilities -->
   <section class="section">
     <div class="container">
       <div class="section-header">
         <div class="section-tag">The Shop</div>
-        <h2 class="section-title">Equipment & Capabilities</h2>
-        <p class="section-sub">Professional-grade tools producing professional-grade results.</p>
+        <h2 class="section-title">Equipment &amp; Capabilities</h2>
+        <p class="section-sub">Located at High and Dry Boatworks, 2728 Spruill Ave, North Charleston, SC. Local pickup available. Ships nationwide.</p>
       </div>
       <div class="equipment-grid">
         <div class="equipment-card">
-          <div class="eq-icon">⚙️</div>
           <h4>Camaster Cobra CR-510 ATC</h4>
-          <p>Our primary CNC machine. Automatic tool changer, professional-grade precision, and built for production runs.</p>
+          <div class="spec-row"><strong>Bed Size:</strong> 60" x 120" (full sheet)</div>
+          <div class="spec-row"><strong>Tolerance:</strong> ±0.005"</div>
+          <div class="spec-row"><strong>Tool Changer:</strong> Automatic (ATC)</div>
+          <p style="margin-top:0.75rem;">Professional-grade production CNC with automatic tool changing. Built for both one-off parts and high-volume runs.</p>
         </div>
         <div class="equipment-card">
-          <div class="eq-icon">🖥️</div>
           <h4>Vectric Aspire</h4>
-          <p>Industry-leading CAD/CAM software for 2D and 3D design, toolpath generation, and production-ready files.</p>
+          <div class="spec-row"><strong>Type:</strong> CAD/CAM Software</div>
+          <div class="spec-row"><strong>Capability:</strong> 2D, 2.5D, and 3D</div>
+          <p style="margin-top:0.75rem;">Industry-standard design and toolpath software. Every part is designed and verified digitally before a single cut is made.</p>
         </div>
         <div class="equipment-card">
-          <div class="eq-icon">🪵</div>
-          <h4>17+ Materials</h4>
-          <p>From Baltic Birch and HDPE to carbon fiber and Delrin — we work across a wide range of materials.</p>
+          <h4>Materials</h4>
+          <div class="spec-row"><strong>Wood:</strong> Baltic Birch, MDF, Hardwood, Softwood</div>
+          <div class="spec-row"><strong>Plastics:</strong> HDPE, Delrin, Acrylic, Lexan, PVC</div>
+          <div class="spec-row"><strong>Composites:</strong> Carbon Fiber, Fiberglass, G10/FR4</div>
+          <div class="spec-row"><strong>Other:</strong> Foam, Phenolic, Colorcore, Cork</div>
         </div>
       </div>
 
-      <div class="section-header" style="margin-top:3rem;">
+      <div class="section-header" style="margin-top:3.5rem;">
         <h3 class="section-title" style="font-size:1.5rem;">The Shop</h3>
-        <p class="section-sub">Located on Spruill Avenue in North Charleston, SC.</p>
+        <p class="section-sub">High and Dry Boatworks, Spruill Avenue, North Charleston, SC.</p>
       </div>
       <div class="shop-photos" id="shop-photos-grid">
         <div class="shop-photo">Photos coming soon.</div>
@@ -269,10 +316,41 @@
     </div>
   </section>
 
+  <!-- FAQ -->
+  <section class="section" style="background:#222220;">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">FAQ</div>
+        <h2 class="section-title">Common Questions</h2>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <h4>What does CNC stand for?</h4>
+          <p>Computer Numerical Control. It refers to machines that cut, carve, and shape material by following a digitally programmed path. The result is precise, repeatable cuts that would be nearly impossible to achieve consistently by hand.</p>
+        </div>
+        <div class="faq-item">
+          <h4>What kinds of projects can CNC handle?</h4>
+          <p>A wide range. Marine hardware, instrument panels, dashboards, furniture components, tool organizers, signage, art pieces, and anything in between. If it can be designed and cut from sheet or block material, it can likely be made here.</p>
+        </div>
+        <div class="faq-item">
+          <h4>Do I need CAD files to place an order?</h4>
+          <p>No. A sketch, a photo, rough dimensions, or a clear description is enough to start a conversation. Design work is part of the process, not a prerequisite.</p>
+        </div>
+        <div class="faq-item">
+          <h4>Do you ship, or is this local only?</h4>
+          <p>Both. Local pickup is available at the shop in North Charleston. Orders can also be shipped anywhere in the country via UPS or FedEx Ground. Freight is available for large orders.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="cta-banner">
     <div class="container cta-inner">
-      <div><h2>Ready to work together?</h2><p>Whether you need one custom part or a full production run — let's talk.</p></div>
-      <a href="contact.html" class="btn btn-accent btn-lg">Get a Quote</a>
+      <div>
+        <h2>Have a project in mind?</h2>
+        <p>Every message gets a personal response from the machinist. No middleman, no automated replies.</p>
+      </div>
+      <a href="contact.html" class="btn btn-accent btn-lg">Get in Touch</a>
     </div>
   </section>
 
@@ -326,19 +404,19 @@
     }
     loadShopPhotos();
   </script>
-<script>
-  async function loadFounderPhoto() {
-    try {
-      const res = await fetch('/_data/founder.json');
-      if (!res.ok) return;
-      const data = await res.json();
-      if (!data.image) return;
-      const wrap = document.getElementById('founder-photo-wrap');
-      if (wrap) wrap.innerHTML = `<img src="${data.image}" alt="Hank Mengedoht" style="width:100%;height:100%;object-fit:cover;" />`;
-    } catch(e) {}
-  }
-  loadFounderPhoto();
-</script>
+  <script>
+    async function loadFounderPhoto() {
+      try {
+        const res = await fetch('/_data/founder.json');
+        if (!res.ok) return;
+        const data = await res.json();
+        if (!data.image) return;
+        const wrap = document.getElementById('founder-photo-wrap');
+        if (wrap) wrap.innerHTML = `<img src="${data.image}" alt="Hank Mengedoht" style="width:100%;height:100%;object-fit:cover;" />`;
+      } catch(e) {}
+    }
+    loadFounderPhoto();
+  </script>
 
 </body>
 </html>
