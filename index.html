@@ -615,5 +615,27 @@
       reviewMsgEl.style.display = 'block';
     }
   </script>
+  <script>
+  async function loadCategoryImages() {
+    try {
+      const res = await fetch('/_data/pages/category-images.json');
+      if (!res.ok) return;
+      const data = await res.json();
+      const map = {
+        custom: 'cat-img-custom',
+        tools: 'cat-img-tools',
+        marine: 'cat-img-marine',
+        shelving: 'cat-img-shelving'
+      };
+      Object.entries(map).forEach(([key, id]) => {
+        if (data[key]) {
+          const el = document.getElementById(id);
+          if (el) el.innerHTML = `<img src="${data[key]}" alt="${key}" style="width:100%;height:100%;object-fit:cover;" />`;
+        }
+      });
+    } catch(e) {}
+  }
+  loadCategoryImages();
+</script>
 </body>
 </html>
