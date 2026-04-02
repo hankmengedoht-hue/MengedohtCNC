@@ -47,10 +47,7 @@
   <section class="contact-section section">
     <div class="container contact-layout">
       <div class="contact-form-wrap">
-        <h2>Send Us a Message!</h2>
-        <p class="contact-intro">Tell us what you're looking for — existing products, custom designs, wholesale or retail — and we'll get back to you as soon as possible.</p>
-
-        <form method="POST" action="https://formspree.io/f/mbdpdkwk"
+        <form method="POST" action="https://formspree.io/f/mbdpdkwk">
           <input type="hidden" name="form-name" value="wholesale-quote" />
           <div style="display:none;"><label>Don't fill this out: <input name="bot-field" /></label></div>
 
@@ -59,46 +56,12 @@
             <div class="form-group"><label for="email">Email Address *</label><input type="email" id="email" name="email" placeholder="your@email.com" required /></div>
           </div>
           <div class="form-row">
-            <div class="form-group" style="grid-column: 1 / -1;"><label for="subject">Email Subject *</label><input type="text" id="subject" name="subject" placeholder="e.g. Wholesale Inquiry — Cooler Chocks" required /></div>
-          </div>
-          <div class="form-row">
-            <div class="form-group"><label for="phone">Phone Number</label><input type="tel" id="phone" name="phone" placeholder="(555) 000-0000" /></div>
+            <div class="form-group"><label for="phone">Phone Number <span class="label-optional">(optional)</span></label><input type="tel" id="phone" name="phone" placeholder="(555) 000-0000" /></div>
             <div class="form-group"><label for="business">Business Name <span class="label-optional">(optional)</span></label><input type="text" id="business" name="business" placeholder="Your company or store name" /></div>
           </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label for="type">I am a...</label>
-              <select id="type" name="type">
-                <option value="">Select one...</option>
-                <option>Individual / Personal</option>
-                <option>Hardware Store</option>
-                <option>Marine Shop</option>
-                <option>Contractor / Trade</option>
-                <option>Retail / Online Store</option>
-                <option>Distributor</option>
-                <option>Artist</option>
-                <option>Other</option>
-              </select>
-            </div>
-            <div class="form-group">
-             <label for="quantity">Estimated Quantity <span class="label-optional">(optional)</span></label>
-              <select id="quantity" name="quantity">
-                <option value="">Select a range...</option>
-                <option>Less than 25 units</option>
-                <option>25–99 units</option>
-                <option>100–499 units</option>
-                <option>500+ units</option>
-                <option>Not sure yet</option>
-              </select>
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="products">Products of Interest</label>
-            <input type="text" id="products" name="products" placeholder="e.g. Boston Whaler Cooler Chocks, custom dashboard panel..." />
-          </div>
-          <div class="form-group"><label for="message">Message / Project Details *</label><textarea id="message" name="message" rows="5" placeholder="Describe what you're looking for — product type, material preferences, dimensions, timeline, or any custom requirements." required></textarea></div>
+          <div class="form-group"><label for="message">Message / Project Details *</label><textarea id="message" name="message" rows="6" placeholder="Tell us what you need — product, material, quantity, dimensions, timeline, or anything else. The more detail the better." required></textarea></div>
           <button type="submit" class="btn btn-accent btn-lg btn-block">Send My Request</button>
-          <p class="form-note">We respond within 24 hours, Monday–Friday. No Spam, No Pressure.</p>
+          <p class="form-note">We respond within 24 hours, Monday–Friday. No spam, no pressure.</p>
         </form>
       </div>
 
@@ -127,6 +90,7 @@
           <h4>Email Us Directly</h4>
           <p>Prefer email? Reach us directly at:</p>
           <a href="mailto:hankmengedoht@gmail.com" data-cms="email" class="direct-email">hankmengedoht@gmail.com</a>
+          <p style="margin-top:1rem; font-size:0.88rem; color:#7e7b73; line-height:1.6;">Have CAD files or drawings to share? Email them directly — DXF, DWG, STEP, STL, PDF, or any format. No size limits.</p>
         </div>
       </div>
     </div>
