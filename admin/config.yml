@@ -121,10 +121,7 @@ collections:
           - { label: "Stat 3 Label", name: "stat3_label", widget: "string" }
           - { label: "Bottom CTA Headline", name: "cta_headline", widget: "string" }
           - { label: "Bottom CTA Subtext", name: "cta_sub", widget: "string" }
-          - { label: "Category Image — Custom & Prototyping", name: "cat_custom_img", widget: "image", required: false, hint: "Image shown on the Custom & Prototyping category card." }
-          - { label: "Category Image — Tool Organizers", name: "cat_tools_img", widget: "image", required: false, hint: "Image shown on the Tool Organizers category card." }
-          - { label: "Category Image — Marine Products", name: "cat_marine_img", widget: "image", required: false, hint: "Image shown on the Marine Products category card." }
-          - { label: "Category Image — Shelving / Storage", name: "cat_shelving_img", widget: "image", required: false, hint: "Image shown on the Shelving / Storage category card." }
+          
 
       - label: "Wholesale Page"
         name: "wholesale"
