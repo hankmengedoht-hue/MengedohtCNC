@@ -88,12 +88,6 @@ async function applyHomeContent() {
   set('[data-cms="hero-headline"]', home.hero_headline);
   set('[data-cms="hero-sub"]', home.hero_sub);
   set('[data-cms="hero-cta"]', home.hero_cta);
-  set('[data-cms="stat1-num"]', home.stat1_num);
-  set('[data-cms="stat1-label"]', home.stat1_label);
-  set('[data-cms="stat2-num"]', home.stat2_num);
-  set('[data-cms="stat2-label"]', home.stat2_label);
-  set('[data-cms="stat3-num"]', home.stat3_num);
-  set('[data-cms="stat3-label"]', home.stat3_label);
   set('[data-cms="cta-headline"]', home.cta_headline);
   set('[data-cms="cta-sub"]', home.cta_sub);
   const catImgs = { custom: home.cat_custom_img, tools: home.cat_tools_img, marine: home.cat_marine_img, shelving: home.cat_shelving_img };
