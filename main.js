@@ -103,7 +103,7 @@ async function applyWholesaleContent() {
   const ws = await fetchJSON('/_data/pages/wholesale.json');
   if (!ws) return;
   const set = (sel, val) => document.querySelectorAll(sel).forEach(el => { el.textContent = val; });
-  set('[data-cms="ws-headline"]', ws.headline);
+  document.querySelectorAll('[data-cms="ws-headline"]').forEach(el => { el.innerHTML = ws.headline; });
   set('[data-cms="ws-sub"]', ws.sub);
   set('[data-cms="ws-moq"]', ws.moq_details);
   set('[data-cms="ws-lead-time"]', ws.lead_time);
