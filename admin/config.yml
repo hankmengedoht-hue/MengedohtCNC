@@ -40,27 +40,7 @@ collections:
           - { label: "Shelving / Storage", value: "pegboard" }
           - { label: "Automotive Dashboards", value: "automotive" }
           - { label: "Custom / Other", value: "custom" }
-      - label: "Material"
-        name: "material"
-        widget: "select"
-        options:
-          - "Baltic Birch Plywood"
-          - "HDPE"
-          - "Acrylic"
-          - "MDF"
-          - "HDF"
-          - "Hardwood"
-          - "Softwood"
-          - "G10 / FR4"
-          - "Carbon Fiber"
-          - "Delrin"
-          - "PVC"
-          - "Polycarbonate / Lexan"
-          - "Colorcore"
-          - "Phenolic"
-          - "Composites"
-          - "Expanded Foam"
-          - "Cork"
+      - { label: "Material", name: "material", widget: "string", hint: "e.g. HDPE, Baltic Birch Plywood, Carbon Fiber" }
       - { label: "Short Description", name: "description", widget: "text" }
       - label: "Full Story / Inspiration"
         name: "story"
