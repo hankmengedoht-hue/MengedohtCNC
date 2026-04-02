@@ -96,6 +96,16 @@ async function applyHomeContent() {
   set('[data-cms="stat3-label"]', home.stat3_label);
   set('[data-cms="cta-headline"]', home.cta_headline);
   set('[data-cms="cta-sub"]', home.cta_sub);
+  const catImgs = { custom: home.cat_custom_img, tools: home.cat_tools_img, marine: home.cat_marine_img, shelving: home.cat_shelving_img };
+  Object.entries(catImgs).forEach(([cat, url]) => {
+    if (!url) return;
+    const wrap = document.querySelector(`.cat-img-wrap[data-cat="${cat}"]`);
+    if (!wrap) return;
+    const placeholder = wrap.querySelector('.cat-img-placeholder');
+    const photo = wrap.querySelector('.cat-img-photo');
+    if (placeholder) placeholder.style.display = 'none';
+    if (photo) { photo.src = url; photo.style.display = 'block'; }
+  });
 }
 
 // ── WHOLESALE PAGE ──
