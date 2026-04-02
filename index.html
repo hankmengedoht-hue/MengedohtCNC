@@ -334,13 +334,41 @@
         <h2 class="section-title">From Quote to Delivery</h2>
       </div>
       <div class="process-steps">
-        <div class="process-step"><div class="step-num">01</div><div class="step-body"><h4>Request a Quote</h4><p>Fill out our contact form with your product needs, quantities, and any custom requirements.</p></div></div>
+        <div class="process-step">
+          <div class="step-icon">📋</div>
+          <div class="step-num">01</div>
+          <div class="step-body">
+            <h4>Request a Quote</h4>
+            <p><strong>Tell us what you need.</strong> Product, quantity, material — we'll handle the rest.</p>
+          </div>
+        </div>
         <div class="process-arrow">→</div>
-        <div class="process-step"><div class="step-num">02</div><div class="step-body"><h4>Review &amp; Confirm</h4><p>We'll send pricing, samples if needed, and confirm specs before production begins.</p></div></div>
+        <div class="process-step">
+          <div class="step-icon">✅</div>
+          <div class="step-num">02</div>
+          <div class="step-body">
+            <h4>Review &amp; Confirm</h4>
+            <p><strong>Approve specs &amp; pricing</strong> before anything starts. No surprises.</p>
+          </div>
+        </div>
         <div class="process-arrow">→</div>
-        <div class="process-step"><div class="step-num">03</div><div class="step-body"><h4>Production Run</h4><p>Your order is CNC-cut, quality checked, and packaged for distribution.</p></div></div>
+        <div class="process-step">
+          <div class="step-icon">⚙️</div>
+          <div class="step-num">03</div>
+          <div class="step-body">
+            <h4>Production Run</h4>
+            <p><strong>CNC-cut, quality checked,</strong> and packaged — built to your exact specs.</p>
+          </div>
+        </div>
         <div class="process-arrow">→</div>
-        <div class="process-step"><div class="step-num">04</div><div class="step-body"><h4>Ships to You</h4><p>Orders ship within 5–10 business days. Reorders are on file for instant re-production.</p></div></div>
+        <div class="process-step">
+          <div class="step-icon">🚚</div>
+          <div class="step-num">04</div>
+          <div class="step-body">
+            <h4>Ships to You</h4>
+            <p><strong>Delivered in 5–10 days.</strong> Reorders are on file for instant re-production.</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -506,6 +534,21 @@
       }
     }
     loadReviews();
+
+    // ── PROCESS STEPS SCROLL REVEAL ───────────────────────────────────────────
+    (function() {
+      const steps = document.querySelectorAll('.process-step');
+      steps.forEach(s => s.classList.add('reveal-ready'));
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach((entry, i) => {
+          if (entry.isIntersecting) {
+            setTimeout(() => entry.target.classList.add('revealed'), 100 * Array.from(steps).indexOf(entry.target));
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
+      steps.forEach(s => obs.observe(s));
+    })();
 
     // ── REVIEW PHOTO LIGHTBOX ─────────────────────────────────────────────────
     function openReviewPhoto(src) {
