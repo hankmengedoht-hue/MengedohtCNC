@@ -234,3 +234,18 @@ collections:
         file: "_data/founder.json"
         fields:
           - { label: "Photo", name: "image", widget: "image", hint: "Upload your profile/founder photo. Recommended: square or 4:3 ratio." }
+
+  # ─────────────────────────────────────────
+  # CATEGORY IMAGES
+  # ─────────────────────────────────────────
+  - name: "category-images"
+    label: "Category Images"
+    files:
+      - label: "Category Images"
+        name: "category-images"
+        file: "_data/pages/category-images.json"
+        fields:
+          - { label: "Custom & Prototyping Image", name: "custom", widget: "image", required: false }
+          - { label: "Tool Organizers Image", name: "tools", widget: "image", required: false }
+          - { label: "Marine Products Image", name: "marine", widget: "image", required: false }
+          - { label: "Shelving / Storage Image", name: "shelving", widget: "image", required: false }
