@@ -4,6 +4,9 @@
   "rating": 4,
   "body": "All good",
   "image": "/images/uploads/reviews/review-1775086681644.jpg",
-  "published": true,
-  "date": "2026-04-01"
+  "publish_home": true,
+  "publish_contact": true,
+  "publish_wholesale": true,
+  "date": "2026-04-01",
+  "published": true
 }
