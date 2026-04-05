@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /bulk-import.html
+Disallow: /retail.html
+Disallow: /_data/
+
+Sitemap: https://mengedohtcnc.com/sitemap.xml

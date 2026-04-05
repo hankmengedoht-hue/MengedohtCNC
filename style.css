@@ -3,6 +3,27 @@
    Industrial / Precision aesthetic
    ===================================================== */
 
+/* ── SKIP TO CONTENT (accessibility) ── */
+.skip-to-content {
+  position: absolute;
+  top: -100%;
+  left: 0;
+  background: #e8a020;
+  color: #1e1e1c;
+  padding: 0.75rem 1.5rem;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  z-index: 10000;
+  transition: top 0.2s;
+}
+.skip-to-content:focus {
+  top: 0;
+}
+
 :root {
   --bg:        #1e1e1c;
   --bg-2:      #272724;
