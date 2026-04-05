@@ -3,6 +3,8 @@
   "title": "High and Dry",
   "rating": 5,
   "body": "Kid can cut #nice",
+  "publish_home": true,
+  "publish_wholesale": true,
   "date": "2026-04-03",
   "published": false
 }
