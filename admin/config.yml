@@ -170,6 +170,23 @@ collections:
     format: "json"
     fields:
       - { label: "Photo", name: "image", widget: "image" }
+      - { label: "Title / Caption", name: "title", widget: "string", required: false, hint: "Optional short caption shown on hover." }
+      - label: "Categories"
+        name: "categories"
+        widget: "select"
+        multiple: true
+        required: false
+        hint: "Select all that apply. A marine carbon fiber panel can be both Marine and Carbon Fiber / G10."
+        options:
+          - { label: "Marine", value: "marine" }
+          - { label: "Woodwork", value: "woodwork" }
+          - { label: "Furniture", value: "furniture" }
+          - { label: "Signage", value: "signage" }
+          - { label: "Automotive", value: "automotive" }
+          - { label: "Art", value: "art" }
+          - { label: "Carbon Fiber / G10", value: "carbon" }
+          - { label: "Flat-Pack Plywood", value: "flatpack" }
+          - { label: "Custom / Other", value: "custom" }
       - { label: "Published", name: "published", widget: "boolean", default: true }
       - { label: "Feature on Custom Parts Page", name: "custom_parts_featured", widget: "boolean", default: false, hint: "Show this photo in the Recent Work section on the Custom Parts page." }
 

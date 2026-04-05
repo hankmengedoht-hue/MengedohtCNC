@@ -160,11 +160,27 @@
     </div>
   </section>
 
+  <div class="filter-bar">
+    <div class="container filter-inner">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="marine">Marine</button>
+      <button class="filter-btn" data-filter="woodwork">Woodwork</button>
+      <button class="filter-btn" data-filter="furniture">Furniture</button>
+      <button class="filter-btn" data-filter="signage">Signage</button>
+      <button class="filter-btn" data-filter="automotive">Automotive</button>
+      <button class="filter-btn" data-filter="art">Art</button>
+      <button class="filter-btn" data-filter="carbon">Carbon Fiber / G10</button>
+      <button class="filter-btn" data-filter="flatpack">Flat-Pack Plywood</button>
+      <button class="filter-btn" data-filter="custom">Custom / Other</button>
+    </div>
+  </div>
+
   <section class="section">
     <div class="container">
       <div class="gallery-grid" id="gallery-grid">
         <div class="gallery-empty">Photos coming soon — check back shortly.</div>
       </div>
+      <div id="gallery-no-results" style="display:none; text-align:center; padding:3rem 0; color:var(--text-3); font-family:var(--font-display); font-size:0.9rem; letter-spacing:0.1em; text-transform:uppercase;">No photos in this category yet.</div>
     </div>
     <div style="text-align:center; margin-top:2.5rem;">
       <button id="load-more-btn" class="btn btn-outline btn-lg" style="display:none;">Load More</button>
@@ -218,7 +234,17 @@
   <script>
     const PAGE_SIZE = 15;
     let allItems = [];
+    let activeFilter = 'all';
+    let filteredItems = [];
     let loaded = 0;
+
+    function getFiltered() {
+      if (activeFilter === 'all') return allItems;
+      return allItems.filter(item => {
+        const cats = Array.isArray(item.categories) ? item.categories : (item.categories ? [item.categories] : []);
+        return cats.includes(activeFilter);
+      });
+    }
 
     async function loadGallery() {
       try {
@@ -231,21 +257,38 @@
         );
         allItems = items.filter(i => i && i.published !== false);
         if (!allItems.length) return;
-        renderBatch();
-        updateLoadMoreBtn();
+        applyFilter();
       } catch(e) {
         console.log('Gallery not loaded.');
       }
     }
 
+    function applyFilter() {
+      filteredItems = getFiltered();
+      loaded = 0;
+      const grid = document.getElementById('gallery-grid');
+      grid.innerHTML = '';
+      const noResults = document.getElementById('gallery-no-results');
+      if (!filteredItems.length) {
+        grid.innerHTML = '';
+        noResults.style.display = 'block';
+        document.getElementById('load-more-btn').style.display = 'none';
+        return;
+      }
+      noResults.style.display = 'none';
+      renderBatch();
+      updateLoadMoreBtn();
+    }
+
     function renderBatch() {
       const grid = document.getElementById('gallery-grid');
-      const batch = allItems.slice(loaded, loaded + PAGE_SIZE);
-      if (loaded === 0) grid.innerHTML = '';
+      const batch = filteredItems.slice(loaded, loaded + PAGE_SIZE);
       batch.forEach((item, i) => {
         const actualIndex = loaded + i;
+        const cats = Array.isArray(item.categories) ? item.categories : [];
         const div = document.createElement('div');
         div.className = 'gallery-item';
+        div.dataset.categories = cats.join(' ');
         div.innerHTML = `
           <img src="${item.image}" alt="Gallery photo" loading="lazy" />
           <div class="gallery-item-overlay">
@@ -263,21 +306,30 @@
     function updateLoadMoreBtn() {
       const btn = document.getElementById('load-more-btn');
       if (!btn) return;
-      if (loaded >= allItems.length) {
+      if (loaded >= filteredItems.length) {
         btn.style.display = 'none';
       } else {
         btn.style.display = 'inline-flex';
-        btn.textContent = `Load More (${allItems.length - loaded} remaining)`;
+        btn.textContent = `Load More (${filteredItems.length - loaded} remaining)`;
       }
     }
 
     function openLightbox(i) {
-      const item = allItems[i];
+      const item = filteredItems[i];
       document.getElementById('lightbox-img').src = item.image;
       document.getElementById('lightbox-title').textContent = item.title || '';
       document.getElementById('lightbox-desc').textContent = item.description || '';
       document.getElementById('lightbox').classList.add('open');
     }
+
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        activeFilter = btn.dataset.filter;
+        applyFilter();
+      });
+    });
 
     document.getElementById('lightbox-close').addEventListener('click', () => {
       document.getElementById('lightbox').classList.remove('open');
