@@ -292,9 +292,7 @@ async function loadPageReviews(gridId, publishKey) {
     );
     const published = reviews.filter(r => r && r[publishKey] === true);
     if (!published.length) {
-      if (publishKey === 'publish_home') throw new Error('none');
-      grid.innerHTML = '';
-      return;
+      throw new Error('none');
     }
     grid.innerHTML = published.map(r => {
       const filled = '★'.repeat(Math.max(1, Math.min(5, r.rating || 5)));
@@ -312,14 +310,7 @@ async function loadPageReviews(gridId, publishKey) {
       </div>`;
     }).join('');
   } catch(e) {
-    if (publishKey === 'publish_home') {
-      grid.innerHTML = `
-        <div class="testi-card"><div class="testi-stars">★★★★★</div><blockquote>"The drill bit organizers have been one of our best-selling items since we stocked them. Consistent quality, no defects across hundreds of units."</blockquote><div class="testi-author"><div class="testi-author-info"><strong>James R.</strong><span>Hardware Store Owner, Ohio</span></div></div></div>
-        <div class="testi-card"><div class="testi-stars">★★★★★</div><blockquote>"We needed custom instrument panels for our boat console builds. Mengedoht turned around a prototype in 3 days and had our full order ready in a week."</blockquote><div class="testi-author"><div class="testi-author-info"><strong>Mike S.</strong><span>Marine Shop, Florida</span></div></div></div>
-        <div class="testi-card"><div class="testi-stars">★★★★★</div><blockquote>"Ordered the cooler chocks for my Boston Whaler — perfect fit, zero wobble. Night and day compared to the rotted wood ones. Will order again."</blockquote><div class="testi-author"><div class="testi-author-info"><strong>Dan W.</strong><span>Boat Owner, Tennessee</span></div></div></div>`;
-    } else {
-      grid.innerHTML = '';
-    }
+    grid.innerHTML = `<p style="color:var(--text-3); font-size:0.95rem; font-style:italic;">Be the first to write a review.</p>`;
   }
 }
 
