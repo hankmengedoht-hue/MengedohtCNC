@@ -192,6 +192,24 @@ collections:
       - { label: "Feature on Custom Parts Page", name: "custom_parts_featured", widget: "boolean", default: false, hint: "Show this photo in the Recent Work section on the Custom Parts page." }
 
   # ─────────────────────────────────────────
+  # CUSTOM PARTS EXAMPLES
+  # ─────────────────────────────────────────
+  - name: "custom-parts-examples"
+    label: "Custom Parts Examples"
+    label_singular: "Example Photo"
+    folder: "_data/custom-parts-examples"
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    extension: "json"
+    format: "json"
+    summary: "{{image}}"
+    fields:
+      - { label: "Photo", name: "image", widget: "image", hint: "Shown in the 'Recent Work' section on the Custom Parts page." }
+      - { label: "Caption", name: "caption", widget: "string", required: false, hint: "Optional short label shown on hover." }
+      - { label: "Published", name: "published", widget: "boolean", default: true }
+
+  # ─────────────────────────────────────────
   # SHOP PHOTOS
   # ─────────────────────────────────────────
   - name: "shop-photos"

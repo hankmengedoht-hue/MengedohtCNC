@@ -637,27 +637,25 @@
   <script src="main.js"></script>
   <script>
     async function loadCPPhotos() {
+      const grid = document.getElementById('cp-photos-grid');
       try {
-        const manifestRes = await fetch('/_data/gallery/manifest.json');
-        if (!manifestRes.ok) return;
+        const manifestRes = await fetch('/_data/custom-parts-examples/manifest.json');
+        if (!manifestRes.ok) throw new Error('no manifest');
         const files = await manifestRes.json();
-        if (!files.length) return;
+        if (!files.length) throw new Error('empty');
         const items = await Promise.all(
-          files.map(f => fetch(`/_data/gallery/${f}`).then(r => r.json()).catch(() => null))
+          files.map(f => fetch(`/_data/custom-parts-examples/${f}`).then(r => r.json()).catch(() => null))
         );
-        const featured = items.filter(i => i && i.custom_parts_featured === true && i.published !== false);
-        const grid = document.getElementById('cp-photos-grid');
-        if (!featured.length) {
-          grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--text-3);font-family:var(--font-display);font-size:0.9rem;letter-spacing:0.1em;text-transform:uppercase;">Photos coming soon — check back shortly.</div>`;
-          return;
-        }
-        grid.innerHTML = featured.map(item => `
+        const published = items.filter(i => i && i.published !== false);
+        if (!published.length) throw new Error('none');
+        grid.innerHTML = published.map(item => `
           <div class="cp-photo-item">
-            <img src="${item.image}" alt="Custom CNC work" loading="lazy" />
+            <img src="${item.image}" alt="${item.caption || 'Custom CNC work'}" loading="lazy" />
+            ${item.caption ? `<div class="gallery-item-overlay"><div><h4>${item.caption}</h4></div></div>` : ''}
           </div>
         `).join('');
       } catch(e) {
-        console.log('Photos not loaded.');
+        grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--text-3);font-family:var(--font-display);font-size:0.9rem;letter-spacing:0.1em;text-transform:uppercase;">Photos coming soon — check back shortly.</div>`;
       }
     }
     loadCPPhotos();
