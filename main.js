@@ -100,6 +100,12 @@ async function applyHomeContent() {
     if (placeholder) placeholder.style.display = 'none';
     if (photo) { photo.src = url; photo.style.display = 'block'; }
   });
+  if (home.hero_image) {
+    const heroPhoto = document.getElementById('hero-photo');
+    const heroVisual = document.querySelector('.hero-visual');
+    if (heroPhoto) heroPhoto.src = home.hero_image;
+    if (heroVisual) heroVisual.classList.add('has-photo');
+  }
 }
 
 // ── WHOLESALE PAGE ──
@@ -269,6 +275,176 @@ function initScrollReveal() {
   });
 }
 
+// ── REVIEW WORKER URL ──
+const REVIEW_WORKER_URL = 'https://review.hankmengedoht.workers.dev/';
+
+// ── SHARED REVIEW LOADING ──
+async function loadPageReviews(gridId, publishKey) {
+  const grid = document.getElementById(gridId);
+  if (!grid) return;
+  try {
+    const res = await fetch('/_data/reviews/manifest.json');
+    if (!res.ok) throw new Error('no manifest');
+    const files = await res.json();
+    if (!files.length) throw new Error('empty');
+    const reviews = await Promise.all(
+      files.map(f => fetch('/_data/reviews/' + f).then(r => r.json()).catch(() => null))
+    );
+    const published = reviews.filter(r => r && r[publishKey] === true);
+    if (!published.length) {
+      if (publishKey === 'publish_home') throw new Error('none');
+      grid.innerHTML = '';
+      return;
+    }
+    grid.innerHTML = published.map(r => {
+      const filled = '★'.repeat(Math.max(1, Math.min(5, r.rating || 5)));
+      const empty  = '☆'.repeat(5 - Math.max(1, Math.min(5, r.rating || 5)));
+      const thumb  = r.image
+        ? `<img class="review-thumb" src="${r.image}" alt="Photo from ${r.name}" loading="lazy" onclick="window.openReviewPhoto('${r.image}')" title="Click to expand">`
+        : '';
+      return `<div class="testi-card">
+        <div class="testi-stars">${filled}${empty}</div>
+        <blockquote>"${r.body}"</blockquote>
+        <div class="testi-author">
+          <div class="testi-author-info"><strong>${r.name}</strong>${r.title ? `<span>${r.title}</span>` : ''}</div>
+          ${thumb}
+        </div>
+      </div>`;
+    }).join('');
+  } catch(e) {
+    if (publishKey === 'publish_home') {
+      grid.innerHTML = `
+        <div class="testi-card"><div class="testi-stars">★★★★★</div><blockquote>"The drill bit organizers have been one of our best-selling items since we stocked them. Consistent quality, no defects across hundreds of units."</blockquote><div class="testi-author"><div class="testi-author-info"><strong>James R.</strong><span>Hardware Store Owner, Ohio</span></div></div></div>
+        <div class="testi-card"><div class="testi-stars">★★★★★</div><blockquote>"We needed custom instrument panels for our boat console builds. Mengedoht turned around a prototype in 3 days and had our full order ready in a week."</blockquote><div class="testi-author"><div class="testi-author-info"><strong>Mike S.</strong><span>Marine Shop, Florida</span></div></div></div>
+        <div class="testi-card"><div class="testi-stars">★★★★★</div><blockquote>"Ordered the cooler chocks for my Boston Whaler — perfect fit, zero wobble. Night and day compared to the rotted wood ones. Will order again."</blockquote><div class="testi-author"><div class="testi-author-info"><strong>Dan W.</strong><span>Boat Owner, Tennessee</span></div></div></div>`;
+    } else {
+      grid.innerHTML = '';
+    }
+  }
+}
+
+// ── REVIEW MODAL (injected into any page that needs it) ──
+function injectReviewModal() {
+  if (document.getElementById('review-modal')) return;
+  document.body.insertAdjacentHTML('beforeend', `
+    <div id="review-photo-lightbox" style="position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:9500;align-items:center;justify-content:center;padding:1.5rem;">
+      <button onclick="window.closeReviewPhoto()" style="position:absolute;top:1.25rem;left:1.5rem;background:none;border:1px solid #3a3a35;color:#f4f1ea;font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:6px 16px;border-radius:3px;cursor:pointer;">✕ Close</button>
+      <img id="review-photo-lightbox-img" src="" alt="Review photo" style="max-width:100%;max-height:88vh;object-fit:contain;border-radius:4px;" />
+    </div>
+    <div id="review-modal" style="position:fixed;inset:0;background:rgba(0,0,0,0.78);z-index:9000;align-items:center;justify-content:center;padding:1.5rem;">
+      <div class="review-modal-inner">
+        <div class="review-modal-header">
+          <h3>Leave a Review</h3>
+          <button class="review-modal-x" id="review-modal-close">✕</button>
+        </div>
+        <form id="review-form" novalidate>
+          <div class="review-field">
+            <label class="review-label">Rating <span style="color:#e8a020;">*</span></label>
+            <div class="star-rating">
+              <input type="radio" id="star5" name="rating" value="5"><label for="star5" title="5 stars">★</label>
+              <input type="radio" id="star4" name="rating" value="4"><label for="star4" title="4 stars">★</label>
+              <input type="radio" id="star3" name="rating" value="3"><label for="star3" title="3 stars">★</label>
+              <input type="radio" id="star2" name="rating" value="2"><label for="star2" title="2 stars">★</label>
+              <input type="radio" id="star1" name="rating" value="1"><label for="star1" title="1 star">★</label>
+            </div>
+          </div>
+          <div class="review-field">
+            <label for="review-name" class="review-label">Your Name <span style="color:#e8a020;">*</span></label>
+            <input type="text" id="review-name" name="name" class="review-input" placeholder="e.g. James R." required>
+          </div>
+          <div class="review-field">
+            <label for="review-title" class="review-label">Your Role / Location</label>
+            <input type="text" id="review-title" name="title" class="review-input" placeholder="e.g. Hardware Store Owner, Ohio">
+          </div>
+          <div class="review-field">
+            <label for="review-body" class="review-label">Your Review <span style="color:#e8a020;">*</span></label>
+            <textarea id="review-body" name="body" class="review-input review-textarea" placeholder="Share your experience with Mengedoht CNC…" required></textarea>
+          </div>
+          <div class="review-field">
+            <label for="review-image" class="review-label">Photo (optional)</label>
+            <input type="file" id="review-image" name="image" class="review-input" accept="image/*">
+            <p class="review-hint">Max 5MB — JPG, PNG, or WebP.</p>
+          </div>
+          <div id="review-msg" style="display:none;"></div>
+          <div class="review-actions">
+            <button type="button" id="review-cancel-btn" class="btn btn-ghost">Cancel</button>
+            <button type="submit" id="review-submit-btn" class="btn btn-accent">Submit Review</button>
+          </div>
+        </form>
+      </div>
+    </div>`);
+}
+
+function initReviewSystem() {
+  injectReviewModal();
+
+  window.openReviewPhoto = function(src) {
+    const lb = document.getElementById('review-photo-lightbox');
+    document.getElementById('review-photo-lightbox-img').src = src;
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  };
+  window.closeReviewPhoto = function() {
+    document.getElementById('review-photo-lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  };
+
+  document.getElementById('review-photo-lightbox').addEventListener('click', function(e) {
+    if (e.target === this) window.closeReviewPhoto();
+  });
+
+  document.querySelectorAll('.leave-review-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.getElementById('review-modal').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  function closeReviewModal() {
+    document.getElementById('review-modal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.getElementById('review-modal-close').addEventListener('click', closeReviewModal);
+  document.getElementById('review-cancel-btn').addEventListener('click', closeReviewModal);
+  document.getElementById('review-modal').addEventListener('click', e => { if (e.target === document.getElementById('review-modal')) closeReviewModal(); });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') { closeReviewModal(); window.closeReviewPhoto(); }
+  });
+
+  const reviewForm = document.getElementById('review-form');
+  const reviewMsgEl = document.getElementById('review-msg');
+  reviewForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const rating = reviewForm.querySelector('input[name="rating"]:checked');
+    if (!rating) { showMsg('Please select a star rating.', 'error'); return; }
+    const submitBtn = document.getElementById('review-submit-btn');
+    submitBtn.textContent = 'Submitting…';
+    submitBtn.disabled = true;
+    reviewMsgEl.style.display = 'none';
+    try {
+      const formData = new FormData(reviewForm);
+      const res  = await fetch(REVIEW_WORKER_URL, { method: 'POST', body: formData });
+      const data = await res.json();
+      if (data.success) {
+        showMsg('Thank you! Your review has been submitted and will appear shortly.', 'success');
+        reviewForm.reset();
+      } else {
+        showMsg(data.error || 'Something went wrong. Please try again.', 'error');
+      }
+    } catch(err) {
+      showMsg('Could not submit review. Please try again later.', 'error');
+    }
+    submitBtn.textContent = 'Submit Review';
+    submitBtn.disabled = false;
+  });
+
+  function showMsg(text, type) {
+    reviewMsgEl.className = type === 'success' ? 'review-msg-success' : 'review-msg-error';
+    reviewMsgEl.textContent = text;
+    reviewMsgEl.style.display = 'block';
+  }
+}
+
 // ── BOOT ──
 document.addEventListener('DOMContentLoaded', async () => {
   await applySettings();
@@ -279,6 +455,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   if (page === 'home') {
     await applyHomeContent();
     await loadAndRenderProducts('home-featured-grid', p => p.featured);
+    await loadPageReviews('reviews-grid', 'publish_home');
+    initReviewSystem();
   }
   if (page === 'products') {
     await loadAndRenderProducts('products-grid', null);
@@ -289,6 +467,12 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
   if (page === 'wholesale') {
     await applyWholesaleContent();
+    await loadPageReviews('wholesale-reviews-grid', 'publish_wholesale');
+    initReviewSystem();
+  }
+  if (page === 'contact') {
+    await loadPageReviews('contact-reviews-grid', 'publish_contact');
+    initReviewSystem();
   }
   if (page === 'product') {
     await loadProductDetail();

@@ -8,121 +8,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <style>
-    /* ── REVIEW MODAL ── */
-    #review-modal { display: none; }
-    #review-modal.open { display: flex; }
-    .review-modal-inner {
-      background: #272724;
-      border: 1px solid #3a3a35;
-      border-radius: 6px;
-      width: 100%;
-      max-width: 520px;
-      max-height: 90vh;
-      overflow-y: auto;
-      padding: 2rem;
-    }
-    .review-modal-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 1.5rem;
-    }
-    .review-modal-header h3 {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 1.5rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      color: #f4f1ea;
-      margin: 0;
-    }
-    .review-modal-x {
-      background: none;
-      border: none;
-      color: #7e7b73;
-      font-size: 1.25rem;
-      cursor: pointer;
-      line-height: 1;
-      padding: 4px;
-    }
-    .review-modal-x:hover { color: #f4f1ea; }
-    .review-field { margin-bottom: 1.25rem; }
-    .review-label {
-      display: block;
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.82rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: #b8b4ab;
-      margin-bottom: 0.4rem;
-    }
-    .review-input {
-      width: 100%;
-      background: #1e1e1c;
-      border: 1px solid #3a3a35;
-      border-radius: 3px;
-      color: #f4f1ea;
-      font-family: 'Barlow', sans-serif;
-      font-size: 0.95rem;
-      padding: 0.6rem 0.85rem;
-      box-sizing: border-box;
-    }
-    .review-input:focus { outline: none; border-color: #e8a020; }
-    .review-textarea { resize: vertical; min-height: 100px; }
-    .review-hint { font-size: 0.78rem; color: #7e7b73; margin-top: 0.3rem; margin-bottom: 0; }
-    .review-actions { display: flex; gap: 1rem; justify-content: flex-end; margin-top: 1.5rem; }
-    /* ── REVIEW PHOTO THUMBNAIL ── */
-    .testi-author { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; }
-    .testi-author-info { display: flex; flex-direction: column; }
-    .review-thumb {
-      width: 96px;
-      height: 96px;
-      border-radius: 3px;
-      object-fit: cover;
-      cursor: pointer;
-      border: 1px solid #3a3a35;
-      flex-shrink: 0;
-      transition: opacity 0.2s;
-    }
-    .review-thumb:hover { opacity: 0.8; }
-    /* Review photo lightbox */
-    #review-photo-lightbox { display: none; }
-    #review-photo-lightbox.open { display: flex; }
-
-    /* Star rating widget */
-    .star-rating { display: flex; flex-direction: row-reverse; gap: 4px; width: fit-content; }
-    .star-rating input { display: none; }
-    .star-rating label {
-      font-size: 2rem;
-      color: #3a3a35;
-      cursor: pointer;
-      line-height: 1;
-      transition: color 0.1s;
-    }
-    .star-rating label:hover,
-    .star-rating label:hover ~ label,
-    .star-rating input:checked ~ label { color: #e8a020; }
-    /* Review feedback messages */
-    .review-msg-success {
-      background: rgba(50,150,50,0.1);
-      border: 1px solid rgba(50,150,50,0.3);
-      border-radius: 3px;
-      color: #7dbd7d;
-      padding: 0.75rem 1rem;
-      font-size: 0.9rem;
-      margin-bottom: 1rem;
-    }
-    .review-msg-error {
-      background: rgba(200,50,50,0.1);
-      border: 1px solid rgba(200,50,50,0.3);
-      border-radius: 3px;
-      color: #e07070;
-      padding: 0.75rem 1rem;
-      font-size: 0.9rem;
-      margin-bottom: 1rem;
-    }
-  </style>
 </head>
 <body data-page="home">
 
@@ -180,6 +65,7 @@
       </div>
     </div>
     <div class="hero-visual">
+      <img id="hero-photo" src="" alt="Mengedoht CNC" />
       <div class="cnc-graphic">
         <div class="cnc-grid"></div>
         <div class="cnc-crosshair"></div>
@@ -381,7 +267,7 @@
           <div class="section-tag">What Buyers Say</div>
           <h2 class="section-title" style="margin-bottom:0;">Trusted by Retailers &amp; Customers</h2>
         </div>
-        <button class="btn btn-outline" id="leave-review-btn">Leave a Review</button>
+        <button class="btn btn-outline leave-review-btn">Leave a Review</button>
       </div>
       <div class="testi-grid" id="reviews-grid" style="margin-top:2rem;">
         <div class="products-loading">Loading reviews…</div>
@@ -394,9 +280,9 @@
     <div class="container cta-inner">
       <div>
         <h2 data-cms="cta-headline">Ready to stock your shelves?</h2>
-        <p data-cms="cta-sub">Get wholesale pricing in 24 hours. No minimum commitment to request a quote.</p>
+        <p data-cms="cta-sub">Get pricing in 24 hours. No commitment required to ask.</p>
       </div>
-      <a href="custom-parts.html" class="btn btn-accent btn-lg" data-cms="hero-cta">Order Custom Parts</a>
+      <a href="wholesale.html" class="btn btn-accent btn-lg">Order Wholesale</a>
     </div>
   </section>
 
@@ -428,113 +314,13 @@
 
   <script src="main.js"></script>
 
-  <!-- REVIEW PHOTO LIGHTBOX -->
-  <div id="review-photo-lightbox" style="position:fixed; inset:0; background:rgba(0,0,0,0.92); z-index:9500; align-items:center; justify-content:center; padding:1.5rem;">
-    <button onclick="closeReviewPhoto()" style="position:absolute; top:1.25rem; left:1.5rem; background:none; border:1px solid #3a3a35; color:#f4f1ea; font-family:'Barlow Condensed',sans-serif; font-size:1rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; padding:6px 16px; border-radius:3px; cursor:pointer;">✕ Close</button>
-    <img id="review-photo-lightbox-img" src="" alt="Review photo" style="max-width:100%; max-height:88vh; object-fit:contain; border-radius:4px;" />
-  </div>
-
-  <!-- REVIEW MODAL -->
-  <div id="review-modal" style="position:fixed; inset:0; background:rgba(0,0,0,0.78); z-index:9000; align-items:center; justify-content:center; padding:1.5rem;">
-    <div class="review-modal-inner">
-      <div class="review-modal-header">
-        <h3>Leave a Review</h3>
-        <button class="review-modal-x" id="review-modal-close">✕</button>
-      </div>
-      <form id="review-form" novalidate>
-        <div class="review-field">
-          <label class="review-label">Rating <span style="color:#e8a020;">*</span></label>
-          <div class="star-rating">
-            <input type="radio" id="star5" name="rating" value="5">
-            <label for="star5" title="5 stars">★</label>
-            <input type="radio" id="star4" name="rating" value="4">
-            <label for="star4" title="4 stars">★</label>
-            <input type="radio" id="star3" name="rating" value="3">
-            <label for="star3" title="3 stars">★</label>
-            <input type="radio" id="star2" name="rating" value="2">
-            <label for="star2" title="2 stars">★</label>
-            <input type="radio" id="star1" name="rating" value="1">
-            <label for="star1" title="1 star">★</label>
-          </div>
-        </div>
-        <div class="review-field">
-          <label for="review-name" class="review-label">Your Name <span style="color:#e8a020;">*</span></label>
-          <input type="text" id="review-name" name="name" class="review-input" placeholder="e.g. James R." required>
-        </div>
-        <div class="review-field">
-          <label for="review-title" class="review-label">Your Role / Location</label>
-          <input type="text" id="review-title" name="title" class="review-input" placeholder="e.g. Hardware Store Owner, Ohio">
-        </div>
-        <div class="review-field">
-          <label for="review-body" class="review-label">Your Review <span style="color:#e8a020;">*</span></label>
-          <textarea id="review-body" name="body" class="review-input review-textarea" placeholder="Share your experience with Mengedoht CNC…" required></textarea>
-        </div>
-        <div class="review-field">
-          <label for="review-image" class="review-label">Photo (optional)</label>
-          <input type="file" id="review-image" name="image" class="review-input" accept="image/*">
-          <p class="review-hint">Max 5MB — JPG, PNG, or WebP.</p>
-        </div>
-        <div id="review-msg" style="display:none;"></div>
-        <div class="review-actions">
-          <button type="button" id="review-cancel-btn" class="btn btn-ghost">Cancel</button>
-          <button type="submit" id="review-submit-btn" class="btn btn-accent">Submit Review</button>
-        </div>
-      </form>
-    </div>
-  </div>
-
   <script>
-    // ── REVIEW WORKER URL ─────────────────────────────────────────────────────
-    // After deploying review-worker.js to Cloudflare Workers, paste the URL here:
-    const REVIEW_WORKER_URL = 'https://review.hankmengedoht.workers.dev/';
-
-    // ── LOAD REVIEWS FROM CMS DATA ────────────────────────────────────────────
-    async function loadReviews() {
-      const grid = document.getElementById('reviews-grid');
-      if (!grid) return;
-      try {
-        const res = await fetch('/_data/reviews/manifest.json');
-        if (!res.ok) throw new Error('no manifest');
-        const files = await res.json();
-        if (!files.length) throw new Error('empty');
-        const reviews = await Promise.all(
-          files.map(f => fetch('/_data/reviews/' + f).then(r => r.json()).catch(() => null))
-        );
-        const published = reviews.filter(r => r && r.published === true);
-        if (!published.length) throw new Error('none published');
-        grid.innerHTML = published.map(r => {
-          const filled = '★'.repeat(Math.max(1, Math.min(5, r.rating)));
-          const empty  = '☆'.repeat(5 - Math.max(1, Math.min(5, r.rating)));
-          const initials = r.name.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase();
-          const thumb = r.image
-            ? `<img class="review-thumb" src="${r.image}" alt="Photo from ${r.name}" loading="lazy" onclick="openReviewPhoto('${r.image}')" title="Click to expand">`
-            : '';
-          return `
-            <div class="testi-card">
-              <div class="testi-stars">${filled}${empty}</div>
-              <blockquote>"${r.body}"</blockquote>
-              <div class="testi-author">
-                <div class="testi-author-info"><strong>${r.name}</strong>${r.title ? `<span>${r.title}</span>` : ''}</div>
-                ${thumb}
-              </div>
-            </div>`;
-        }).join('');
-      } catch(e) {
-        // Fallback to seed reviews if manifest not yet available
-        grid.innerHTML = `
-          <div class="testi-card"><div class="testi-stars">★★★★★</div><blockquote>"The drill bit organizers have been one of our best-selling items since we stocked them. Consistent quality, no defects across hundreds of units."</blockquote><div class="testi-author"><div class="testi-avatar">JR</div><div><strong>James R.</strong><span>Hardware Store Owner, Ohio</span></div></div></div>
-          <div class="testi-card"><div class="testi-stars">★★★★★</div><blockquote>"We needed custom instrument panels for our boat console builds. Mengedoht turned around a prototype in 3 days and had our full order ready in a week."</blockquote><div class="testi-author"><div class="testi-avatar">MS</div><div><strong>Mike S.</strong><span>Marine Shop, Florida</span></div></div></div>
-          <div class="testi-card"><div class="testi-stars">★★★★★</div><blockquote>"Ordered the cooler chocks for my Boston Whaler — perfect fit, zero wobble. Night and day compared to the rotted wood ones. Will order again."</blockquote><div class="testi-author"><div class="testi-avatar">DW</div><div><strong>Dan W.</strong><span>Boat Owner, Tennessee</span></div></div></div>`;
-      }
-    }
-    loadReviews();
-
     // ── PROCESS STEPS SCROLL REVEAL ───────────────────────────────────────────
     (function() {
       const steps = document.querySelectorAll('.process-step');
       steps.forEach(s => s.classList.add('reveal-ready'));
       const obs = new IntersectionObserver((entries) => {
-        entries.forEach((entry, i) => {
+        entries.forEach((entry) => {
           if (entry.isIntersecting) {
             setTimeout(() => entry.target.classList.add('revealed'), 100 * Array.from(steps).indexOf(entry.target));
             obs.unobserve(entry.target);
@@ -543,114 +329,6 @@
       }, { threshold: 0.15 });
       steps.forEach(s => obs.observe(s));
     })();
-
-    // ── REVIEW PHOTO LIGHTBOX ─────────────────────────────────────────────────
-    function openReviewPhoto(src) {
-      const lb = document.getElementById('review-photo-lightbox');
-      const img = document.getElementById('review-photo-lightbox-img');
-      img.src = src;
-      lb.classList.add('open');
-      document.body.style.overflow = 'hidden';
-    }
-    function closeReviewPhoto() {
-      const lb = document.getElementById('review-photo-lightbox');
-      lb.classList.remove('open');
-      document.body.style.overflow = '';
-    }
-    document.getElementById('review-photo-lightbox').addEventListener('click', function(e) {
-      if (e.target === this) closeReviewPhoto();
-    });
-
-    // Lazy-load thumbnails using IntersectionObserver
-    function initReviewThumbs() {
-      const thumbs = document.querySelectorAll('.review-thumb[data-src]');
-      if (!thumbs.length) return;
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const img = entry.target;
-            img.src = img.dataset.src;
-            observer.unobserve(img);
-          }
-        });
-      }, { rootMargin: '200px' });
-      thumbs.forEach(t => observer.observe(t));
-    }
-
-    // Run after reviews are rendered
-    const _origLoadReviews = loadReviews;
-    loadReviews = async function() {
-      await _origLoadReviews();
-      initReviewThumbs();
-    };
-    // Re-init since loadReviews already ran above
-    initReviewThumbs();
-
-    // ── REVIEW MODAL ──────────────────────────────────────────────────────────
-    const reviewModal  = document.getElementById('review-modal');
-    const reviewForm   = document.getElementById('review-form');
-    const reviewMsgEl  = document.getElementById('review-msg');
-
-    document.getElementById('leave-review-btn').addEventListener('click', () => {
-      reviewModal.classList.add('open');
-      document.body.style.overflow = 'hidden';
-    });
-
-    function closeReviewModal() {
-      reviewModal.classList.remove('open');
-      document.body.style.overflow = '';
-    }
-
-    document.getElementById('review-modal-close').addEventListener('click', closeReviewModal);
-    document.getElementById('review-cancel-btn').addEventListener('click', closeReviewModal);
-    reviewModal.addEventListener('click', e => { if (e.target === reviewModal) closeReviewModal(); });
-    document.addEventListener('keydown', e => {
-      if (e.key === 'Escape') {
-        closeReviewModal();
-        closeReviewPhoto();
-      }
-    });
-
-    reviewForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const rating = reviewForm.querySelector('input[name="rating"]:checked');
-      if (!rating) { showReviewMsg('Please select a star rating.', 'error'); return; }
-
-      const submitBtn = document.getElementById('review-submit-btn');
-      submitBtn.textContent = 'Submitting…';
-      submitBtn.disabled = true;
-      reviewMsgEl.style.display = 'none';
-
-      if (REVIEW_WORKER_URL === 'PASTE_YOUR_WORKER_URL_HERE') {
-        showReviewMsg('Review submission is not yet configured. Please contact us directly.', 'error');
-        submitBtn.textContent = 'Submit Review';
-        submitBtn.disabled = false;
-        return;
-      }
-
-      try {
-        const formData = new FormData(reviewForm);
-        const res  = await fetch(REVIEW_WORKER_URL, { method: 'POST', body: formData });
-        const data = await res.json();
-        if (data.success) {
-          showReviewMsg('Thank you! Your review has been submitted and will appear shortly.', 'success');
-          reviewForm.reset();
-        } else {
-          showReviewMsg(data.error || 'Something went wrong. Please try again.', 'error');
-        }
-      } catch(err) {
-        showReviewMsg('Could not submit review. Please try again later.', 'error');
-      }
-
-      submitBtn.textContent = 'Submit Review';
-      submitBtn.disabled = false;
-    });
-
-    function showReviewMsg(text, type) {
-      reviewMsgEl.className = type === 'success' ? 'review-msg-success' : 'review-msg-error';
-      reviewMsgEl.textContent = text;
-      reviewMsgEl.style.display = 'block';
-    }
   </script>
   <script>
   async function loadCategoryImages() {

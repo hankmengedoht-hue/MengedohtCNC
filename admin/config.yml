@@ -121,6 +121,7 @@ collections:
           - { label: "Stat 3 Label", name: "stat3_label", widget: "string" }
           - { label: "Bottom CTA Headline", name: "cta_headline", widget: "string" }
           - { label: "Bottom CTA Subtext", name: "cta_sub", widget: "string" }
+          - { label: "Hero Photo", name: "hero_image", widget: "image", required: false, hint: "Shown to the right of the hero headline on the home page. Replaces the animated graphic." }
           
 
       - label: "Wholesale Page"
@@ -234,7 +235,9 @@ collections:
         default: 5
       - { label: "Review", name: "body", widget: "text" }
       - { label: "Photo", name: "image", widget: "image", required: false, hint: "Optional photo submitted with the review." }
-      - { label: "Published", name: "published", widget: "boolean", default: false, hint: "Toggle ON to show this review on the homepage." }
+      - { label: "Show on Home Page", name: "publish_home", widget: "boolean", default: false, hint: "Show this review in the 'What Buyers Say' section on the home page." }
+      - { label: "Show on Contact Page", name: "publish_contact", widget: "boolean", default: false, hint: "Show this review in the reviews section on the contact page." }
+      - { label: "Show on Wholesale Page", name: "publish_wholesale", widget: "boolean", default: false, hint: "Show this review in the reviews section on the wholesale page." }
       - { label: "Date", name: "date", widget: "string", required: false }
 
   # ─────────────────────────────────────────
