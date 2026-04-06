@@ -15,20 +15,16 @@ if (header) {
 // ── HAMBURGER MENU ──
 const hamburger = document.getElementById('hamburger');
 const mainNav   = document.getElementById('main-nav');
-const navCta    = document.querySelector('.nav-cta');
-
 if (hamburger && mainNav) {
   hamburger.addEventListener('click', () => {
     const isOpen = hamburger.classList.toggle('open');
     mainNav.classList.toggle('open', isOpen);
-    if (navCta) navCta.classList.toggle('open', isOpen);
     document.body.style.overflow = isOpen ? 'hidden' : '';
   });
   mainNav.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => {
       hamburger.classList.remove('open');
       mainNav.classList.remove('open');
-      if (navCta) navCta.classList.remove('open');
       document.body.style.overflow = '';
     });
   });
@@ -36,7 +32,6 @@ if (hamburger && mainNav) {
     if (!hamburger.contains(e.target) && !mainNav.contains(e.target)) {
       hamburger.classList.remove('open');
       mainNav.classList.remove('open');
-      if (navCta) navCta.classList.remove('open');
       document.body.style.overflow = '';
     }
   });
@@ -90,16 +85,6 @@ async function applyHomeContent() {
   set('[data-cms="hero-cta"]', home.hero_cta);
   set('[data-cms="cta-headline"]', home.cta_headline);
   set('[data-cms="cta-sub"]', home.cta_sub);
-  const catImgs = { custom: home.cat_custom_img, tools: home.cat_tools_img, marine: home.cat_marine_img, shelving: home.cat_shelving_img };
-  Object.entries(catImgs).forEach(([cat, url]) => {
-    if (!url) return;
-    const wrap = document.querySelector(`.cat-img-wrap[data-cat="${cat}"]`);
-    if (!wrap) return;
-    const placeholder = wrap.querySelector('.cat-img-placeholder');
-    const photo = wrap.querySelector('.cat-img-photo');
-    if (placeholder) placeholder.style.display = 'none';
-    if (photo) { photo.src = url; photo.style.display = 'block'; }
-  });
   if (home.hero_image) {
     const heroPhoto = document.getElementById('hero-photo');
     const heroVisual = document.querySelector('.hero-visual');
