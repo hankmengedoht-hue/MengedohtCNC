@@ -75,23 +75,6 @@ async function applySettings() {
   }
 }
 
-// ── HOME PAGE ──
-async function applyHomeContent() {
-  const home = await fetchJSON('/_data/pages/home.json');
-  if (!home) return;
-  const set = (sel, val) => document.querySelectorAll(sel).forEach(el => { el.textContent = val; });
-  set('[data-cms="hero-headline"]', home.hero_headline);
-  set('[data-cms="hero-sub"]', home.hero_sub);
-  set('[data-cms="hero-cta"]', home.hero_cta);
-  set('[data-cms="cta-headline"]', home.cta_headline);
-  set('[data-cms="cta-sub"]', home.cta_sub);
-  if (home.hero_image) {
-    const heroPhoto = document.getElementById('hero-photo');
-    const heroVisual = document.querySelector('.hero-visual');
-    if (heroPhoto) heroPhoto.src = home.hero_image;
-    if (heroVisual) heroVisual.classList.add('has-photo');
-  }
-}
 
 // ── WHOLESALE PAGE ──
 async function applyWholesaleContent() {
@@ -429,7 +412,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   const page = document.body.dataset.page;
 
   if (page === 'home') {
-    await applyHomeContent();
     await loadAndRenderProducts('home-featured-grid', p => p.featured);
     await loadPageReviews('reviews-grid', 'publish_home');
     initReviewSystem();

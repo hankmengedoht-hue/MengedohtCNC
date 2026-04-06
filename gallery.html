@@ -258,6 +258,14 @@
     let filteredItems = [];
     let loaded = 0;
 
+    function shuffle(arr) {
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
+    }
+
     function getFiltered() {
       if (activeFilter === 'all') return allItems;
       return allItems.filter(item => {
@@ -275,7 +283,7 @@
         const items = await Promise.all(
           files.map(f => fetch(`/_data/gallery/${f}`).then(r => r.json()).catch(() => null))
         );
-        allItems = items.filter(i => i && i.published !== false);
+        allItems = shuffle(items.filter(i => i && i.published !== false));
         if (!allItems.length) return;
         applyFilter();
       } catch(e) {
