@@ -143,7 +143,7 @@ function buildProductCard(p) {
   }
 
   return `
-    <div class="product-card${p.featured ? ' product-card--featured' : ''}" data-category="${categories.join(' ')}" onclick="window.location='product.html?id=${slug}'" style="cursor:pointer;">
+    <div class="product-card${p.featured ? ' product-card--featured' : ''}" data-category="${categories.join(' ')}" data-cats='${JSON.stringify(cats)}' onclick="window.location='product.html?id=${slug}'" style="cursor:pointer;">
       <div class="product-img">
         ${imgHtml}
         <div class="product-badge">${p.material}</div>
@@ -211,8 +211,9 @@ function initFilters() {
       const cards  = document.querySelectorAll('#products-grid .product-card');
       let visible  = 0;
       cards.forEach(card => {
-        const cats  = (card.dataset.category || '').split(' ');
-        const match = filter === 'all' || cats.includes(filter);
+        let cardCats = [];
+        try { cardCats = JSON.parse(card.dataset.cats || '[]'); } catch(e) { cardCats = (card.dataset.category || '').split(' ').filter(Boolean); }
+        const match = filter === 'all' || cardCats.includes(filter);
         card.classList.toggle('hidden', !match);
         if (match) visible++;
       });
