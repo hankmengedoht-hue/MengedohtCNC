@@ -1,4 +1,7 @@
 {
   "image": "/images/uploads/img-3988-1774845947150.jpg",
-  "published": true
+  "published": true,
+  "categories": [
+    "carbon"
+  ]
 }

@@ -1,4 +1,7 @@
 {
   "image": "/images/uploads/IMG_6284.jpg",
-  "published": true
+  "published": true,
+  "categories": [
+    "woodwork"
+  ]
 }

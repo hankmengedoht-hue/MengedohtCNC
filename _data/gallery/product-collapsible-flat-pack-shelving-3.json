@@ -1,6 +1,9 @@
 {
   "image": "/images/uploads/img-3659-1774840626066.jpg",
   "published": true,
+  "categories": [
+    "flatpack"
+  ],
   "_source": "product",
   "_product": "collapsible-flat-pack-shelving"
 }

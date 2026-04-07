@@ -1,4 +1,7 @@
 {
   "image": "/images/uploads/IMG_7133.jpg",
-  "published": true
+  "published": true,
+  "categories": [
+    "automotive"
+  ]
 }

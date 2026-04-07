@@ -1,4 +1,7 @@
 {
   "image": "/images/uploads/img-5383-1774845968814.jpg",
-  "published": true
+  "published": true,
+  "categories": [
+    "custom"
+  ]
 }

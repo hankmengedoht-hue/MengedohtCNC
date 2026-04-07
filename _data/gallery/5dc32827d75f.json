@@ -1,4 +1,7 @@
 {
   "image": "/images/uploads/IMG_7092.jpg",
-  "published": true
+  "published": true,
+  "categories": [
+    "signage"
+  ]
 }

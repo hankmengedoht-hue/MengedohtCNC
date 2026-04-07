@@ -1,4 +1,7 @@
 {
   "image": "/images/uploads/img-4101-1774845951834.jpg",
-  "published": true
+  "published": true,
+  "categories": [
+    "marine"
+  ]
 }

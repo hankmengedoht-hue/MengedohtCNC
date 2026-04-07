@@ -1,6 +1,9 @@
 {
   "image": "/images/uploads/IMG_1602.jpg",
   "published": true,
+  "categories": [
+    "marine"
+  ],
   "_source": "product",
   "_product": "boston-whaler-cooler-chocks"
 }

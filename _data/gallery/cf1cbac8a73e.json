@@ -1,4 +1,7 @@
 {
   "image": "/images/uploads/img-4009-1774845949432.jpg",
-  "published": true
+  "published": true,
+  "categories": [
+    "art"
+  ]
 }

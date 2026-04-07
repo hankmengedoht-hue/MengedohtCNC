@@ -1,6 +1,9 @@
 {
   "image": "/images/uploads/IMG_9725.jpg",
   "published": true,
+  "categories": [
+    "automotive"
+  ],
   "_source": "product",
   "_product": "sunbeam-alpine-tiger-dashboard"
 }
