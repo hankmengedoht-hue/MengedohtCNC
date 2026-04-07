@@ -215,7 +215,11 @@ function initFilters() {
         try { cardCats = JSON.parse(card.dataset.cats || '[]'); } catch(e) { cardCats = (card.dataset.category || '').split(' ').filter(Boolean); }
         const match = filter === 'all' || cardCats.includes(filter);
         card.classList.toggle('hidden', !match);
-        if (match) visible++;
+        if (match) {
+          card.style.opacity = '1';
+          card.style.transform = 'none';
+          visible++;
+        }
       });
       if (noResults) noResults.style.display = visible === 0 ? 'block' : 'none';
     });
