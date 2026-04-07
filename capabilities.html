@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Materials and CNC capabilities at Mengedoht CNC — HDPE, wood, acrylic, G10, and carbon fiber. Machine specs, tolerances, and what we can make for you." />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Materials & Capabilities — Mengedoht CNC" />
+  <meta property="og:description" content="See what Mengedoht CNC can make: HDPE, hardwood, plywood, acrylic, G10, and carbon fiber. CNC router specs, cut tolerances, and finishing options." />
+  <meta property="og:url" content="https://mengedohtcnc.com/capabilities.html" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Materials & Capabilities — Mengedoht CNC" />
+  <meta name="twitter:description" content="See what Mengedoht CNC can make: HDPE, hardwood, plywood, acrylic, G10, and carbon fiber. CNC router specs, cut tolerances, and finishing options." />
+  <meta property="og:image" content="https://mengedohtcnc.com/images/uploads/IMG_4102.jpg" />
+  <meta name="twitter:image" content="https://mengedohtcnc.com/images/uploads/IMG_4102.jpg" />
+  <link rel="canonical" href="https://mengedohtcnc.com/capabilities.html" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <title>Materials & Capabilities — Mengedoht CNC</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NPC4T6X6HY"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-NPC4T6X6HY');
+  </script>
+  <style>
+    .cap-layout {
+      display: grid;
+      grid-template-columns: 1fr 280px;
+      gap: 4rem;
+      align-items: start;
+    }
+    .cap-sidebar {
+      position: sticky;
+      top: 6rem;
+    }
+    .cap-nav {
+      background: #1e1e1c;
+      border: 1px solid #3a3a35;
+      border-radius: 4px;
+      padding: 1.5rem;
+    }
+    .cap-nav h5 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #666;
+      margin-bottom: 1rem;
+    }
+    .cap-nav a {
+      display: block;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #b8b4ab;
+      text-decoration: none;
+      padding: 0.4rem 0;
+      border-bottom: 1px solid #2a2a28;
+      transition: color 0.2s;
+    }
+    .cap-nav a:last-child { border-bottom: none; }
+    .cap-nav a:hover { color: #e8a020; }
+
+    .cap-section {
+      margin-bottom: 4rem;
+    }
+    .cap-section-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #e8a020;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid #3a3a35;
+    }
+    .cap-section h2 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 2rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: #f4f1ea;
+      margin-bottom: 0.75rem;
+      letter-spacing: 0.02em;
+    }
+    .cap-section > p {
+      color: #b0aa9e;
+      line-height: 1.75;
+      margin-bottom: 1.5rem;
+      font-size: 1rem;
+    }
+
+    /* Material cards */
+    .material-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+    }
+    .material-card {
+      background: #1e1e1c;
+      border: 1px solid #3a3a35;
+      border-radius: 4px;
+      padding: 1.5rem;
+    }
+    .material-card-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+    .material-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .material-card h3 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: #f4f1ea;
+    }
+    .material-card .sub {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #666;
+      margin-bottom: 0.75rem;
+    }
+    .material-card p {
+      font-size: 0.9rem;
+      color: #888;
+      line-height: 1.65;
+      margin-bottom: 0.75rem;
+    }
+    .material-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+    .material-tag {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #e8a020;
+      background: rgba(232,160,32,0.08);
+      border: 1px solid rgba(232,160,32,0.2);
+      border-radius: 20px;
+      padding: 2px 10px;
+    }
+
+    /* Spec table */
+    .spec-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 0.5rem;
+    }
+    .spec-table tr {
+      border-bottom: 1px solid #2a2a28;
+    }
+    .spec-table tr:last-child { border-bottom: none; }
+    .spec-table td {
+      padding: 0.75rem 0;
+      vertical-align: top;
+      font-size: 0.92rem;
+      line-height: 1.5;
+    }
+    .spec-table td:first-child {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #666;
+      width: 45%;
+      padding-right: 1rem;
+    }
+    .spec-table td:last-child {
+      color: #f4f1ea;
+    }
+
+    /* Use-case rows */
+    .usecase-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .usecase-item {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 1.5rem;
+      padding: 1.25rem 0;
+      border-bottom: 1px solid #2a2a28;
+      align-items: start;
+    }
+    .usecase-item:last-child { border-bottom: none; }
+    .usecase-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #e8a020;
+      padding-top: 0.1rem;
+    }
+    .usecase-desc {
+      font-size: 0.92rem;
+      color: #b0aa9e;
+      line-height: 1.65;
+    }
+
+    /* Process steps */
+    .process-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .process-step {
+      display: flex;
+      gap: 1.5rem;
+      padding: 1.25rem 0;
+      border-bottom: 1px solid #2a2a28;
+      align-items: flex-start;
+    }
+    .process-step:last-child { border-bottom: none; }
+    .process-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 2rem;
+      font-weight: 800;
+      color: #2a2a28;
+      line-height: 1;
+      flex-shrink: 0;
+      width: 2.5rem;
+      text-align: center;
+    }
+    .process-step strong {
+      display: block;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #f4f1ea;
+      margin-bottom: 0.3rem;
+    }
+    .process-step p {
+      font-size: 0.9rem;
+      color: #888;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    @media (max-width: 960px) {
+      .cap-layout { grid-template-columns: 1fr; }
+      .cap-sidebar { display: none; }
+      .material-grid { grid-template-columns: 1fr; }
+      .usecase-item { grid-template-columns: 1fr; gap: 0.25rem; }
+    }
+    @media (max-width: 600px) {
+      .material-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body data-page="capabilities">
+<a class="skip-to-content" href="#main-content">Skip to main content</a>
+
+  <header class="site-header" id="site-header">
+    <div class="container nav-inner">
+      <a href="index.html" class="logo"><span class="logo-mark">M</span><span class="logo-text">MENGEDOHT <em>CNC</em></span></a>
+      <nav class="main-nav" id="main-nav">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="custom-parts.html" class="nav-link">Custom Parts</a>
+        <a href="products.html" class="nav-link">Products</a>
+        <a href="wholesale.html" class="nav-link">Wholesale</a>
+        <a href="gallery.html" class="nav-link">Gallery</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+      <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <section class="page-hero" id="main-content">
+    <div class="container">
+      <div class="section-tag">What We Work With</div>
+      <h1>Materials &amp; Capabilities</h1>
+      <p>Everything we cut, the machine we use, and the tolerances you can count on.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="cap-layout">
+
+        <!-- MAIN CONTENT -->
+        <div>
+
+          <!-- MATERIALS -->
+          <div class="cap-section" id="cap-materials">
+            <div class="cap-section-title">Materials</div>
+            <h2>What We Cut</h2>
+            <p>We work with a focused set of materials — ones we know inside and out. Every material behaves differently under the router, and we dial in feeds, speeds, and toolpaths accordingly.</p>
+
+            <div class="material-grid">
+
+              <div class="material-card">
+                <div class="material-card-header">
+                  <div class="material-dot" style="background:#4a9eff;"></div>
+                  <h3>HDPE</h3>
+                </div>
+                <div class="sub">High-Density Polyethylene</div>
+                <p>Our most-used material. HDPE is waterproof, chemical-resistant, and virtually maintenance-free — ideal for marine environments, food-service applications, and outdoor use. It machines cleanly and holds tight tolerances.</p>
+                <div class="material-tags">
+                  <span class="material-tag">Marine</span>
+                  <span class="material-tag">Outdoor</span>
+                  <span class="material-tag">Tool Organizers</span>
+                  <span class="material-tag">Food Safe</span>
+                </div>
+              </div>
+
+              <div class="material-card">
+                <div class="material-card-header">
+                  <div class="material-dot" style="background:#c8a060;"></div>
+                  <h3>Hardwood</h3>
+                </div>
+                <div class="sub">Oak, Walnut, Maple, and More</div>
+                <p>Solid hardwoods for furniture parts, signage, and custom pieces that need warmth and character. We can engrave, profile, and pocket-cut hardwood with clean results. Species selection depends on project requirements.</p>
+                <div class="material-tags">
+                  <span class="material-tag">Furniture</span>
+                  <span class="material-tag">Signage</span>
+                  <span class="material-tag">Custom Gifts</span>
+                  <span class="material-tag">Engraving</span>
+                </div>
+              </div>
+
+              <div class="material-card">
+                <div class="material-card-header">
+                  <div class="material-dot" style="background:#b0c890;"></div>
+                  <h3>Plywood</h3>
+                </div>
+                <div class="sub">Baltic Birch, Marine Ply, MDO</div>
+                <p>The workhorse for flat-pack furniture, shelving, and structural panels. Baltic birch cuts cleanly with minimal tearout. Marine-grade ply for wet environments. MDO for exterior signage and painted parts.</p>
+                <div class="material-tags">
+                  <span class="material-tag">Flat-Pack</span>
+                  <span class="material-tag">Shelving</span>
+                  <span class="material-tag">Panels</span>
+                  <span class="material-tag">Signage</span>
+                </div>
+              </div>
+
+              <div class="material-card">
+                <div class="material-card-header">
+                  <div class="material-dot" style="background:#d88080;"></div>
+                  <h3>Acrylic</h3>
+                </div>
+                <div class="sub">Cast Acrylic / Plexiglass</div>
+                <p>Excellent for backlit signage, display panels, and decorative parts. Cast acrylic produces cleaner edges than extruded. Available in clear, frosted, and a wide range of colors. Polished edges available on request.</p>
+                <div class="material-tags">
+                  <span class="material-tag">Signage</span>
+                  <span class="material-tag">Displays</span>
+                  <span class="material-tag">Lighting</span>
+                  <span class="material-tag">Decorative</span>
+                </div>
+              </div>
+
+              <div class="material-card">
+                <div class="material-card-header">
+                  <div class="material-dot" style="background:#70b888;"></div>
+                  <h3>G10 / Garolite</h3>
+                </div>
+                <div class="sub">Fiberglass Laminate</div>
+                <p>G10 is a glass-epoxy laminate used where strength and dimensional stability matter in harsh conditions. Excellent for marine electrical panels, switch panels, and structural brackets. Machines similarly to HDPE but stiffer.</p>
+                <div class="material-tags">
+                  <span class="material-tag">Marine Panels</span>
+                  <span class="material-tag">Electrical</span>
+                  <span class="material-tag">Structural</span>
+                </div>
+              </div>
+
+              <div class="material-card">
+                <div class="material-card-header">
+                  <div class="material-dot" style="background:#888;"></div>
+                  <h3>Carbon Fiber</h3>
+                </div>
+                <div class="sub">Sheet / Laminate</div>
+                <p>Carbon fiber sheet for lightweight, high-strength parts. Requires careful toolpath planning and dust extraction — we take it seriously. Best for custom automotive, marine, and specialty instrument panels where weight matters.</p>
+                <div class="material-tags">
+                  <span class="material-tag">Automotive</span>
+                  <span class="material-tag">Marine</span>
+                  <span class="material-tag">Lightweight</span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- MACHINE SPECS -->
+          <div class="cap-section" id="cap-machine">
+            <div class="cap-section-title">Machine</div>
+            <h2>The Equipment</h2>
+            <p>We run a CAMaster Cobra CR-510 ATC — a professional-grade CNC router with automatic tool changing. Toolpaths are designed in Vectric Aspire, which allows complex 3D carving, nesting, and precision profiling.</p>
+
+            <table class="spec-table">
+              <tr>
+                <td>Machine</td>
+                <td>CAMaster Cobra CR-510 ATC</td>
+              </tr>
+              <tr>
+                <td>Bed Size</td>
+                <td>60" × 120" (5 ft × 10 ft) — handles full sheets</td>
+              </tr>
+              <tr>
+                <td>Tool Changing</td>
+                <td>Automatic Tool Changer (ATC) — multiple bits, one run</td>
+              </tr>
+              <tr>
+                <td>Spindle</td>
+                <td>High-frequency spindle with variable RPM</td>
+              </tr>
+              <tr>
+                <td>Software</td>
+                <td>Vectric Aspire — 2D profiling, pocketing, V-carving, 3D relief</td>
+              </tr>
+              <tr>
+                <td>Positioning</td>
+                <td>Ball-screw drive on all axes</td>
+              </tr>
+              <tr>
+                <td>Dust Collection</td>
+                <td>Integrated — required for composites and fine materials</td>
+              </tr>
+            </table>
+          </div>
+
+          <!-- TOLERANCES -->
+          <div class="cap-section" id="cap-tolerances">
+            <div class="cap-section-title">Tolerances & Precision</div>
+            <h2>What to Expect</h2>
+            <p>CNC routing tolerances depend on material, thickness, tooling, and fixturing. Here's what we hold in normal production conditions.</p>
+
+            <table class="spec-table">
+              <tr>
+                <td>Positional Accuracy</td>
+                <td>±0.005" (±0.127 mm) — typical for well-fixtured parts</td>
+              </tr>
+              <tr>
+                <td>Repeatability</td>
+                <td>±0.003" run to run in the same setup</td>
+              </tr>
+              <tr>
+                <td>Edge Quality</td>
+                <td>Machine finish — smooth with light toolmarks. Sanding or finishing available on request.</td>
+              </tr>
+              <tr>
+                <td>Minimum Feature Size</td>
+                <td>~1/8" slots and inside radii (tooling dependent)</td>
+              </tr>
+              <tr>
+                <td>Maximum Sheet Size</td>
+                <td>Up to 60" × 120" in a single setup</td>
+              </tr>
+              <tr>
+                <td>Maximum Cut Depth</td>
+                <td>~4" Z-axis travel (material-dependent)</td>
+              </tr>
+              <tr>
+                <td>File Formats Accepted</td>
+                <td>DXF, DWG, SVG, STEP, STL, PDF — vector or 3D solid</td>
+              </tr>
+            </table>
+          </div>
+
+          <!-- USE CASES -->
+          <div class="cap-section" id="cap-usecases">
+            <div class="cap-section-title">What We Make</div>
+            <h2>Common Use Cases</h2>
+            <div class="usecase-list">
+              <div class="usecase-item">
+                <div class="usecase-label">Marine Hardware</div>
+                <div class="usecase-desc">Cooler chocks, boat cleats, dock accessories, swim platforms, and custom marine brackets — primarily in HDPE and G10 for UV and saltwater resistance.</div>
+              </div>
+              <div class="usecase-item">
+                <div class="usecase-label">Switch &amp; Instrument Panels</div>
+                <div class="usecase-desc">Dashboard panels for boats and classic cars in G10, carbon fiber, or HDPE. Precisely cut openings for gauges, switches, and connectors.</div>
+              </div>
+              <div class="usecase-item">
+                <div class="usecase-label">Tool Organizers</div>
+                <div class="usecase-desc">HDPE tool holders, pegboard panels, and storage systems for tool retailers, marine shops, and contractors. Designed for long-term retail display durability.</div>
+              </div>
+              <div class="usecase-item">
+                <div class="usecase-label">Flat-Pack Furniture</div>
+                <div class="usecase-desc">Plywood shelving, storage units, and knock-down furniture with precision-fit joinery. Easy to ship flat and assemble on-site.</div>
+              </div>
+              <div class="usecase-item">
+                <div class="usecase-label">Signage</div>
+                <div class="usecase-desc">Dimensional signs in hardwood, HDU, or acrylic. V-carved lettering, layered builds, or router-cut profiles. Indoor and outdoor options available.</div>
+              </div>
+              <div class="usecase-item">
+                <div class="usecase-label">Custom &amp; Prototype Parts</div>
+                <div class="usecase-desc">One-offs and short runs for product development, engineering prototypes, and specialty components. Send a DXF or sketch and we'll figure it out together.</div>
+              </div>
+              <div class="usecase-item">
+                <div class="usecase-label">Wholesale Production</div>
+                <div class="usecase-desc">Production runs of 25–500+ units per SKU for retailers, distributors, and brand owners. Consistent nesting, consistent finish, consistent output.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- PROCESS -->
+          <div class="cap-section" id="cap-process">
+            <div class="cap-section-title">From File to Finished Part</div>
+            <h2>Our Process</h2>
+            <div class="process-steps">
+              <div class="process-step">
+                <div class="process-num">1</div>
+                <div>
+                  <strong>Send Your File or Idea</strong>
+                  <p>DXF, DWG, STEP, STL, PDF, or a rough sketch. We'll review it and confirm we can cut it. No CAD? Describe what you need and we'll build the file.</p>
+                </div>
+              </div>
+              <div class="process-step">
+                <div class="process-num">2</div>
+                <div>
+                  <strong>Quote & Material Selection</strong>
+                  <p>We quote based on material, cut time, quantity, and any finishing required. You'll get a breakdown — no hidden fees. We'll recommend the right material if you're unsure.</p>
+                </div>
+              </div>
+              <div class="process-step">
+                <div class="process-num">3</div>
+                <div>
+                  <strong>Approval & Deposit</strong>
+                  <p>Once you approve the quote, we collect a deposit and schedule your job. Custom and prototype orders typically require 50% upfront.</p>
+                </div>
+              </div>
+              <div class="process-step">
+                <div class="process-num">4</div>
+                <div>
+                  <strong>Machining & QC</strong>
+                  <p>Parts are cut, inspected, and cleaned. We photograph production runs. If something's not right, we re-cut before it ships.</p>
+                </div>
+              </div>
+              <div class="process-step">
+                <div class="process-num">5</div>
+                <div>
+                  <strong>Delivery</strong>
+                  <p>Ship anywhere in the US, or pick up locally in North Charleston, SC. Local delivery available for large orders.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- SIDEBAR -->
+        <div class="cap-sidebar">
+          <div class="cap-nav">
+            <h5>Jump to Section</h5>
+            <a href="#cap-materials">Materials</a>
+            <a href="#cap-machine">Machine Specs</a>
+            <a href="#cap-tolerances">Tolerances</a>
+            <a href="#cap-usecases">Use Cases</a>
+            <a href="#cap-process">Our Process</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-banner">
+    <div class="container cta-inner">
+      <div>
+        <h2>Ready to get a quote?</h2>
+        <p>Send a file, a sketch, or just a description — we'll take it from there.</p>
+      </div>
+      <a href="contact.html" class="btn btn-accent btn-lg">Start a Project</a>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="logo logo-footer"><span class="logo-mark">M</span><span class="logo-text">MENGEDOHT <em>CNC</em></span></a>
+        <p data-cms="footer-tagline">Precision CNC manufacturing for wholesale buyers. Wood, HDPE, and acrylic products built for retail shelves, marine shops, and job sites.</p>
+      </div>
+      <div class="footer-links">
+        <h5>Pages</h5>
+        <a href="index.html">Home</a><a href="custom-parts.html">Custom Parts</a><a href="products.html">Products</a><a href="wholesale.html">Wholesale</a><a href="gallery.html">Gallery</a><a href="about.html">About</a><a href="contact.html">Contact</a>
+      </div>
+      <div class="footer-links">
+        <h5>Products</h5>
+        <a href="products.html">Tool Organizers</a><a href="products.html">Marine Products</a><a href="products.html">Shelving / Storage</a><a href="faq.html">FAQ</a><a href="capabilities.html">Materials &amp; Capabilities</a>
+      </div>
+      <div class="footer-contact">
+        <h5>Contact</h5>
+        <a href="mailto:hankmengedoht@gmail.com" data-cms="email" class="footer-email">hankmengedoht@gmail.com</a>
+        <a href="tel:8435092194" class="footer-email">(843) 509-2194</a>
+        <a href="contact.html" class="btn btn-ghost mt-1">Request a Quote</a>
+      </div>
+    </div>
+    <div class="footer-bottom container"><p>© 2026 Mengedoht CNC. All rights reserved.</p></div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

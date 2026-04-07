@@ -53,7 +53,7 @@ async function fetchProductList() {
 }
 
 function categoryLabel(cat) {
-  const map = { tools: 'Tool Organizers', marine: 'Marine', pegboard: 'Shelving / Storage', custom: 'Custom / Other', automotive: 'Automotive Dashboards' };
+  const map = { marine: 'Marine', woodwork: 'Woodwork', furniture: 'Furniture', signage: 'Signage', automotive: 'Automotive', art: 'Art', carbon: 'Carbon Fiber / G10', flatpack: 'Flat-Pack Plywood', custom: 'Custom / Other' };
   return map[cat] || cat;
 }
 
@@ -102,7 +102,8 @@ async function applyRetailContent() {
 
 // ── PRODUCT CARD BUILDER ──
 function buildProductCard(p) {
-  const categories = [p.category];
+  const cats = Array.isArray(p.categories) ? p.categories : (p.category ? [p.category] : []);
+  const categories = [...cats];
   if (p.retail_available) categories.push('retail');
 
   // Use first image from images array, fall back to legacy image field
@@ -150,7 +151,7 @@ function buildProductCard(p) {
        ${(() => { const total = (p.image ? 1 : 0) + (p.images ? p.images.length : 0); return total > 1 ? `<div class="product-img-count">+${total - 1} photos</div>` : ''; })()}
       </div>
       <div class="product-info">
-        <div class="product-cat">${categoryLabel(p.category)}</div>
+        <div class="product-cat">${cats.map(c => categoryLabel(c)).join(' · ')}</div>
         <h3>${p.title}</h3>
         <p>${p.description}</p>
         <div class="product-meta">

@@ -13,7 +13,13 @@
   <meta name="twitter:description" content="CNC-precision cut product from Mengedoht CNC. Available for wholesale or individual order. Built from high-quality materials in North Charleston, SC." />
   <meta property="og:image" content="https://mengedohtcnc.com/images/uploads/IMG_4102.jpg" />
   <meta name="twitter:image" content="https://mengedohtcnc.com/images/uploads/IMG_4102.jpg" />
-  <link rel="canonical" href="https://mengedohtcnc.com/products.html" />
+  <link rel="canonical" id="canonical-tag" href="https://mengedohtcnc.com/product.html" />
+  <script>
+    (function() {
+      var id = new URLSearchParams(window.location.search).get('id');
+      if (id) document.getElementById('canonical-tag').href = 'https://mengedohtcnc.com/product.html?id=' + encodeURIComponent(id);
+    })();
+  </script>
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <title>Product — Mengedoht CNC</title>
   <link rel="stylesheet" href="style.css" />
@@ -366,7 +372,7 @@
       </div>
       <div class="footer-links">
         <h5>Products</h5>
-        <a href="products.html">Tool Organizers</a><a href="products.html">Marine Products</a><a href="products.html">Shelving / Storage</a>
+        <a href="products.html">Tool Organizers</a><a href="products.html">Marine Products</a><a href="products.html">Shelving / Storage</a><a href="faq.html">FAQ</a><a href="capabilities.html">Materials &amp; Capabilities</a>
       </div>
       <div class="footer-contact">
         <h5>Contact</h5>

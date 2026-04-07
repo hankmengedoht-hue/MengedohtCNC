@@ -26,19 +26,26 @@ collections:
     create: true
     delete: true
     slug: "{{slug}}"
-    summary: "{{title}} — {{category}}"
+    summary: "{{title}}"
     extension: "json"
     format: "json"
     fields:
       - { label: "Product Name", name: "title", widget: "string" }
-      - label: "Category"
-        name: "category"
+      - label: "Categories"
+        name: "categories"
         widget: "select"
+        multiple: true
+        required: false
+        hint: "Select all that apply. A product can appear under multiple filters."
         options:
-          - { label: "Tool Organizers", value: "tools" }
           - { label: "Marine", value: "marine" }
-          - { label: "Shelving / Storage", value: "pegboard" }
-          - { label: "Automotive Dashboards", value: "automotive" }
+          - { label: "Woodwork", value: "woodwork" }
+          - { label: "Furniture", value: "furniture" }
+          - { label: "Signage", value: "signage" }
+          - { label: "Automotive", value: "automotive" }
+          - { label: "Art", value: "art" }
+          - { label: "Carbon Fiber / G10", value: "carbon" }
+          - { label: "Flat-Pack Plywood", value: "flatpack" }
           - { label: "Custom / Other", value: "custom" }
       - { label: "Material", name: "material", widget: "string", hint: "e.g. HDPE, Baltic Birch Plywood, Carbon Fiber" }
       - { label: "Short Description", name: "description", widget: "text" }
