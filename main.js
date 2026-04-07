@@ -524,7 +524,8 @@ async function loadProductDetail() {
   const setHtml = (id, val) => { const el = document.getElementById(id); if (el) el.innerHTML = val || ''; };
 
   set('detail-title', p.title);
-  set('detail-category', categoryLabel(p.category));
+  const detailCats = Array.isArray(p.categories) ? p.categories : (p.category ? [p.category] : []);
+  set('detail-category', detailCats.map(c => categoryLabel(c)).join(' · '));
   set('detail-material', p.material);
   set('detail-weight', p.weight || 'Not specified');
   set('detail-description', p.description);
