@@ -308,6 +308,10 @@
       updateLoadMoreBtn();
     }
 
+    function thumbUrl(src) {
+      return `/cdn-cgi/image/width=600,quality=55,format=webp${src}`;
+    }
+
     function renderBatch() {
       const grid = document.getElementById('gallery-grid');
       const batch = filteredItems.slice(loaded, loaded + PAGE_SIZE);
@@ -318,7 +322,7 @@
         div.className = 'gallery-item';
         div.dataset.categories = cats.join(' ');
         div.innerHTML = `
-          <img src="${item.image}" alt="Gallery photo" loading="lazy" />
+          <img src="${thumbUrl(item.image)}" alt="Gallery photo" loading="lazy" decoding="async" />
           <div class="gallery-item-overlay">
             <div>
               <h4>${item.title || ''}</h4>
@@ -344,10 +348,17 @@
 
     function openLightbox(i) {
       const item = filteredItems[i];
-      document.getElementById('lightbox-img').src = item.image;
+      const img = document.getElementById('lightbox-img');
+      img.src = '';
+      img.src = item.image;
       document.getElementById('lightbox-title').textContent = item.title || '';
       document.getElementById('lightbox-desc').textContent = item.description || '';
       document.getElementById('lightbox').classList.add('open');
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('open');
+      document.getElementById('lightbox-img').src = '';
     }
 
     document.querySelectorAll('.filter-btn').forEach(btn => {
@@ -359,11 +370,9 @@
       });
     });
 
-    document.getElementById('lightbox-close').addEventListener('click', () => {
-      document.getElementById('lightbox').classList.remove('open');
-    });
+    document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
     document.getElementById('lightbox').addEventListener('click', (e) => {
-      if (e.target === e.currentTarget) e.currentTarget.classList.remove('open');
+      if (e.target === e.currentTarget) closeLightbox();
     });
 
     document.getElementById('load-more-btn').addEventListener('click', () => {
