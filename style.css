@@ -580,7 +580,7 @@ strong { color: var(--text); }
   color: var(--accent);
   line-height: 1;
   margin-bottom: 12px;
-  text-shadow: 0 0 24px rgba(232,160,32,0.25);
+  text-shadow: none;
 }
 .step-body h4 {
   margin-bottom: 8px;
