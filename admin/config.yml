@@ -173,6 +173,7 @@ collections:
     fields:
       - { label: "Photo", name: "image", widget: "image" }
       - { label: "Title / Caption", name: "title", widget: "string", required: false, hint: "Optional short caption shown on hover." }
+      - { label: "Alt Text (SEO)", name: "alt", widget: "string", required: false, hint: "Describe what's in the photo for Google — e.g. 'HDPE cooler chocks for Boston Whaler 15ft center console'. More detail = better SEO." }
       - label: "Categories"
         name: "categories"
         widget: "select"

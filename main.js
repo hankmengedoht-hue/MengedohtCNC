@@ -565,4 +565,30 @@ async function loadProductDetail() {
   // Breadcrumb
   const bc = document.getElementById('detail-breadcrumb');
   if (bc) bc.textContent = p.title;
+
+  // Product schema (JSON-LD)
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": p.title,
+    "description": p.description,
+    "brand": { "@type": "Brand", "name": "Mengedoht CNC" },
+    "manufacturer": { "@type": "Organization", "name": "Mengedoht CNC", "url": "https://mengedohtcnc.com" },
+    "url": `https://mengedohtcnc.com/product.html?id=${id}`
+  };
+  if (p.image) schema.image = `https://mengedohtcnc.com${p.image}`;
+  if (p.material) schema.material = p.material;
+  if (p.retail_price) {
+    schema.offers = {
+      "@type": "Offer",
+      "priceCurrency": "USD",
+      "price": p.retail_price.replace(/[^0-9.]/g, ''),
+      "availability": "https://schema.org/InStock",
+      "seller": { "@type": "Organization", "name": "Mengedoht CNC" }
+    };
+  }
+  const schemaEl = document.createElement('script');
+  schemaEl.type = 'application/ld+json';
+  schemaEl.textContent = JSON.stringify(schema);
+  document.head.appendChild(schemaEl);
 }

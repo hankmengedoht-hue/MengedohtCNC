@@ -318,7 +318,7 @@
         div.className = 'gallery-item';
         div.dataset.categories = cats.join(' ');
         div.innerHTML = `
-          <img src="${item.image}" alt="Gallery photo" loading="lazy" decoding="async" />
+          <img src="${item.image}" alt="${item.alt || item.title || 'CNC work by Mengedoht CNC, North Charleston SC'}" loading="lazy" decoding="async" />
           <div class="gallery-item-overlay">
             <div>
               <h4>${item.title || ''}</h4>
