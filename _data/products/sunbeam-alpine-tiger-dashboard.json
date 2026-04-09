@@ -1,6 +1,9 @@
 {
   "title": "Sunbeam Alpine/Tiger Dashboard",
-  "categories": ["automotive", "woodwork"],
+  "categories": [
+    "automotive",
+    "woodwork"
+  ],
   "material": "Hardwood",
   "description": "Upgrade your classic Sunbeam Alpine or Tiger with a high-quality replacement dashboard. Crafted from premium sapele or burl walnut veneer over marine-grade plywood, these dashboards are designed to replace old, weathered units while preserving the authentic look of your car.",
   "story": "Each dash is sealed with marine-grade epoxy and finished with a deep, glossy acrylic urethane topcoat for long-lasting protection and a showroom shine. This is a direct replacement, ensuring a perfect fit for your Sunbeam.\n\nCustom layouts and wood options are available. Choose your preferred veneer or supply your own wood for a truly personalized dash. \n\nFeatures:\n\n- Direct replacement for Sunbeam Alpine & Tiger dashboards\n- Sapele or burl walnut veneer over marine-grade plywood\n- Sealed with marine-grade epoxy\n- Glossy acrylic urethane topcoat\n- Custom layouts & wood options available\n\nPictured Sapele veneered dashes are still available for $400. Prices for custom orders depends on material and other factors. Wholesale pricing is available to Sunbeam parts suppliers.\n\nThis product first started when I was tasked with replacing the old, cracked Bakelite dash in my father's 1963 Alpine Series III. After receiving attention at classic car shows, it only made sense to make these dashes available to others.",
@@ -14,6 +17,7 @@
   "weight": "Weight varies by wood selection",
   "retail_available": true,
   "retail_price": "$400",
+  "stripe_link": "",
   "wholesale_available": true,
   "fits": "1960 to 1968 Sunbeam Alpine / Tiger",
   "featured": true,
