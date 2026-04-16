@@ -264,7 +264,7 @@ async function loadPageReviews(gridId, publishKey) {
     const reviews = await Promise.all(
       files.map(f => fetch('/_data/reviews/' + f).then(r => r.json()).catch(() => null))
     );
-    const published = reviews.filter(r => r && r[publishKey] === true);
+    const published = reviews.filter(r => r && r.published === true && r[publishKey] === true);
     if (!published.length) {
       throw new Error('none');
     }
