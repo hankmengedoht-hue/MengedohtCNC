@@ -3,7 +3,7 @@
   "title": "Marine Shop, Florida",
   "rating": 5,
   "body": "We needed custom instrument panels for our boat console builds. Mengedoht turned around a prototype in 3 days and had our full order ready in a week.",
-  "published": true,
+  "publish_home": false,
   "date": "2025-01-01",
-  "publish_home": true
+  "published": true
 }
