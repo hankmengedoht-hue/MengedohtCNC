@@ -3,7 +3,7 @@
   "title": "Hardware Store Owner, Ohio",
   "rating": 5,
   "body": "The drill bit organizers have been one of our best-selling items since we stocked them. Consistent quality, no defects across hundreds of units.",
-  "published": true,
+  "publish_home": false,
   "date": "2025-01-01",
-  "publish_home": true
+  "published": true
 }
