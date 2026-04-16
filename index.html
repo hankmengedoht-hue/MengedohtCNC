@@ -49,75 +49,20 @@
     gtag('config', 'G-NPC4T6X6HY');
   </script>
   <style>
-    /* ── HERO TWO-PATH SPLIT ── */
-    .hero-path-split {
-      display: flex;
-      gap: 1rem;
-      align-items: stretch;
-      flex-wrap: wrap;
-      margin-top: 2rem;
-    }
-    .hero-path-card {
-      flex: 1;
-      min-width: 210px;
-      background: rgba(255,255,255,0.035);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 6px;
-      padding: 1.25rem 1.5rem;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-    .hero-path-card.path-custom {
-      border-color: rgba(232,160,32,0.35);
-      background: rgba(232,160,32,0.06);
-    }
-    .hero-path-type {
-      font-family: var(--font-display);
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--accent);
-    }
-    .hero-path-card:not(.path-custom) .hero-path-type {
-      color: var(--text-3);
-    }
-    .hero-path-desc {
-      font-size: 0.84rem;
-      color: var(--text-3);
-      line-height: 1.5;
-      flex-grow: 1;
-    }
-    .hero-path-or {
-      font-family: var(--font-display);
-      font-size: 0.75rem;
-      letter-spacing: 0.1em;
-      color: var(--text-3);
-      text-transform: uppercase;
-      flex-shrink: 0;
-      align-self: center;
-      padding: 0 4px;
-    }
-    /* ── TWO WAYS SECTION ── */
-    .two-ways-grid {
+    /* ── THREE WAYS SECTION ── */
+    .three-ways-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(3, 1fr);
       gap: 1.5rem;
     }
     .two-way-card {
       background: var(--surface);
       border: 1px solid var(--border);
+      border-top: 3px solid var(--accent);
       border-radius: var(--radius-md);
       padding: 2rem;
       display: flex;
       flex-direction: column;
-    }
-    .two-way-card.two-way-custom {
-      border-top: 3px solid var(--accent);
-    }
-    .two-way-card.two-way-wholesale {
-      border-top: 3px solid var(--text-3);
     }
     .two-way-badge {
       font-family: var(--font-display);
@@ -125,24 +70,17 @@
       font-weight: 700;
       letter-spacing: 0.14em;
       text-transform: uppercase;
+      color: var(--accent);
+      background: var(--accent-dim);
+      border: 1px solid rgba(232,160,32,0.25);
       display: inline-block;
       padding: 3px 10px;
       border-radius: 2px;
       margin-bottom: 14px;
     }
-    .two-way-custom .two-way-badge {
-      color: var(--accent);
-      background: var(--accent-dim);
-      border: 1px solid rgba(232,160,32,0.25);
-    }
-    .two-way-wholesale .two-way-badge {
-      color: var(--text-2);
-      background: var(--bg-3);
-      border: 1px solid var(--border-2);
-    }
     .two-way-card h3 {
       font-family: var(--font-display);
-      font-size: 1.25rem;
+      font-size: 1.15rem;
       font-weight: 800;
       color: var(--text);
       text-transform: uppercase;
@@ -160,20 +98,13 @@
       display: flex;
       gap: 10px;
       align-items: flex-start;
-      font-size: 0.92rem;
+      font-size: 0.9rem;
       color: var(--text-2);
       line-height: 1.5;
     }
-    .two-way-custom .two-way-list li::before {
+    .two-way-list li::before {
       content: '→';
       color: var(--accent);
-      font-family: var(--font-display);
-      font-weight: 700;
-      flex-shrink: 0;
-    }
-    .two-way-wholesale .two-way-list li::before {
-      content: '→';
-      color: var(--text-3);
       font-family: var(--font-display);
       font-weight: 700;
       flex-shrink: 0;
@@ -186,10 +117,11 @@
       margin-bottom: 1.25rem;
       line-height: 1.6;
     }
-    @media (max-width: 700px) {
-      .two-ways-grid { grid-template-columns: 1fr; }
-      .hero-path-split { flex-direction: column; }
-      .hero-path-or { display: none; }
+    @media (max-width: 960px) {
+      .three-ways-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .three-ways-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -222,19 +154,11 @@
     <div class="hero-grid-bg"></div>
     <div class="hero-content container">
       <h1 class="hero-headline"><span class="hero-name">Mengedoht CNC</span><span class="hero-descriptor">Precision CNC Parts —<br>Custom Work &amp; Wholesale Production</span></h1>
-      <p class="hero-sub">One-off parts or production runs — same shop, same precision, direct pricing. Marine hardware, dashboards, tool organizers, and custom fabrication in Charleston, SC.</p>
-      <div class="hero-path-split">
-        <div class="hero-path-card path-custom">
-          <div class="hero-path-type">Custom / One-Off</div>
-          <p class="hero-path-desc">Prototypes, one-offs, and small batches. No minimums. No CAD files required to start.</p>
-          <a href="custom-parts.html" class="btn btn-accent" style="align-self:flex-start;">Get a Custom Quote →</a>
-        </div>
-        <div class="hero-path-or">or</div>
-        <div class="hero-path-card">
-          <div class="hero-path-type">Wholesale / Production</div>
-          <p class="hero-path-desc">Consistent production runs, tiered pricing, and reorder-ready designs. MOQ 25 units.</p>
-          <a href="wholesale.html" class="btn btn-ghost" style="align-self:flex-start;">View Wholesale Terms →</a>
-        </div>
+      <p class="hero-sub">One-off custom parts, retail products you can order today, or full wholesale production runs — same shop, same precision, direct pricing. Based in Charleston, SC.</p>
+      <div class="hero-actions">
+        <a href="custom-parts.html" class="btn btn-accent btn-lg">Custom Quote — 24 hrs</a>
+        <a href="products.html" class="btn btn-accent btn-lg">Shop Products</a>
+        <a href="wholesale.html" class="btn btn-accent btn-lg">Wholesale Info</a>
       </div>
       <div class="hero-stats">
         <div class="stat">
@@ -293,25 +217,38 @@
     <div class="container">
       <div class="section-header">
         <div class="section-tag">How We Work</div>
-        <h2 class="section-title">Two Ways to Order</h2>
-        <p class="section-sub">Same shop, same precision. Whether you need one part or five hundred, here's exactly what to expect.</p>
+        <h2 class="section-title">Three Ways to Order</h2>
+        <p class="section-sub">Same shop, same precision — whether you're buying one product, building an idea, or stocking shelves.</p>
       </div>
-      <div class="two-ways-grid">
-        <div class="two-way-card two-way-custom">
+      <div class="three-ways-grid">
+        <div class="two-way-card">
+          <span class="two-way-badge">Retail / Individual</span>
+          <h3>Buy a Finished Product.</h3>
+          <ul class="two-way-list">
+            <li>No account or minimum required</li>
+            <li>Fixed pricing — what you see is what you pay</li>
+            <li>Checkout online via Stripe</li>
+            <li>Ships direct to your door</li>
+            <li>Multiple product options in stock</li>
+          </ul>
+          <div class="two-way-ideal">Ideal for: boat owners, woodworkers, restorers, hobbyists, and anyone who needs a specific product shipped to them</div>
+          <a href="products.html" class="btn btn-accent">Shop Products →</a>
+        </div>
+        <div class="two-way-card">
           <span class="two-way-badge">Custom / One-Off</span>
           <h3>You Have an Idea.<br>We Build It.</h3>
           <ul class="two-way-list">
             <li>No minimum quantity — one part is never too small</li>
             <li>Fast turnaround — most parts ready within a week</li>
-            <li>No CAD files required to start; a sketch or description works</li>
+            <li>No CAD files required; a sketch or description works</li>
             <li>Design help available if you need it</li>
             <li>Flexible materials — bring your own or we source it</li>
-            <li>Direct contact — no sales team, no middlemen</li>
+            <li>Direct contact, no sales team</li>
           </ul>
           <div class="two-way-ideal">Ideal for: engineers, restorers, hobbyists, prototyping, one-off replacement parts, marine and automotive custom work</div>
           <a href="custom-parts.html" class="btn btn-accent">Start a Custom Quote →</a>
         </div>
-        <div class="two-way-card two-way-wholesale">
+        <div class="two-way-card">
           <span class="two-way-badge">Wholesale / Production</span>
           <h3>You Need Inventory.<br>We Keep It Consistent.</h3>
           <ul class="two-way-list">
@@ -319,11 +256,11 @@
             <li>CNC precision guarantees every unit matches the last</li>
             <li>5–10 day standard production lead time</li>
             <li>Logo engraving and white-label options available</li>
-            <li>All designs saved on file — reorders processed same-day</li>
+            <li>All designs saved on file — reorders same-day</li>
             <li>Ships direct to you or your fulfillment location</li>
           </ul>
           <div class="two-way-ideal">Ideal for: hardware stores, marine retailers, contractors, distributors, anyone building a product line</div>
-          <a href="wholesale.html" class="btn btn-primary">View Wholesale Terms →</a>
+          <a href="wholesale.html" class="btn btn-accent">View Wholesale Terms →</a>
         </div>
       </div>
     </div>
@@ -464,7 +401,7 @@
           <p class="section-sub">Whether you're ordering one part or a pallet, you get the same direct communication, the same tolerances, and the same shop. No sales team, no middlemen, no minimum runaround.</p>
           <div style="display:flex; gap:1rem; flex-wrap:wrap; margin-top:1.5rem;">
             <a href="custom-parts.html" class="btn btn-accent">Custom Quote →</a>
-            <a href="wholesale.html" class="btn btn-primary">Wholesale Info →</a>
+            <a href="wholesale.html" class="btn btn-accent">Wholesale Info →</a>
           </div>
         </div>
         <div class="benefits-list">
