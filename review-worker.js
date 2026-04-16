@@ -10,14 +10,21 @@
  *                        Create one at: https://github.com/settings/tokens/new
  *                        (select "Fine-grained token", choose the repo, enable Read/Write on Contents)
  *        GITHUB_REPO   — hankmengedoht-hue/MengedohtCNC
- *        ALLOWED_ORIGIN — https://mengedohtcnc.pages.dev
+ *        ALLOWED_ORIGIN — https://mengedohtcnc.com
  *   4. Copy the Worker URL (e.g. https://review-worker.YOUR_SUBDOMAIN.workers.dev)
  *   5. Paste it into index.html where it says PASTE_YOUR_WORKER_URL_HERE
  */
 
 export default {
   async fetch(request, env) {
-    const allowed = env.ALLOWED_ORIGIN || 'https://mengedohtcnc.pages.dev';
+    // Support multiple allowed origins (comma-separated env var, or hardcoded fallback)
+    const allowedOrigins = (env.ALLOWED_ORIGIN || 'https://mengedohtcnc.com')
+      .split(',').map(o => o.trim()).filter(Boolean);
+    allowedOrigins.push('https://mengedohtcnc.pages.dev'); // always allow Pages preview URL
+    const requestOrigin = request.headers.get('Origin') || '';
+    const allowed = allowedOrigins.includes(requestOrigin)
+      ? requestOrigin
+      : allowedOrigins[0];
 
     const corsHeaders = {
       'Access-Control-Allow-Origin': allowed,
