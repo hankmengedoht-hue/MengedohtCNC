@@ -1,5 +1,12 @@
 {
   "image": "/images/uploads/img-3511-1774846069533.jpg",
-  "caption": "",
-  "published": true
+  "title": "Carbon fiber dashboard",
+  "material": "Carbon Fiber / Coosa",
+  "categories": [
+    "automotive"
+  ],
+  "description": "This custom carbon dash was commissioned for a customer's retromod track car.",
+  "alt": "custom carbon fiber dash board dashboard for classic car composite fiberglass modern retromod restoration",
+  "published": true,
+  "caption": ""
 }
