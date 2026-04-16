@@ -387,12 +387,137 @@
       .cp-hero-inner { grid-template-columns: 1fr; gap: 2rem; }
       .cp-cap-grid { grid-template-columns: 1fr; }
       .cp-faq-grid { grid-template-columns: 1fr; }
-      .cp-photos-grid { grid-template-columns: repeat(2, 1fr); }
     }
     @media (max-width: 600px) {
       .cp-diff-grid { grid-template-columns: repeat(2, 1fr); }
       .cp-process-grid { grid-template-columns: 1fr; }
-      .cp-photos-grid { grid-template-columns: 1fr; }
+    }
+    /* ── EXAMPLE CARDS ── */
+    .cp-example-filters {
+      display: none;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 2rem;
+    }
+    .cp-example-filter {
+      font-family: var(--font-display);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      background: var(--surface);
+      border: 1px solid var(--border-2);
+      padding: 6px 14px;
+      border-radius: 2px;
+      cursor: pointer;
+      transition: all var(--trans);
+    }
+    .cp-example-filter:hover { color: var(--text); border-color: var(--text-3); }
+    .cp-example-filter.active {
+      color: var(--accent);
+      border-color: var(--accent);
+      background: var(--accent-dim);
+    }
+    .cp-examples-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+    .cp-example-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: border-color var(--trans), transform var(--trans);
+    }
+    .cp-example-card:hover {
+      border-color: var(--border-3);
+      transform: translateY(-2px);
+    }
+    .cp-example-img-wrap {
+      position: relative;
+      aspect-ratio: 4/3;
+      overflow: hidden;
+    }
+    .cp-example-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    .cp-example-card:hover .cp-example-img-wrap img { transform: scale(1.04); }
+    .cp-example-desc-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.78);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .cp-example-card:hover .cp-example-desc-overlay { opacity: 1; }
+    .cp-example-desc-overlay p {
+      font-size: 0.88rem;
+      color: #f4f1ea;
+      line-height: 1.65;
+      text-align: center;
+    }
+    .cp-example-info {
+      padding: 0.875rem 1rem;
+      border-top: 1px solid var(--border);
+    }
+    .cp-example-title {
+      font-family: var(--font-display);
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--text);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 6px;
+      line-height: 1.3;
+    }
+    .cp-example-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+    .cp-example-tag {
+      font-family: var(--font-display);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      background: var(--bg-3);
+      border: 1px solid var(--border);
+      padding: 2px 8px;
+      border-radius: 2px;
+    }
+    .cp-example-tag-material {
+      color: var(--accent);
+      border-color: rgba(232,160,32,0.3);
+      background: var(--accent-dim);
+    }
+    .cp-example-empty {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 4rem 2rem;
+      color: var(--text-3);
+      font-family: var(--font-display);
+      font-size: 0.9rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border: 1px dashed var(--border-2);
+      border-radius: var(--radius);
+    }
+    @media (max-width: 900px) {
+      .cp-examples-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .cp-examples-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -506,6 +631,35 @@
     </div>
   </section>
 
+  <!-- ── PAST WORK EXAMPLES ── -->
+  <section class="section" id="past-work">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Recent Work</div>
+        <h2 class="section-title">What Comes Out of the Shop</h2>
+        <p class="section-sub">A sample of finished custom parts and one-off projects — every piece built to a specific customer's specs. Hover any photo for more detail.</p>
+      </div>
+      <div class="cp-example-filters" id="cp-example-filters">
+        <button class="cp-example-filter active" data-filter="all">All</button>
+        <button class="cp-example-filter" data-filter="marine">Marine</button>
+        <button class="cp-example-filter" data-filter="woodwork">Woodwork</button>
+        <button class="cp-example-filter" data-filter="furniture">Furniture</button>
+        <button class="cp-example-filter" data-filter="signage">Signage</button>
+        <button class="cp-example-filter" data-filter="automotive">Automotive</button>
+        <button class="cp-example-filter" data-filter="art">Art</button>
+        <button class="cp-example-filter" data-filter="carbon">Carbon Fiber / G10</button>
+        <button class="cp-example-filter" data-filter="flatpack">Flat-Pack Plywood</button>
+        <button class="cp-example-filter" data-filter="custom">Custom / Other</button>
+      </div>
+      <div class="cp-examples-grid" id="cp-photos-grid">
+        <div class="cp-example-empty">Photos coming soon — check back shortly.</div>
+      </div>
+      <div style="text-align:center; margin-top:2rem;">
+        <a href="gallery.html" class="btn btn-outline btn-lg">View Full Gallery →</a>
+      </div>
+    </div>
+  </section>
+
   <!-- ── CAPABILITIES ── -->
   <section class="section">
     <div class="container">
@@ -601,23 +755,6 @@
     </div>
   </section>
 
-  <!-- ── WORK PHOTOS ── -->
-  <section class="section" style="background:var(--bg-2); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
-    <div class="container">
-      <div class="section-header">
-        <div class="section-tag">Recent Work</div>
-        <h2 class="section-title">What Comes Out of the Shop</h2>
-        <p class="section-sub">A sample of finished custom parts and projects.</p>
-      </div>
-      <div class="cp-photos-grid" id="cp-photos-grid">
-        <div class="cp-photo-item" style="display:flex;align-items:center;justify-content:center;color:var(--text-3);font-family:var(--font-display);font-size:0.8rem;letter-spacing:0.1em;text-transform:uppercase;">Photos Loading...</div>
-      </div>
-      <div style="text-align:center; margin-top:2rem;">
-        <a href="gallery.html" class="btn btn-outline btn-lg">View Full Gallery →</a>
-      </div>
-    </div>
-  </section>
-
   <!-- ── FINAL CTA ── -->
   <section class="cp-final-cta">
     <div class="container">
@@ -659,29 +796,104 @@
 
   <script src="main.js?v=3"></script>
   <script>
-    async function loadCPPhotos() {
-      const grid = document.getElementById('cp-photos-grid');
-      try {
-        const manifestRes = await fetch('/_data/custom-parts-examples/manifest.json');
-        if (!manifestRes.ok) throw new Error('no manifest');
-        const files = await manifestRes.json();
-        if (!files.length) throw new Error('empty');
-        const items = await Promise.all(
-          files.map(f => fetch(`/_data/custom-parts-examples/${f}`).then(r => r.json()).catch(() => null))
-        );
-        const published = items.filter(i => i && i.published !== false);
-        if (!published.length) throw new Error('none');
-        grid.innerHTML = published.map(item => `
-          <div class="cp-photo-item">
-            <img src="${item.image}" alt="${item.caption || 'Custom CNC work'}" loading="lazy" />
-            ${item.caption ? `<div class="gallery-item-overlay"><div><h4>${item.caption}</h4></div></div>` : ''}
-          </div>
-        `).join('');
-      } catch(e) {
-        grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--text-3);font-family:var(--font-display);font-size:0.9rem;letter-spacing:0.1em;text-transform:uppercase;">Photos coming soon — check back shortly.</div>`;
+    (function() {
+      const CATEGORY_LABELS = {
+        marine: 'Marine', woodwork: 'Woodwork', furniture: 'Furniture',
+        signage: 'Signage', automotive: 'Automotive', art: 'Art',
+        carbon: 'Carbon Fiber / G10', flatpack: 'Flat-Pack Plywood', custom: 'Custom / Other'
+      };
+
+      let allExamples = [];
+      let activeFilter = 'all';
+
+      function getCats(item) {
+        return Array.isArray(item.categories) ? item.categories : (item.category ? [item.category] : []);
       }
-    }
-    loadCPPhotos();
+
+      function renderExamples() {
+        const grid = document.getElementById('cp-photos-grid');
+        const filtered = activeFilter === 'all'
+          ? allExamples
+          : allExamples.filter(ex => getCats(ex).includes(activeFilter));
+
+        if (!filtered.length) {
+          grid.innerHTML = '<div class="cp-example-empty">No examples in this category yet.</div>';
+          return;
+        }
+
+        grid.innerHTML = filtered.map(item => {
+          const cats = getCats(item);
+          const title = item.title || item.caption || '';
+          const material = item.material || '';
+          const description = item.description || '';
+          const alt = item.alt || title || 'Custom CNC work by Mengedoht CNC, North Charleston SC';
+
+          const catTags = cats.map(c =>
+            `<span class="cp-example-tag">${CATEGORY_LABELS[c] || c}</span>`
+          ).join('');
+          const materialTag = material
+            ? `<span class="cp-example-tag cp-example-tag-material">${material}</span>`
+            : '';
+          const tagsHtml = catTags + materialTag;
+
+          const descOverlay = description
+            ? `<div class="cp-example-desc-overlay"><p>${description}</p></div>`
+            : '';
+
+          const infoBar = (title || tagsHtml) ? `
+            <div class="cp-example-info">
+              ${title ? `<div class="cp-example-title">${title}</div>` : ''}
+              ${tagsHtml ? `<div class="cp-example-tags">${tagsHtml}</div>` : ''}
+            </div>` : '';
+
+          return `
+            <div class="cp-example-card">
+              <div class="cp-example-img-wrap">
+                <img src="${item.image}" alt="${alt}" loading="lazy" decoding="async" />
+                ${descOverlay}
+              </div>
+              ${infoBar}
+            </div>`;
+        }).join('');
+      }
+
+      async function loadExamples() {
+        const grid = document.getElementById('cp-photos-grid');
+        try {
+          const res = await fetch('/_data/custom-parts-examples/manifest.json');
+          if (!res.ok) throw new Error('no manifest');
+          const files = await res.json();
+          if (!files.length) throw new Error('empty');
+          const items = await Promise.all(
+            files.map(f => fetch(`/_data/custom-parts-examples/${f}`).then(r => r.json()).catch(() => null))
+          );
+          allExamples = items.filter(i => i && i.published !== false);
+          if (!allExamples.length) throw new Error('none published');
+
+          // Show filter bar only if more than one category is represented
+          const allCats = new Set();
+          allExamples.forEach(ex => getCats(ex).forEach(c => allCats.add(c)));
+          if (allCats.size > 1) {
+            document.getElementById('cp-example-filters').style.display = 'flex';
+          }
+
+          renderExamples();
+        } catch(e) {
+          grid.innerHTML = '<div class="cp-example-empty">Photos coming soon — check back shortly.</div>';
+        }
+      }
+
+      document.querySelectorAll('.cp-example-filter').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.cp-example-filter').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          activeFilter = btn.dataset.filter;
+          renderExamples();
+        });
+      });
+
+      loadExamples();
+    })();
   </script>
 </body>
 </html>

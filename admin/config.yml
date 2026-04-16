@@ -198,17 +198,36 @@ collections:
   # ─────────────────────────────────────────
   - name: "custom-parts-examples"
     label: "Custom Parts Examples"
-    label_singular: "Example Photo"
+    label_singular: "Example"
     folder: "_data/custom-parts-examples"
     create: true
     delete: true
     slug: "{{slug}}"
     extension: "json"
     format: "json"
-    summary: "{{image}}"
+    summary: "{{title}}"
     fields:
-      - { label: "Photo", name: "image", widget: "image", hint: "Shown in the 'Recent Work' section on the Custom Parts page." }
-      - { label: "Caption", name: "caption", widget: "string", required: false, hint: "Optional short label shown on hover." }
+      - { label: "Photo", name: "image", widget: "image", hint: "Shown in the Recent Work section on the Custom Parts page." }
+      - { label: "Title", name: "title", widget: "string", hint: "Short name for this project — e.g. 'Boston Whaler Helm Panel'" }
+      - { label: "Material", name: "material", widget: "string", required: false, hint: "Primary material used — e.g. HDPE, Baltic Birch, Carbon Fiber / G10" }
+      - label: "Categories"
+        name: "categories"
+        widget: "select"
+        multiple: true
+        required: false
+        hint: "Select all that apply."
+        options:
+          - { label: "Marine", value: "marine" }
+          - { label: "Woodwork", value: "woodwork" }
+          - { label: "Furniture", value: "furniture" }
+          - { label: "Signage", value: "signage" }
+          - { label: "Automotive", value: "automotive" }
+          - { label: "Art", value: "art" }
+          - { label: "Carbon Fiber / G10", value: "carbon" }
+          - { label: "Flat-Pack Plywood", value: "flatpack" }
+          - { label: "Custom / Other", value: "custom" }
+      - { label: "Description", name: "description", widget: "text", required: false, hint: "1–2 sentences about the project — what it is, what it's for, what material was used. Shown on hover over the photo." }
+      - { label: "Alt Text (SEO)", name: "alt", widget: "string", required: false, hint: "Describe the photo for Google — e.g. 'HDPE helm panel for 2004 Boston Whaler center console, North Charleston SC'" }
       - { label: "Published", name: "published", widget: "boolean", default: true }
 
   # ─────────────────────────────────────────
