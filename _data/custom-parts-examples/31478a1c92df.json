@@ -1,5 +1,12 @@
 {
   "image": "/images/uploads/IMG_4103.jpg",
-  "caption": "",
-  "published": true
+  "title": "All new panels for center console",
+  "material": "Garolite G10",
+  "categories": [
+    "marine"
+  ],
+  "description": "This boat had and old and worn out console, but was completely restored with new components and panels.",
+  "alt": "new custom center console panels waterproof glossy boat",
+  "published": true,
+  "caption": ""
 }
