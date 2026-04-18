@@ -1,125 +1,69 @@
-name: Update Manifests
+name: Rebuild Manifests
 
 on:
   push:
+    branches: [main]
     paths:
-      - '_data/products/**.json'
-      - '_data/gallery/**.json'
-      - '_data/shop-photos/**.json'
-      - '_data/reviews/**.json'
-      - '_data/custom-parts-examples/**.json'
+      - '_data/products/**'
+      - '_data/reviews/**'
+      - '_data/gallery/**'
+      - '_data/shop-photos/**'
+      - '_data/custom-parts-examples/**'
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
-  update-manifests:
+  rebuild:
     runs-on: ubuntu-latest
+    # Don't run on the auto-commit itself
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
-      - name: Update product manifest
+      - name: Rebuild all manifests
         run: |
-          cd _data/products
-          ls *.json | grep -v manifest.json | sort | jq -R . | jq -s . > manifest.json
-          echo "Product manifest updated:"
-          cat manifest.json
+          python3 - <<'EOF'
+          import json, os
 
-      - name: Sync product images to gallery
+          # Directories that use a manifest.json index
+          # pages/ is excluded — it uses named files loaded directly by main.js
+          manifest_dirs = [
+            '_data/products',
+            '_data/reviews',
+            '_data/gallery',
+            '_data/shop-photos',
+            '_data/custom-parts-examples',
+          ]
+
+          for d in manifest_dirs:
+            if not os.path.isdir(d):
+              os.makedirs(d)
+            files = sorted(
+              f for f in os.listdir(d)
+              if f.endswith('.json') and f != 'manifest.json'
+            )
+            manifest_path = os.path.join(d, 'manifest.json')
+            with open(manifest_path, 'w') as fh:
+              json.dump(files, fh, indent=2)
+              fh.write('\n')
+            print(f'{manifest_path}: {len(files)} entries')
+          EOF
+
+      - name: Commit if changed
         run: |
-          mkdir -p _data/gallery
-          python3 << 'PYEOF'
-          import os, json, re
-
-          products_dir = '_data/products'
-          gallery_dir = '_data/gallery'
-
-          # Load all product files
-          for fname in os.listdir(products_dir):
-            if fname == 'manifest.json' or not fname.endswith('.json'):
-              continue
-            with open(os.path.join(products_dir, fname)) as f:
-              try:
-                product = json.load(f)
-              except:
-                continue
-
-            product_slug = fname.replace('.json', '')
-            images = []
-
-            # Collect primary image
-            if product.get('image'):
-              images.append(product['image'])
-
-            # Collect images array
-            for img in product.get('images', []):
-              src = img if isinstance(img, str) else img.get('image', '')
-              if src and src not in images:
-                images.append(src)
-
-            # Create gallery entry for each image
-            for i, img_src in enumerate(images):
-              safe = re.sub(r'[^a-z0-9]+', '-', img_src.lower().split('/')[-1].split('.')[0])
-              gallery_fname = f"product-{product_slug}-{i}.json"
-              gallery_path = os.path.join(gallery_dir, gallery_fname)
-              entry = {
-                "image": img_src,
-                "published": True,
-                "_source": "product",
-                "_product": product_slug
-              }
-              with open(gallery_path, 'w') as f:
-                json.dump(entry, f, indent=2)
-
-          print("Product images synced to gallery.")
-          PYEOF
-
-      - name: Update gallery manifest
-        run: |
-          cd _data/gallery
-          if ls *.json 2>/dev/null | grep -v manifest.json > /dev/null 2>&1; then
-            ls *.json | grep -v manifest.json | sort | jq -R . | jq -s . > manifest.json
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add _data/products/manifest.json \
+                  _data/reviews/manifest.json \
+                  _data/gallery/manifest.json \
+                  _data/shop-photos/manifest.json \
+                  _data/custom-parts-examples/manifest.json
+          if git diff --staged --quiet; then
+            echo "All manifests already up to date."
           else
-            echo "[]" > manifest.json
+            git pull --no-rebase
+            git commit -m "Auto-rebuild manifests [skip ci]"
+            git push
           fi
-          echo "Gallery manifest updated:"
-          cat manifest.json
-
-      - name: Update shop photos manifest
-        run: |
-          cd _data/shop-photos
-          if ls *.json 2>/dev/null | grep -v manifest.json > /dev/null 2>&1; then
-            ls *.json | grep -v manifest.json | sort | jq -R . | jq -s . > manifest.json
-          else
-            echo "[]" > manifest.json
-          fi
-          echo "Shop photos manifest updated:"
-          cat manifest.json
-
-      - name: Update reviews manifest
-        run: |
-          if ls _data/reviews/*.json 2>/dev/null | grep -v manifest.json > /dev/null 2>&1; then
-            cd _data/reviews
-            ls *.json | grep -v manifest.json | sort | jq -R . | jq -s . > manifest.json
-            echo "Reviews manifest updated:"
-            cat manifest.json
-          fi
-
-      - name: Update custom-parts-examples manifest
-        run: |
-          mkdir -p _data/custom-parts-examples
-          if ls _data/custom-parts-examples/*.json 2>/dev/null | grep -v manifest.json > /dev/null 2>&1; then
-            cd _data/custom-parts-examples
-            ls *.json | grep -v manifest.json | sort | jq -R . | jq -s . > manifest.json
-          else
-            echo "[]" > _data/custom-parts-examples/manifest.json
-          fi
-          echo "Custom parts examples manifest updated:"
-          cat _data/custom-parts-examples/manifest.json
-
-      - name: Commit manifests
-        run: |
-          git config user.name "GitHub Actions"
-          git config user.email "actions@github.com"
-          git add _data/products/manifest.json _data/gallery/ _data/shop-photos/manifest.json _data/reviews/manifest.json _data/custom-parts-examples/manifest.json
-          git diff --staged --quiet || git commit -m "Auto-update manifests and sync product images to gallery"
-          git pull --rebase
-          git push
