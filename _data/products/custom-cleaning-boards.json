@@ -1,0 +1,23 @@
+{
+  "title": "Custom Cleaning Boards",
+  "categories": [
+    "marine"
+  ],
+  "material": "Starboard",
+  "description": "If your cleaning board is worn out and cut up, a new one can be made to match the exact size and shape. This ensures the new one will fit directly into your boat. Made with marine grade Starboard, it will never warp, delaminate, or fade.",
+  "story": "",
+  "images": [
+    "/images/uploads/IMG_0299.png",
+    "/images/uploads/IMG_0300.png"
+  ],
+  "image": "/images/uploads/IMG_0298.png",
+  "weight": "N / A",
+  "retail_available": true,
+  "retail_price": "Inquire",
+  "stripe_link": "",
+  "wholesale_available": false,
+  "fits": "Made custom to any marine application",
+  "featured": false,
+  "published": true,
+  "order": 99
+}
