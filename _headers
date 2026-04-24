@@ -1,0 +1,13 @@
+# Cloudflare Pages — HTTP Response Headers
+
+# Data files: always revalidate so new products/reviews appear immediately
+/_data/*
+  Cache-Control: no-cache
+
+# Static assets: cache aggressively (versioned via ?v= query param)
+/images/*
+  Cache-Control: public, max-age=31536000
+/style.css
+  Cache-Control: public, max-age=86400
+/main.js
+  Cache-Control: public, max-age=86400
