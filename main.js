@@ -452,8 +452,26 @@ async function loadProductDetail() {
   const p = await fetchJSON(`/_data/products/${id}.json`);
   if (!p) { window.location = 'products.html'; return; }
 
-  // Set page title
+  // Set page title and meta tags
   document.title = `${p.title} — Mengedoht CNC`;
+  const setMeta = (sel, val) => { const el = document.querySelector(sel); if (el) el.content = val; };
+  setMeta('meta[property="og:title"]', `${p.title} — Mengedoht CNC`);
+  setMeta('meta[name="twitter:title"]', `${p.title} — Mengedoht CNC`);
+  if (p.description) {
+    setMeta('meta[name="description"]', p.description);
+    setMeta('meta[property="og:description"]', p.description);
+    setMeta('meta[name="twitter:description"]', p.description);
+  }
+  setMeta('meta[property="og:url"]', `https://mengedohtcnc.com/product.html?id=${id}`);
+  if (p.keywords) {
+    let kwMeta = document.querySelector('meta[name="keywords"]');
+    if (!kwMeta) { kwMeta = document.createElement('meta'); kwMeta.name = 'keywords'; document.head.appendChild(kwMeta); }
+    kwMeta.content = p.keywords;
+  }
+  const imgAlt = (n) => {
+    const kw = p.keywords ? `, ${p.keywords}` : '';
+    return n ? `${p.title} photo ${n}${kw} — Mengedoht CNC` : `${p.title}${kw} — Mengedoht CNC`;
+  };
 
   // Build image list — support both new images[] array and legacy image field
  // Build image list — combine thumbnail + images array
@@ -481,7 +499,7 @@ async function loadProductDetail() {
     } else if (images.length === 1) {
       carouselEl.innerHTML = `
         <div class="carousel-main">
-          <img src="${images[0]}" alt="${p.title}" class="carousel-main-img" onclick="openLightbox(this.src)" style="cursor:zoom-in;" />
+          <img src="${images[0]}" alt="${imgAlt()}" class="carousel-main-img" onclick="openLightbox(this.src)" style="cursor:zoom-in;" />
         </div>`;
     } else {
       let current = 0;
@@ -495,12 +513,12 @@ async function loadProductDetail() {
       carouselEl.innerHTML = `
         <div class="carousel-main">
           <button class="carousel-btn carousel-prev" id="carousel-prev">&#8249;</button>
-          <img src="${images[0]}" alt="${p.title}" class="carousel-main-img" id="carousel-main-img" onclick="openLightbox(this.src)" style="cursor:zoom-in;" />
+          <img src="${images[0]}" alt="${imgAlt(1)}" class="carousel-main-img" id="carousel-main-img" onclick="openLightbox(this.src)" style="cursor:zoom-in;" />
           <button class="carousel-btn carousel-next" id="carousel-next">&#8250;</button>
           <div class="carousel-counter" id="carousel-counter">1 / ${images.length}</div>
         </div>
         <div class="carousel-thumbs">
-          ${images.map((img, i) => `<img src="${img}" class="carousel-thumb${i === 0 ? ' active' : ''}" data-index="${i}" alt="Photo ${i+1}" />`).join('')}
+          ${images.map((img, i) => `<img src="${img}" class="carousel-thumb${i === 0 ? ' active' : ''}" data-index="${i}" alt="${imgAlt(i+1)}" />`).join('')}
         </div>`;
       document.getElementById('carousel-prev').addEventListener('click', () => {
         current = (current - 1 + images.length) % images.length;

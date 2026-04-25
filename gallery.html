@@ -170,6 +170,7 @@
         <a href="products.html" class="nav-link">Products</a>
         <a href="wholesale.html" class="nav-link">Wholesale</a>
         <a href="gallery.html" class="nav-link active">Gallery</a>
+        <a href="faq.html" class="nav-link">FAQ</a>
         <a href="about.html" class="nav-link">About</a>
         <a href="contact.html" class="nav-link">Contact</a>
       </nav>
@@ -373,6 +374,9 @@
     document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
     document.getElementById('lightbox').addEventListener('click', (e) => {
       if (e.target === e.currentTarget) closeLightbox();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeLightbox();
     });
 
     document.getElementById('load-more-btn').addEventListener('click', () => {

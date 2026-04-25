@@ -47,7 +47,12 @@ collections:
           - { label: "Carbon Fiber / G10", value: "carbon" }
           - { label: "Flat-Pack Plywood", value: "flatpack" }
           - { label: "Custom / Other", value: "custom" }
-      - { label: "Material", name: "material", widget: "string", hint: "e.g. HDPE, Baltic Birch Plywood, Carbon Fiber" }
+      - { label: "Material", name: "material", widget: "string", hint: "e.g. HDPE, Plywood, Carbon Fiber" }
+      - label: "SEO Keywords"
+        name: "keywords"
+        widget: "string"
+        required: false
+        hint: "Comma-separated keywords for search engines and image alt text. e.g. Boston Whaler cooler chock, HDPE marine hardware, boat cooler holder"
       - { label: "Short Description", name: "description", widget: "text" }
       - label: "Full Story / Inspiration"
         name: "story"
@@ -209,7 +214,7 @@ collections:
     fields:
       - { label: "Photo", name: "image", widget: "image", hint: "Shown in the Recent Work section on the Custom Parts page." }
       - { label: "Title", name: "title", widget: "string", hint: "Short name for this project — e.g. 'Boston Whaler Helm Panel'" }
-      - { label: "Material", name: "material", widget: "string", required: false, hint: "Primary material used — e.g. HDPE, Baltic Birch, Carbon Fiber / G10" }
+      - { label: "Material", name: "material", widget: "string", required: false, hint: "Primary material used — e.g. HDPE, Plywood, Carbon Fiber / G10" }
       - label: "Categories"
         name: "categories"
         widget: "select"
