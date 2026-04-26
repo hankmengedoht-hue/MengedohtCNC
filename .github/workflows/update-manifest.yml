@@ -19,7 +19,7 @@ permissions:
 jobs:
   rebuild:
     runs-on: ubuntu-latest
-    if: "!contains(github.event.head_commit.message, '[skip ci]')"
+    if: github.actor != 'github-actions[bot]'
     steps:
       - uses: actions/checkout@v4
 
@@ -335,6 +335,6 @@ jobs:
             echo "Everything already up to date."
           else
             git pull --no-rebase
-            git commit -m "Auto-rebuild manifests, product pages, and sitemap [skip ci]"
+            git commit -m "Auto-rebuild manifests, product pages, and sitemap"
             git push
           fi
