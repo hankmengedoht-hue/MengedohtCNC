@@ -17,18 +17,15 @@ permissions:
 jobs:
   rebuild:
     runs-on: ubuntu-latest
-    # Don't run on the auto-commit itself
     if: "!contains(github.event.head_commit.message, '[skip ci]')"
     steps:
       - uses: actions/checkout@v4
 
       - name: Rebuild all manifests
         run: |
-          python3 - <<'EOF'
+          python3 - <<'PYEOF'
           import json, os
 
-          # Directories that use a manifest.json index
-          # pages/ is excluded — it uses named files loaded directly by main.js
           manifest_dirs = [
             '_data/products',
             '_data/reviews',
@@ -49,7 +46,277 @@ jobs:
               json.dump(files, fh, indent=2)
               fh.write('\n')
             print(f'{manifest_path}: {len(files)} entries')
-          EOF
+          PYEOF
+
+      - name: Generate static product pages and sitemap
+        run: |
+          python3 - <<'PYEOF'
+          import json, os, re, shutil
+          from datetime import date
+
+          SITE = 'https://mengedohtcnc.com'
+          TODAY = date.today().isoformat()
+
+          # Pull the inline <style> block from product.html so the CSS
+          # stays in one place and generated pages always match
+          with open('product.html', 'r', encoding='utf-8') as fh:
+            product_html = fh.read()
+          css_match = re.search(r'<style>(.*?)</style>', product_html, re.DOTALL)
+          PRODUCT_CSS = css_match.group(1) if css_match else ''
+
+          def esc(s):
+            if not s: return ''
+            return (str(s)
+              .replace('&', '&amp;')
+              .replace('<', '&lt;')
+              .replace('>', '&gt;')
+              .replace('"', '&quot;'))
+
+          def make_page(p, slug):
+            title    = esc(p.get('title', ''))
+            desc     = esc(p.get('description', ''))
+            material = esc(p.get('material', ''))
+            fits     = esc(p.get('fits', ''))
+            keywords = esc(p.get('keywords', ''))
+            story    = esc(p.get('story', ''))
+            weight   = esc(p.get('weight', 'Not specified'))
+
+            primary_img = p.get('image', '')
+            if not primary_img and p.get('images'):
+              img0 = p['images'][0]
+              primary_img = img0 if isinstance(img0, str) else img0.get('image', '')
+
+            img_url  = SITE + primary_img if primary_img else ''
+            page_url = SITE + '/products/' + slug + '.html'
+
+            cats = p.get('categories', [])
+            if isinstance(cats, str): cats = [cats]
+            cat_map = {
+              'marine': 'Marine', 'woodwork': 'Woodwork', 'furniture': 'Furniture',
+              'signage': 'Signage', 'automotive': 'Automotive', 'art': 'Art',
+              'carbon': 'Carbon Fiber / G10', 'flatpack': 'Flat-Pack Plywood',
+              'custom': 'Custom / Other'
+            }
+            cat_str = ' &middot; '.join(cat_map.get(c, c) for c in cats)
+
+            schema = {
+              '@context': 'https://schema.org',
+              '@type': 'Product',
+              'name': p.get('title', ''),
+              'description': p.get('description', ''),
+              'brand': {'@type': 'Brand', 'name': 'Mengedoht CNC'},
+              'manufacturer': {'@type': 'Organization', 'name': 'Mengedoht CNC', 'url': SITE},
+              'url': page_url
+            }
+            if img_url: schema['image'] = img_url
+            if p.get('material'): schema['material'] = p['material']
+            if p.get('retail_price'):
+              schema['offers'] = {
+                '@type': 'Offer',
+                'priceCurrency': 'USD',
+                'price': re.sub(r'[^0-9.]', '', p['retail_price']),
+                'availability': 'https://schema.org/InStock',
+                'seller': {'@type': 'Organization', 'name': 'Mengedoht CNC'}
+              }
+            schema_json = json.dumps(schema, indent=2)
+
+            alt_kw = title + (', ' + keywords if keywords else '') + ' &#8212; Mengedoht CNC'
+            img_html = (
+              '<div class="carousel-main"><img src="' + primary_img +
+              '" alt="' + alt_kw + '" class="carousel-main-img" /></div>'
+            ) if primary_img else ''
+
+            h  = '<!DOCTYPE html>\n'
+            h += '<html lang="en">\n'
+            h += '<head>\n'
+            h += '  <meta charset="UTF-8" />\n'
+            h += '  <meta name="viewport" content="width=device-width, initial-scale=1.0" />\n'
+            h += '  <meta name="description" content="' + desc + '" />\n'
+            if keywords:
+              h += '  <meta name="keywords" content="' + keywords + '" />\n'
+            h += '  <meta property="og:type" content="product" />\n'
+            h += '  <meta property="og:title" content="' + title + ' &#8212; Mengedoht CNC" />\n'
+            h += '  <meta property="og:description" content="' + desc + '" />\n'
+            h += '  <meta property="og:url" content="' + page_url + '" />\n'
+            if img_url:
+              h += '  <meta property="og:image" content="' + img_url + '" />\n'
+            h += '  <meta name="twitter:card" content="summary_large_image" />\n'
+            h += '  <meta name="twitter:title" content="' + title + ' &#8212; Mengedoht CNC" />\n'
+            h += '  <meta name="twitter:description" content="' + desc + '" />\n'
+            if img_url:
+              h += '  <meta name="twitter:image" content="' + img_url + '" />\n'
+            h += '  <link rel="canonical" href="' + page_url + '" />\n'
+            h += '  <link rel="icon" type="image/x-icon" href="/favicon.ico" />\n'
+            h += '  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />\n'
+            h += '  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />\n'
+            h += '  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />\n'
+            h += '  <link rel="manifest" href="/site.webmanifest" />\n'
+            h += '  <title>' + title + ' &#8212; Mengedoht CNC</title>\n'
+            h += '  <link rel="stylesheet" href="/style.css?v=2" />\n'
+            h += '  <link rel="preconnect" href="https://fonts.googleapis.com">\n'
+            h += '  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n'
+            h += '  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">\n'
+            h += '  <!-- Google tag (gtag.js) -->\n'
+            h += '  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NPC4T6X6HY"></script>\n'
+            h += '  <script>\n'
+            h += '    window.dataLayer = window.dataLayer || [];\n'
+            h += '    function gtag(){dataLayer.push(arguments);}\n'
+            h += '    gtag("js", new Date());\n'
+            h += '    gtag("config", "G-NPC4T6X6HY");\n'
+            h += '  </script>\n'
+            h += '  <script type="application/ld+json">\n' + schema_json + '\n  </script>\n'
+            h += '  <style>' + PRODUCT_CSS + '  </style>\n'
+            h += '</head>\n'
+            h += '<body data-page="product" data-product-id="' + slug + '">\n'
+            h += '<a class="skip-to-content" href="#main-content">Skip to main content</a>\n\n'
+            h += '  <header class="site-header" id="site-header">\n'
+            h += '    <div class="container nav-inner">\n'
+            h += '      <a href="/index.html" class="logo"><span class="logo-mark">M</span><span class="logo-text">MENGEDOHT <em>CNC</em></span></a>\n'
+            h += '      <nav class="main-nav" id="main-nav">\n'
+            h += '        <a href="/index.html" class="nav-link">Home</a>\n'
+            h += '        <a href="/custom-parts.html" class="nav-link">Custom Parts</a>\n'
+            h += '        <a href="/products.html" class="nav-link active">Products</a>\n'
+            h += '        <a href="/wholesale.html" class="nav-link">Wholesale</a>\n'
+            h += '        <a href="/gallery.html" class="nav-link">Gallery</a>\n'
+            h += '        <a href="/faq.html" class="nav-link">FAQ</a>\n'
+            h += '        <a href="/about.html" class="nav-link">About</a>\n'
+            h += '        <a href="/contact.html" class="nav-link">Contact</a>\n'
+            h += '      </nav>\n'
+            h += '      <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>\n'
+            h += '    </div>\n'
+            h += '  </header>\n\n'
+            h += '  <div id="main-content" style="padding-top: 6rem; padding-left: 2rem;">\n'
+            h += '    <a href="/products.html" class="btn btn-ghost" style="display:inline-block;">&#8592; Back to Products</a>\n'
+            h += '  </div>\n\n'
+            h += '  <div class="container" style="padding-top: 0.5rem;">\n'
+            h += '    <div class="detail-breadcrumb">\n'
+            h += '      <a href="/products.html">All Products</a> &nbsp;/&nbsp;\n'
+            h += '      <span id="detail-breadcrumb">' + title + '</span>\n'
+            h += '    </div>\n'
+            h += '  </div>\n\n'
+            h += '  <section class="section" style="padding-top:0;">\n'
+            h += '    <div class="container">\n'
+            h += '      <div class="detail-layout">\n'
+            h += '        <div><div id="product-carousel">' + img_html + '</div></div>\n'
+            h += '        <div class="detail-info">\n'
+            h += '          <div class="detail-category" id="detail-category">' + cat_str + '</div>\n'
+            h += '          <h1 class="detail-title" id="detail-title">' + title + '</h1>\n'
+            h += '          <div class="detail-specs">\n'
+            h += '            <div class="detail-spec"><div class="detail-spec-label">Material</div><div class="detail-spec-value" id="detail-material">' + material + '</div></div>\n'
+            h += '            <div class="detail-spec"><div class="detail-spec-label">Approx. Weight</div><div class="detail-spec-value" id="detail-weight">' + weight + '</div></div>\n'
+            h += '            <div class="detail-spec" style="grid-column: 1 / -1;"><div class="detail-spec-label">Fits / Compatible With</div><div class="detail-spec-value" id="detail-fits">' + (fits if fits else '&#8212;') + '</div></div>\n'
+            h += '          </div>\n'
+            h += '          <div class="detail-pricing" id="detail-pricing"></div>\n'
+            h += '          <div class="detail-actions" id="detail-actions" style="flex-direction:column;">\n'
+            h += '            <a href="/contact.html" class="btn btn-accent btn-block">Place Order / Request Pricing</a>\n'
+            h += '          </div>\n'
+            h += '          <p class="detail-description" id="detail-description">' + desc + '</p>\n'
+            story_display = '' if story else ' style="display:none;"'
+            h += '          <div class="detail-story-section" id="detail-story-section"' + story_display + '>\n'
+            h += '            <div class="detail-story-label">The Story Behind This Product</div>\n'
+            h += '            <p class="detail-story" id="detail-story">' + story + '</p>\n'
+            h += '          </div>\n'
+            h += '        </div>\n'
+            h += '      </div>\n'
+            h += '    </div>\n'
+            h += '  </section>\n\n'
+            h += '  <section class="cta-banner">\n'
+            h += '    <div class="container cta-inner">\n'
+            h += '      <div><h2>Interested in this product?</h2><p>Get pricing within 24 hours &#8212; wholesale or retail.</p></div>\n'
+            h += '      <a href="/contact.html" class="btn btn-accent btn-lg">Get a Quote</a>\n'
+            h += '    </div>\n'
+            h += '  </section>\n\n'
+            h += '  <footer class="site-footer">\n'
+            h += '    <div class="container footer-inner">\n'
+            h += '      <div class="footer-brand">\n'
+            h += '        <a href="/index.html" class="logo logo-footer"><span class="logo-mark">M</span><span class="logo-text">MENGEDOHT <em>CNC</em></span></a>\n'
+            h += '        <p data-cms="footer-tagline">Precision CNC manufacturing for wholesale buyers. Wood, HDPE, and acrylic products built for retail shelves, marine shops, and job sites.</p>\n'
+            h += '      </div>\n'
+            h += '      <div class="footer-links"><h5>Pages</h5>\n'
+            h += '        <a href="/index.html">Home</a><a href="/custom-parts.html">Custom Parts</a><a href="/products.html">Products</a><a href="/wholesale.html">Wholesale</a><a href="/gallery.html">Gallery</a><a href="/about.html">About</a><a href="/contact.html">Contact</a>\n'
+            h += '      </div>\n'
+            h += '      <div class="footer-links"><h5>Products</h5>\n'
+            h += '        <a href="/products.html">Tool Organizers</a><a href="/products.html">Marine Products</a><a href="/products.html">Shelving / Storage</a><a href="/faq.html">FAQ</a><a href="/capabilities.html">Materials &amp; Capabilities</a>\n'
+            h += '      </div>\n'
+            h += '      <div class="footer-contact"><h5>Contact</h5>\n'
+            h += '        <a href="mailto:hankmengedoht@gmail.com" data-cms="email" class="footer-email">hankmengedoht@gmail.com</a>\n'
+            h += '        <a href="tel:8435092194" class="footer-email">(843) 509-2194</a>\n'
+            h += '        <a href="/contact.html" class="btn btn-ghost mt-1">Request a Quote</a>\n'
+            h += '      </div>\n'
+            h += '    </div>\n'
+            h += '    <div class="footer-bottom container"><p>&copy; 2026 Mengedoht CNC. All rights reserved.</p></div>\n'
+            h += '  </footer>\n\n'
+            h += '  <script src="/main.js?v=3"></script>\n'
+            h += '  <div id="lightbox" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.92); z-index:9999; align-items:center; justify-content:center; padding:2rem;">\n'
+            h += '    <button onclick="closeLightbox()" style="position:absolute; top:1.5rem; right:1.5rem; background:none; border:none; color:#f4f1ea; font-size:2rem; cursor:pointer; font-family:\'Barlow Condensed\',sans-serif; line-height:1;">&#10005;</button>\n'
+            h += '    <img id="lightbox-img" src="" alt="" style="max-width:100%; max-height:90vh; object-fit:contain; border-radius:4px;" />\n'
+            h += '  </div>\n'
+            h += '  <script>\n'
+            h += '    function openLightbox(src) { var lb=document.getElementById("lightbox"); document.getElementById("lightbox-img").src=src; lb.style.display="flex"; document.body.style.overflow="hidden"; }\n'
+            h += '    function closeLightbox() { document.getElementById("lightbox").style.display="none"; document.body.style.overflow=""; }\n'
+            h += '    document.getElementById("lightbox").addEventListener("click",function(e){if(e.target===this)closeLightbox();});\n'
+            h += '    document.addEventListener("keydown",function(e){if(e.key==="Escape")closeLightbox();});\n'
+            h += '  </script>\n'
+            h += '</body>\n</html>\n'
+            return h
+
+          # Read all published products
+          prod_dir = '_data/products'
+          products = []
+          for f in sorted(os.listdir(prod_dir)):
+            if not f.endswith('.json') or f == 'manifest.json':
+              continue
+            with open(os.path.join(prod_dir, f), encoding='utf-8') as fh:
+              p = json.load(fh)
+            if p.get('published') is False:
+              continue
+            p['_slug'] = f.replace('.json', '')
+            products.append(p)
+
+          # Rebuild products/ directory from scratch
+          shutil.rmtree('products', ignore_errors=True)
+          os.makedirs('products', exist_ok=True)
+
+          generated = []
+          for p in products:
+            slug = p['_slug']
+            path = os.path.join('products', slug + '.html')
+            with open(path, 'w', encoding='utf-8') as fh:
+              fh.write(make_page(p, slug))
+            generated.append(slug)
+            print(f'Generated: {path}')
+
+          # Generate sitemap.xml
+          core_pages = [
+            ('', '1.0', 'weekly'),
+            ('products.html', '0.9', 'weekly'),
+            ('custom-parts.html', '0.8', 'monthly'),
+            ('wholesale.html', '0.8', 'monthly'),
+            ('retail.html', '0.8', 'monthly'),
+            ('gallery.html', '0.7', 'monthly'),
+            ('about.html', '0.6', 'monthly'),
+            ('contact.html', '0.7', 'monthly'),
+            ('faq.html', '0.6', 'monthly'),
+            ('capabilities.html', '0.5', 'monthly'),
+          ]
+
+          sm  = '<?xml version="1.0" encoding="UTF-8"?>\n'
+          sm += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+          for path, priority, freq in core_pages:
+            sm += '  <url><loc>' + SITE + '/' + path + '</loc>'
+            sm += '<lastmod>' + TODAY + '</lastmod>'
+            sm += '<changefreq>' + freq + '</changefreq>'
+            sm += '<priority>' + priority + '</priority></url>\n'
+          for slug in sorted(generated):
+            sm += '  <url><loc>' + SITE + '/products/' + slug + '.html</loc>'
+            sm += '<lastmod>' + TODAY + '</lastmod>'
+            sm += '<changefreq>monthly</changefreq><priority>0.8</priority></url>\n'
+          sm += '</urlset>\n'
+
+          with open('sitemap.xml', 'w', encoding='utf-8') as fh:
+            fh.write(sm)
+          print(f'Generated sitemap.xml: {len(core_pages) + len(generated)} URLs')
+          PYEOF
 
       - name: Commit if changed
         run: |
@@ -59,11 +326,13 @@ jobs:
                   _data/reviews/manifest.json \
                   _data/gallery/manifest.json \
                   _data/shop-photos/manifest.json \
-                  _data/custom-parts-examples/manifest.json
+                  _data/custom-parts-examples/manifest.json \
+                  products/ \
+                  sitemap.xml
           if git diff --staged --quiet; then
-            echo "All manifests already up to date."
+            echo "Everything already up to date."
           else
             git pull --no-rebase
-            git commit -m "Auto-rebuild manifests [skip ci]"
+            git commit -m "Auto-rebuild manifests, product pages, and sitemap [skip ci]"
             git push
           fi

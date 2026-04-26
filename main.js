@@ -110,7 +110,7 @@ function buildProductCard(p) {
   const primaryImg = p.image || (p.images && p.images.length > 0 ? (typeof p.images[0] === 'string' ? p.images[0] : p.images[0].image) : null);
 
   const imgHtml = primaryImg
-    ? `<img src="${primaryImg}" alt="${p.title}" loading="lazy" style="width:100%;height:100%;object-fit:cover;" />`
+    ? `<img src="${primaryImg}" alt="${p.title}${p.keywords ? ', ' + p.keywords : ''} — Mengedoht CNC" loading="lazy" style="width:100%;height:100%;object-fit:cover;" />`
     : `<div class="product-img-placeholder">
         <svg viewBox="0 0 120 100" fill="none" xmlns="http://www.w3.org/2000/svg">
           <rect x="20" y="20" width="80" height="60" rx="4" fill="currentColor" opacity=".15" stroke="currentColor" stroke-width="1.5"/>
@@ -143,7 +143,7 @@ function buildProductCard(p) {
   }
 
   return `
-    <div class="product-card${p.featured ? ' product-card--featured' : ''}" data-category="${categories.join(' ')}" data-cats='${JSON.stringify(cats)}' onclick="window.location='product.html?id=${slug}'" style="cursor:pointer;">
+    <div class="product-card${p.featured ? ' product-card--featured' : ''}" data-category="${categories.join(' ')}" data-cats='${JSON.stringify(cats)}' onclick="window.location='/products/${slug}.html'" style="cursor:pointer;">
       <div class="product-img">
         ${imgHtml}
         <div class="product-badge">${p.material}</div>
@@ -446,11 +446,11 @@ document.addEventListener('DOMContentLoaded', async () => {
 // ── PRODUCT DETAIL PAGE ──
 async function loadProductDetail() {
   const params = new URLSearchParams(window.location.search);
-  const id = params.get('id');
-  if (!id) { window.location = 'products.html'; return; }
+  const id = params.get('id') || document.body.dataset.productId;
+  if (!id) { window.location = '/products.html'; return; }
 
   const p = await fetchJSON(`/_data/products/${id}.json`);
-  if (!p) { window.location = 'products.html'; return; }
+  if (!p) { window.location = '/products.html'; return; }
 
   // Set page title and meta tags
   document.title = `${p.title} — Mengedoht CNC`;
@@ -462,7 +462,9 @@ async function loadProductDetail() {
     setMeta('meta[property="og:description"]', p.description);
     setMeta('meta[name="twitter:description"]', p.description);
   }
-  setMeta('meta[property="og:url"]', `https://mengedohtcnc.com/product.html?id=${id}`);
+  setMeta('meta[property="og:url"]', `https://mengedohtcnc.com/products/${id}.html`);
+  const canonicalEl = document.querySelector('link[rel="canonical"]');
+  if (canonicalEl) canonicalEl.href = `https://mengedohtcnc.com/products/${id}.html`;
   if (p.keywords) {
     let kwMeta = document.querySelector('meta[name="keywords"]');
     if (!kwMeta) { kwMeta = document.createElement('meta'); kwMeta.name = 'keywords'; document.head.appendChild(kwMeta); }

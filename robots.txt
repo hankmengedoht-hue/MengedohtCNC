@@ -1,7 +1,7 @@
 User-agent: *
+Allow: /
 Disallow: /admin/
 Disallow: /bulk-import.html
-Disallow: /retail.html
 Disallow: /_data/
 Disallow: /review-worker.js
 
