@@ -9,6 +9,8 @@ on:
       - '_data/gallery/**'
       - '_data/shop-photos/**'
       - '_data/custom-parts-examples/**'
+      - 'product.html'
+      - '.github/workflows/update-manifest.yml'
   workflow_dispatch:
 
 permissions:
