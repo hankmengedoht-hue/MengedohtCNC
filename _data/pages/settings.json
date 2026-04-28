@@ -3,7 +3,7 @@
   "email": "hankmengedoht@gmail.com",
   "footer_tagline": "Precision CNC manufacturing for wholesale buyers. Wood, HDPE, and acrylic products built for retail shelves, marine shops, and job sites.",
   "materials": [
-    "Baltic Birch Plywood",
+    "Plywood",
     "HDPE",
     "Acrylic / Lexan",
     "MDF",
@@ -19,6 +19,8 @@
     "Phenolic",
     "Composites",
     "Expanded Foam",
-    "Cork"
+    "Cork",
+    "Marine Grade Plastics",
+    "6061 Aluminum"
   ]
 }
