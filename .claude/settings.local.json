@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 -c ':*)",
+      "Bash(python3 -c \"from PIL import Image; img = Image.open\\('c:/Users/Hcmen/VS Code MCNC/MengedohtCNC/images/uploads/img-9686-1774846002123.jpg'\\); img.rotate\\(-90, expand=True\\).save\\('c:/Users/Hcmen/VS Code MCNC/MengedohtCNC/images/uploads/img-9686-1774846002123.jpg', quality=95\\); print\\('done'\\)\")",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" https://review.hankmengedoht.workers.dev/)",
+      "Bash(curl -s -X POST https://review.hankmengedoht.workers.dev/ -F \"name=Test\" -F \"rating=5\" -F \"body=Test review\")",
+      "Bash(curl -s -i -X POST https://review.hankmengedoht.workers.dev/ -H 'Origin: https://mengedohtcnc.com' -F name=Test -F rating=5 -F body=Test)",
+      "Bash(python3 -c ' *)"
+    ]
+  }
+}
