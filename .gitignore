@@ -4,3 +4,6 @@
 !.dev.vars.example
 .env*
 !.env.example
+
+# separate nested project with its own git repo — not part of this site
+MengedohtAviationSupply/
