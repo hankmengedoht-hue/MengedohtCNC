@@ -108,7 +108,8 @@ jobs:
               'description': p.get('description', ''),
               'brand': {'@type': 'Brand', 'name': 'Mengedoht CNC'},
               'manufacturer': {'@type': 'Organization', 'name': 'Mengedoht CNC', 'url': SITE},
-              'url': page_url
+              'url': page_url,
+              'dateModified': TODAY
             }
             if img_url: schema['image'] = img_url
             if p.get('material'): schema['material'] = p['material']
@@ -338,3 +339,33 @@ jobs:
             git commit -m "Auto-rebuild manifests, product pages, and sitemap"
             git push
           fi
+
+      - name: Ping IndexNow (Bing)
+        run: |
+          python3 - <<'PYEOF'
+          import json, re, urllib.request
+
+          SITE = 'https://mengedohtcnc.com'
+          KEY = '510654629f84b9ea06f7e803f38d9383'
+
+          with open('sitemap.xml', encoding='utf-8') as fh:
+            urls = re.findall(r'<loc>(.*?)</loc>', fh.read())
+
+          payload = json.dumps({
+            'host': 'mengedohtcnc.com',
+            'key': KEY,
+            'keyLocation': f'{SITE}/{KEY}.txt',
+            'urlList': urls
+          }).encode()
+
+          req = urllib.request.Request(
+            'https://api.indexnow.org/indexnow',
+            data=payload,
+            headers={'Content-Type': 'application/json; charset=utf-8'}
+          )
+          try:
+            with urllib.request.urlopen(req, timeout=15) as resp:
+              print('IndexNow response:', resp.status)
+          except Exception as e:
+            print('IndexNow ping failed (non-fatal):', e)
+          PYEOF
