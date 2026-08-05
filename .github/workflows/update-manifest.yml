@@ -113,6 +113,7 @@ jobs:
             }
             if img_url: schema['image'] = img_url
             if p.get('material'): schema['material'] = p['material']
+            if p.get('keywords'): schema['keywords'] = p['keywords']
             if p.get('retail_price'):
               schema['offers'] = {
                 '@type': 'Offer',
