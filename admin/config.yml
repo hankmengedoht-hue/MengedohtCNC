@@ -43,7 +43,6 @@ collections:
           - { label: "Furniture", value: "furniture" }
           - { label: "Signage", value: "signage" }
           - { label: "Automotive", value: "automotive" }
-          - { label: "Art", value: "art" }
           - { label: "Carbon Fiber / G10", value: "carbon" }
           - { label: "Flat-Pack Plywood", value: "flatpack" }
           - { label: "Custom / Other", value: "custom" }
@@ -191,7 +190,6 @@ collections:
           - { label: "Furniture", value: "furniture" }
           - { label: "Signage", value: "signage" }
           - { label: "Automotive", value: "automotive" }
-          - { label: "Art", value: "art" }
           - { label: "Carbon Fiber / G10", value: "carbon" }
           - { label: "Flat-Pack Plywood", value: "flatpack" }
           - { label: "Custom / Other", value: "custom" }
@@ -227,7 +225,6 @@ collections:
           - { label: "Furniture", value: "furniture" }
           - { label: "Signage", value: "signage" }
           - { label: "Automotive", value: "automotive" }
-          - { label: "Art", value: "art" }
           - { label: "Carbon Fiber / G10", value: "carbon" }
           - { label: "Flat-Pack Plywood", value: "flatpack" }
           - { label: "Custom / Other", value: "custom" }

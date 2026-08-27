@@ -95,7 +95,7 @@ jobs:
             if isinstance(cats, str): cats = [cats]
             cat_map = {
               'marine': 'Marine', 'woodwork': 'Woodwork', 'furniture': 'Furniture',
-              'signage': 'Signage', 'automotive': 'Automotive', 'art': 'Art',
+              'signage': 'Signage', 'automotive': 'Automotive',
               'carbon': 'Carbon Fiber / G10', 'flatpack': 'Flat-Pack Plywood',
               'custom': 'Custom / Other'
             }
@@ -161,12 +161,12 @@ jobs:
             h += '  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n'
             h += '  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">\n'
             h += '  <!-- Google tag (gtag.js) -->\n'
-            h += '  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NPC4T6X6HY"></script>\n'
+            h += '  <script async src="https://www.googletagmanager.com/gtag/js?id=G-LM469QGNT1"></script>\n'
             h += '  <script>\n'
             h += '    window.dataLayer = window.dataLayer || [];\n'
             h += '    function gtag(){dataLayer.push(arguments);}\n'
             h += '    gtag("js", new Date());\n'
-            h += '    gtag("config", "G-NPC4T6X6HY");\n'
+            h += '    gtag("config", "G-LM469QGNT1");\n'
             h += '  </script>\n'
             h += '  <script type="application/ld+json">\n' + schema_json + '\n  </script>\n'
             h += '  <style>' + PRODUCT_CSS + '  </style>\n'

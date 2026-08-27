@@ -53,7 +53,7 @@ async function fetchProductList() {
 }
 
 function categoryLabel(cat) {
-  const map = { marine: 'Marine', woodwork: 'Woodwork', furniture: 'Furniture', signage: 'Signage', automotive: 'Automotive', art: 'Art', carbon: 'Carbon Fiber / G10', flatpack: 'Flat-Pack Plywood', custom: 'Custom / Other' };
+  const map = { marine: 'Marine', woodwork: 'Woodwork', furniture: 'Furniture', signage: 'Signage', automotive: 'Automotive', carbon: 'Carbon Fiber / G10', flatpack: 'Flat-Pack Plywood', custom: 'Custom / Other' };
   return map[cat] || cat;
 }
 
