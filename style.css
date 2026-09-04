@@ -196,27 +196,13 @@ strong { color: var(--text); }
 .logo {
   display: flex;
   align-items: center;
-  gap: 10px;
-  flex-shrink: 0;
-}
-.logo-mark {
-  width: 36px; height: 36px;
-  background: var(--accent);
-  color: #0f0f0e;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-display);
-  font-size: 1.3rem;
-  font-weight: 800;
-  border-radius: 3px;
   flex-shrink: 0;
 }
 .logo-text {
-  font-family: var(--font-display);
-  font-size: 1rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
+  font-family: 'Anton', var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 400;
+  letter-spacing: 0.01em;
   color: var(--text);
   text-transform: uppercase;
 }
@@ -294,7 +280,8 @@ strong { color: var(--text); }
   margin-bottom: 24px;
 }
 .hero-headline span { color: var(--accent); }
-.hero-name { display: block; color: var(--accent); font-size: 1em; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; line-height: 1.1; }
+.hero-name { display: block; color: #f4f1ea !important; font-family: 'Anton', var(--font-display); font-size: 1em; font-weight: 400; letter-spacing: 0.005em; text-transform: uppercase; line-height: 1.05; }
+.hero-name em { font-style: normal; color: var(--accent); }
 .hero-headline .hero-descriptor { display: block; font-size: 0.55em; font-weight: 600; line-height: 1.3; margin-top: 0.2em; color: #f4f1ea !important; }
 .hero-sub {
   font-size: clamp(1rem, 1.8vw, 1.2rem);
@@ -977,8 +964,7 @@ strong { color: var(--text); }
 }
 .footer-brand .logo { margin-bottom: 16px; }
 .footer-brand p { font-size: 0.88rem; line-height: 1.65; max-width: 280px; }
-.logo-footer .logo-mark { width: 32px; height: 32px; font-size: 1.1rem; }
-.logo-footer .logo-text { font-size: 0.88rem; }
+.logo-footer .logo-text { font-size: 1rem; }
 .footer-links h5, .footer-contact h5 {
   font-family: var(--font-display);
   font-size: 0.75rem;
