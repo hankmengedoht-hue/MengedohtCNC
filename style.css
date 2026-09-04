@@ -196,6 +196,7 @@ strong { color: var(--text); }
 .logo {
   display: flex;
   align-items: center;
+  gap: 8px;
   flex-shrink: 0;
 }
 .logo-text {
@@ -206,12 +207,13 @@ strong { color: var(--text); }
   color: var(--text);
   text-transform: uppercase;
 }
-.logo-text em {
+/* Independent from .logo-text on purpose: its own absolute size, tune here without affecting MENGEDOHT */
+.logo-cnc {
   font-family: 'Wallpoet', var(--font-display);
   font-weight: 400;
-  font-style: normal;
-  font-size: 1.4em;
+  font-size: 1.9rem;
   color: var(--accent);
+  text-transform: uppercase;
 }
 .main-nav {
   display: flex;
@@ -284,7 +286,8 @@ strong { color: var(--text); }
 }
 .hero-headline span { color: var(--accent); }
 .hero-name { display: block; color: #f4f1ea !important; font-family: 'Big Shoulders Display', var(--font-display); font-size: 1em; font-weight: 900; letter-spacing: 0.005em; text-transform: uppercase; line-height: 1.05; }
-.hero-name em { font-family: 'Wallpoet', var(--font-display); font-weight: 400; font-style: normal; font-size: 1.4em; color: var(--accent); }
+/* Independent from .hero-name on purpose: em here is relative to .hero-headline directly, not to .hero-name, so it can be tuned without affecting MENGEDOHT */
+.hero-cnc { font-family: 'Wallpoet', var(--font-display); font-weight: 400; font-size: 1.75em; text-transform: uppercase; color: var(--accent); }
 .hero-headline .hero-descriptor { display: block; font-size: 0.55em; font-weight: 600; line-height: 1.3; margin-top: 0.2em; color: #f4f1ea !important; }
 .hero-sub {
   font-size: clamp(1rem, 1.8vw, 1.2rem);
@@ -968,6 +971,7 @@ strong { color: var(--text); }
 .footer-brand .logo { margin-bottom: 16px; }
 .footer-brand p { font-size: 0.88rem; line-height: 1.65; max-width: 280px; }
 .logo-footer .logo-text { font-size: 1rem; }
+.logo-footer .logo-cnc { font-size: 1.6rem; }
 .footer-links h5, .footer-contact h5 {
   font-family: var(--font-display);
   font-size: 0.75rem;
