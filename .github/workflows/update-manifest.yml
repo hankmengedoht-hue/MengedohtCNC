@@ -156,7 +156,7 @@ jobs:
             h += '  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />\n'
             h += '  <link rel="manifest" href="/site.webmanifest" />\n'
             h += '  <title>' + title + ' &#8212; Mengedoht CNC</title>\n'
-            h += '  <link rel="stylesheet" href="/style.css?v=9" />\n'
+            h += '  <link rel="stylesheet" href="/style.css?v=10" />\n'
             h += '  <link rel="preconnect" href="https://fonts.googleapis.com">\n'
             h += '  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n'
             h += '  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500;600&display=optional" rel="stylesheet">\n'
