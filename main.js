@@ -132,8 +132,8 @@ function buildProductCard(p) {
           <div class="price-label">Individual / Retail</div>
           <div class="price-desc">${priceLabel} — No minimum. Ships direct.</div>
         </div>
-        <div class="price-option price-option--wholesale">
-          <div class="price-label">Wholesale / Bulk</div>
+        <div class="price-option price-option--production">
+          <div class="price-label">Mass Production / Bulk</div>
           <div class="price-desc">MOQ ${p.moq} units. Tiered pricing available.</div>
         </div>
       </div>`;
@@ -429,9 +429,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     await applyRetailContent();
     await loadAndRenderProducts('retail-products-grid', p => p.retail_available);
   }
-  if (page === 'wholesale') {
+  if (page === 'mass-production') {
     await applyWholesaleContent();
-    await loadPageReviews('wholesale-reviews-grid', 'publish_wholesale');
+    await loadPageReviews('mass-production-reviews-grid', 'publish_wholesale');
     initReviewSystem();
   }
   if (page === 'contact') {

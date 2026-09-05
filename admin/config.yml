@@ -85,7 +85,7 @@ collections:
         widget: "string"
         required: false
         hint: "Paste your Stripe payment link here e.g. https://buy.stripe.com/xxxx"
-      - label: "Available for Wholesale"
+      - label: "Available for Mass Production"
         name: "wholesale_available"
         widget: "boolean"
         default: true
@@ -129,7 +129,7 @@ collections:
           - { label: "Hero Photo", name: "hero_image", widget: "image", required: false, hint: "Shown to the right of the hero headline on the home page. Replaces the animated graphic." }
           
 
-      - label: "Wholesale Page"
+      - label: "Mass Production Page"
         name: "wholesale"
         file: "_data/pages/wholesale.json"
         fields:
@@ -278,7 +278,7 @@ collections:
       - { label: "Photo", name: "image", widget: "image", required: false, hint: "Optional photo submitted with the review." }
       - { label: "Show on Home Page", name: "publish_home", widget: "boolean", default: false, hint: "Show this review in the 'What Buyers Say' section on the home page." }
       - { label: "Show on Contact Page", name: "publish_contact", widget: "boolean", default: false, hint: "Show this review in the reviews section on the contact page." }
-      - { label: "Show on Wholesale Page", name: "publish_wholesale", widget: "boolean", default: false, hint: "Show this review in the reviews section on the wholesale page." }
+      - { label: "Show on Mass Production Page", name: "publish_wholesale", widget: "boolean", default: false, hint: "Show this review in the reviews section on the mass production page." }
       - { label: "Date", name: "date", widget: "string", required: false }
 
   # ─────────────────────────────────────────
