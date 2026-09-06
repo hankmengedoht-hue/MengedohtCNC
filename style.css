@@ -755,29 +755,7 @@ strong { color: var(--text); }
 }
 .product-img-placeholder svg { width: 120px; height: 100px; }
 .product-card:hover .product-img-placeholder { transform: scale(1.03); }
-.product-badge {
-  position: absolute;
-  top: 12px; left: 12px;
-  font-family: var(--font-display);
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: #0f0f0e;
-  background: var(--accent);
-  padding: 3px 10px;
-  border-radius: 2px;
-}
 .product-info { padding: 24px; }
-.product-cat {
-  font-family: var(--font-display);
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--text-3);
-  margin-bottom: 8px;
-}
 .product-info h3 { font-size: 1.1rem; margin-bottom: 10px; }
 .product-info p { font-size: 0.9rem; line-height: 1.55; margin-bottom: 16px; }
 .product-meta {
@@ -872,30 +850,9 @@ strong { color: var(--text); }
 
 /* ── WHOLESALE DETAILS ── */
 .wholesale-details { background: var(--bg-2); border-top: 1px solid var(--border); }
-.wholesale-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
-}
 .detail-block { margin-bottom: 36px; }
 .detail-block h4 { color: var(--text); margin-bottom: 10px; font-size: 1rem; }
 .detail-block p { font-size: 0.93rem; line-height: 1.65; }
-.custom-options { display: flex; flex-direction: column; gap: 28px; }
-.custom-option { display: flex; gap: 16px; align-items: flex-start; }
-.custom-icon {
-  width: 40px; height: 40px;
-  flex-shrink: 0;
-  background: var(--accent-dim);
-  border: 1px solid rgba(232,160,32,0.2);
-  border-radius: var(--radius);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--accent);
-}
-.custom-icon svg { width: 20px; height: 20px; }
-.custom-option h4 { margin-bottom: 5px; font-size: 0.95rem; }
-.custom-option p { font-size: 0.88rem; line-height: 1.55; }
 
 /* ── WHO WE SERVE ── */
 .who-section { border-top: 1px solid var(--border); }
@@ -1041,48 +998,6 @@ strong { color: var(--text); }
   background: linear-gradient(160deg, var(--surface) 0%, rgba(232,160,32,0.04) 100%);
 }
 .product-card--featured:hover { border-color: var(--accent); }
-.product-badge-retail {
-  position: absolute;
-  top: 12px; right: 12px;
-  font-family: var(--font-display);
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #fff;
-  background: rgba(60,140,200,0.85);
-  padding: 3px 10px;
-  border-radius: 2px;
-}
-
-/* ── DUAL PRICING ── */
-.dual-pricing {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  margin-top: 4px;
-}
-.price-option {
-  border: 1px solid var(--border-2);
-  border-radius: var(--radius);
-  padding: 14px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 6px;
-}
-.price-option--retail { border-color: rgba(60,140,200,0.3); background: rgba(60,140,200,0.05); }
-.price-option--production { border-color: rgba(232,160,32,0.25); background: rgba(232,160,32,0.04); }
-.price-label {
-  font-family: var(--font-display);
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--text);
-  margin-bottom: 2px;
-}
-.price-desc { font-size: 0.8rem; color: var(--text-2); line-height: 1.45; flex: 1; }
 
 /* ── SMALL BUTTON ── */
 .btn-sm { padding: 8px 16px; font-size: 0.82rem; }
@@ -1109,7 +1024,6 @@ strong { color: var(--text); }
 
 @media (max-width: 900px) {
   .products-grid { grid-template-columns: repeat(2, 1fr); }
-  .wholesale-grid { grid-template-columns: 1fr; gap: 48px; }
   .contact-layout { grid-template-columns: 1fr; }
   .process-steps { flex-direction: column; }
   .process-arrow { display: none; }
@@ -1145,7 +1059,6 @@ strong { color: var(--text); }
   .hero-actions { flex-direction: column; }
   .hero-stats { gap: 16px; }
   .stat-divider { display: none; }
-  .dual-pricing { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 480px) {
@@ -1284,11 +1197,15 @@ strong { color: var(--text); }
 
 /* ── RETAIL PRICE DISPLAY ── */
 .retail-price-display {
+  display: inline-block;
   font-family: var(--font-display);
-  font-size: 1.4rem;
+  font-size: 1.15rem;
   font-weight: 800;
-  color: var(--accent);
-  margin-bottom: 10px;
+  color: #0f0f0e;
+  background: var(--accent);
+  padding: 6px 16px;
+  border-radius: var(--radius-md);
+  margin-bottom: 12px;
 }
 
 /* ── PRODUCTS LOADING STATE ── */

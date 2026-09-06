@@ -111,10 +111,6 @@ async function applyRetailContent() {
 
 // ── PRODUCT CARD BUILDER ──
 function buildProductCard(p) {
-  const cats = Array.isArray(p.categories) ? p.categories : (p.category ? [p.category] : []);
-  const categories = [...cats];
-  if (p.retail_available) categories.push('retail');
-
   // Use first image from images array, fall back to legacy image field
   const primaryImg = p.image || (p.images && p.images.length > 0 ? (typeof p.images[0] === 'string' ? p.images[0] : p.images[0].image) : null);
 
@@ -128,45 +124,21 @@ function buildProductCard(p) {
         </svg>
       </div>`;
 
-  const retailBadge = p.retail_available ? `<div class="product-badge-retail">Retail Available</div>` : '';
-
   const slug = p._filename ? p._filename.replace('.json','') : p.title.toLowerCase().replace(/[^a-z0-9]+/g,'-');
 
-  let pricingHtml = '';
-  if (p.retail_available && p.wholesale_available) {
-    const priceLabel = p.retail_price ? p.retail_price : 'Contact for price';
-    pricingHtml = `
-      <div class="dual-pricing">
-        <div class="price-option price-option--retail">
-          <div class="price-label">Individual / Retail</div>
-          <div class="price-desc">${priceLabel} — No minimum. Ships direct.</div>
-        </div>
-        <div class="price-option price-option--production">
-          <div class="price-label">Inquire for wholesale pricing</div>
-        </div>
-      </div>`;
-  } else if (p.retail_available) {
-    const priceLabel = p.retail_price ? `<div class="retail-price-display">${p.retail_price}</div>` : '';
-    pricingHtml = priceLabel;
-  }
+  const priceLabel = p.retail_price || 'Contact for price';
 
   return `
-    <div class="product-card${p.featured ? ' product-card--featured' : ''}" data-category="${categories.join(' ')}" data-cats='${JSON.stringify(cats)}' onclick="window.location='/products/${slug}.html'" style="cursor:pointer;">
+    <div class="product-card${p.featured ? ' product-card--featured' : ''}" onclick="window.location='/products/${slug}.html'" style="cursor:pointer;">
       <div class="product-img">
         ${imgHtml}
-        <div class="product-badge">${p.material}</div>
-        ${retailBadge}
        ${(() => { const total = (p.image ? 1 : 0) + (p.images ? p.images.length : 0); return total > 1 ? `<div class="product-img-count">+${total - 1} photos</div>` : ''; })()}
       </div>
       <div class="product-info">
-        <div class="product-cat">${cats.map(c => categoryLabel(c)).join(' · ')}</div>
         <h3>${p.title}</h3>
         <p>${p.description}</p>
-        <div class="product-meta">
-          <span class="meta-item">${p.material}</span>
-          ${p.fits ? `<span class="meta-item">${p.fits}</span>` : ''}
-        </div>
-        ${pricingHtml}
+        ${p.fits ? `<div class="product-meta"><span class="meta-item">${p.fits}</span></div>` : ''}
+        <div class="retail-price-display">${priceLabel}</div>
         <div class="view-details-btn">View Details →</div>
       </div>
     </div>`;
@@ -203,35 +175,6 @@ async function loadAndRenderProducts(gridId, filterFn) {
 
   grid.innerHTML = products.map(buildProductCard).join('');
   initScrollReveal();
-  if (gridId === 'products-grid') initFilters();
-}
-
-// ── FILTER BUTTONS ──
-function initFilters() {
-  const filterBtns   = document.querySelectorAll('.filter-btn');
-  const noResults    = document.getElementById('no-results');
-
-  filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      filterBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      const filter = btn.dataset.filter;
-      const cards  = document.querySelectorAll('#products-grid .product-card');
-      let visible  = 0;
-      cards.forEach(card => {
-        let cardCats = [];
-        try { cardCats = JSON.parse(card.dataset.cats || '[]'); } catch(e) { cardCats = (card.dataset.category || '').split(' ').filter(Boolean); }
-        const match = filter === 'all' || cardCats.includes(filter);
-        card.classList.toggle('hidden', !match);
-        if (match) {
-          card.style.opacity = '1';
-          card.style.transform = 'none';
-          visible++;
-        }
-      });
-      if (noResults) noResults.style.display = visible === 0 ? 'block' : 'none';
-    });
-  });
 }
 
 // ── SCROLL REVEAL ──
@@ -465,7 +408,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
   if (page === 'retail') {
     await applyRetailContent();
-    await loadAndRenderProducts('retail-products-grid', p => p.retail_available);
+    await loadAndRenderProducts('retail-products-grid', null);
   }
   if (page === 'mass-production') {
     await applyWholesaleContent();

@@ -31,22 +31,6 @@ collections:
     format: "json"
     fields:
       - { label: "Product Name", name: "title", widget: "string" }
-      - label: "Categories"
-        name: "categories"
-        widget: "select"
-        multiple: true
-        required: false
-        hint: "Select all that apply. A product can appear under multiple filters."
-        options:
-          - { label: "Marine", value: "marine" }
-          - { label: "Woodwork", value: "woodwork" }
-          - { label: "Furniture", value: "furniture" }
-          - { label: "Signage", value: "signage" }
-          - { label: "Automotive", value: "automotive" }
-          - { label: "Carbon Fiber / G10", value: "carbon" }
-          - { label: "Flat-Pack Plywood", value: "flatpack" }
-          - { label: "Custom / Other", value: "custom" }
-      - { label: "Material", name: "material", widget: "string", hint: "e.g. HDPE, Plywood, Carbon Fiber" }
       - label: "SEO Keywords"
         name: "keywords"
         widget: "string"
@@ -70,11 +54,6 @@ collections:
         widget: "string"
         required: false
         hint: "e.g. 1.2 lbs, 450g"
-      - label: "Available for Retail (Individual Sales)"
-        name: "retail_available"
-        widget: "boolean"
-        default: false
-        hint: "Turn ON if individuals can buy single units."
       - label: "Retail Price"
         name: "retail_price"
         widget: "string"
