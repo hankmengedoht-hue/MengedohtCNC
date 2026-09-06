@@ -26,10 +26,9 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
   <link rel="manifest" href="/site.webmanifest" />
   <title>Product — Mengedoht CNC</title>
-  <link rel="stylesheet" href="style.css?v=19" />
+  <link rel="stylesheet" href="style.css?v=20" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500;600&display=optional" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@900&family=Wallpoet&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
   <!-- Google tag (gtag.js) -->
@@ -45,7 +44,7 @@
       padding: 1rem 0 0;
       font-size: 0.8rem;
       color: #666;
-      font-family: 'Barlow Condensed', sans-serif;
+      font-family: var(--font-display);
       letter-spacing: 0.08em;
       text-transform: uppercase;
     }
@@ -112,7 +111,7 @@
       right: 12px;
       background: rgba(0,0,0,0.6);
       color: var(--text);
-      font-family: 'Barlow Condensed', sans-serif;
+      font-family: var(--font-display);
       font-size: 0.8rem;
       font-weight: 700;
       letter-spacing: 0.1em;
@@ -143,7 +142,7 @@
     /* DETAIL INFO */
     .detail-info { padding-top: 0.5rem; }
     .detail-category {
-      font-family: 'Barlow Condensed', sans-serif;
+      font-family: var(--font-display);
       font-size: 0.8rem;
       font-weight: 700;
       letter-spacing: 0.15em;
@@ -152,7 +151,7 @@
       margin-bottom: 0.5rem;
     }
     .detail-title {
-      font-family: 'Barlow Condensed', sans-serif;
+      font-family: var(--font-display);
       font-size: 2.5rem;
       font-weight: 800;
       color: var(--text);
@@ -173,7 +172,7 @@
       padding: 0.75rem 1rem;
     }
     .detail-spec-label {
-      font-family: 'Barlow Condensed', sans-serif;
+      font-family: var(--font-display);
       font-size: 0.7rem;
       font-weight: 700;
       letter-spacing: 0.12em;
@@ -202,7 +201,7 @@
     }
     .detail-price-row:last-child { border-bottom: none; }
     .detail-price-label {
-      font-family: 'Barlow Condensed', sans-serif;
+      font-family: var(--font-display);
       font-size: 0.8rem;
       font-weight: 700;
       letter-spacing: 0.1em;
@@ -232,7 +231,7 @@
       margin-top: 1.5rem;
     }
     .detail-story-label {
-      font-family: 'Barlow Condensed', sans-serif;
+      font-family: var(--font-display);
       font-size: 0.75rem;
       font-weight: 700;
       letter-spacing: 0.15em;
@@ -253,7 +252,7 @@
       left: 10px;
       background: rgba(0,0,0,0.65);
       color: var(--text);
-      font-family: 'Barlow Condensed', sans-serif;
+      font-family: var(--font-display);
       font-size: 0.7rem;
       font-weight: 700;
       letter-spacing: 0.08em;
@@ -264,7 +263,7 @@
     /* view details label on card */
     .view-details-btn {
       margin-top: 0.75rem;
-      font-family: 'Barlow Condensed', sans-serif;
+      font-family: var(--font-display);
       font-size: 0.8rem;
       font-weight: 700;
       letter-spacing: 0.1em;
@@ -293,9 +292,7 @@
         <a href="products.html" class="nav-link">Products</a>
         <a href="mass-production.html" class="nav-link">Mass Production</a>
         <a href="gallery.html" class="nav-link">Gallery</a>
-        <a href="faq.html" class="nav-link">FAQ</a>
         <a href="about.html" class="nav-link">About</a>
-        <a href="contact.html" class="nav-link">Contact</a>
       </nav>
       <a href="contact.html" class="nav-cta">Request a Quote</a>
       <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
@@ -395,7 +392,7 @@
   <script src="main.js?v=6"></script>
 <!-- Lightbox -->
 <div id="lightbox" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.92); z-index:9999; align-items:center; justify-content:center; padding:2rem;">
-  <button onclick="closeLightbox()" style="position:absolute; top:1.5rem; right:1.5rem; background:none; border:none; color:var(--text); font-size:2rem; cursor:pointer; font-family:'Barlow Condensed',sans-serif; line-height:1;">✕</button>
+  <button onclick="closeLightbox()" style="position:absolute; top:1.5rem; right:1.5rem; background:none; border:none; color:var(--text); font-size:2rem; cursor:pointer; font-family:var(--font-display); line-height:1;">✕</button>
   <img id="lightbox-img" src="" alt="" style="max-width:100%; max-height:90vh; object-fit:contain; border-radius:4px;" />
 </div>
 
