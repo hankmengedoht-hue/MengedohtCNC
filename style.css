@@ -1068,6 +1068,7 @@ strong { color: var(--text); }
   padding: 14px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: 6px;
 }
 .price-option--retail { border-color: rgba(60,140,200,0.3); background: rgba(60,140,200,0.05); }

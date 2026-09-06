@@ -142,8 +142,7 @@ function buildProductCard(p) {
           <div class="price-desc">${priceLabel} — No minimum. Ships direct.</div>
         </div>
         <div class="price-option price-option--production">
-          <div class="price-label">Mass Production / Bulk</div>
-          <div class="price-desc">MOQ ${p.moq} units. Tiered pricing available.</div>
+          <div class="price-label">Inquire for wholesale pricing</div>
         </div>
       </div>`;
   } else if (p.retail_available) {
