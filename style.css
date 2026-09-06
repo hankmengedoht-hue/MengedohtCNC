@@ -1207,12 +1207,6 @@ strong { color: var(--text); }
   border-radius: var(--radius-md);
   margin-bottom: 12px;
 }
-.wholesale-inquire-note {
-  display: block;
-  font-size: 0.78rem;
-  color: var(--text-2);
-  margin: -6px 0 12px;
-}
 
 /* ── PRODUCTS LOADING STATE ── */
 .products-loading {
