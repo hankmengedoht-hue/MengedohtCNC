@@ -35,128 +35,31 @@
     gtag('config', 'G-LM469QGNT1');
   </script>
   <style>
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.25rem;
-    }
-    .gallery-item {
-      position: relative;
-      aspect-ratio: 4/3;
-      background: #2a2a28;
-      border: 1px solid #3a3a35;
-      border-radius: 4px;
-      overflow: hidden;
-      cursor: pointer;
-    }
-    .gallery-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.4s ease;
-    }
-    .gallery-item:hover img {
-      transform: scale(1.05);
-    }
-    .gallery-item-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 60%);
-      opacity: 0;
-      transition: opacity 0.3s;
-      display: flex;
-      align-items: flex-end;
-      padding: 1.25rem;
-    }
-    .gallery-item:hover .gallery-item-overlay {
-      opacity: 1;
-    }
-    .gallery-item-overlay h4 {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 1rem;
-      font-weight: 700;
-      color: #f4f1ea;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 0.25rem;
-    }
-    .gallery-item-overlay span {
-      font-size: 0.8rem;
-      color: #e8a020;
-      font-family: 'Barlow Condensed', sans-serif;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-    }
-    .gallery-empty {
-      grid-column: 1 / -1;
+    .insta-follow-card {
+      max-width: 480px;
+      margin: 0 auto;
       text-align: center;
-      padding: 4rem 2rem;
-      color: #555;
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 1.1rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      border: 1px dashed #333;
-      border-radius: 4px;
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 3rem 2rem;
     }
-    .lightbox {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.92);
-      z-index: 1000;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem;
+    .insta-follow-card svg {
+      width: 40px;
+      height: 40px;
+      color: var(--accent);
+      margin-bottom: 1.25rem;
     }
-    .lightbox.open {
-      display: flex;
+    .insta-follow-card h2 {
+      margin-bottom: 0.75rem;
     }
-    .lightbox-inner {
-      max-width: 900px;
-      width: 100%;
-      position: relative;
+    .insta-follow-card p {
+      color: var(--text-2);
+      margin-bottom: 1.5rem;
     }
-    .lightbox-inner img {
-      width: 100%;
-      height: auto;
-      max-height: 80vh;
-      object-fit: contain;
-      border-radius: 4px;
-    }
-    .lightbox-close {
-      position: absolute;
-      top: -2.5rem;
-      right: 0;
-      background: none;
-      border: none;
-      color: #f4f1ea;
-      font-size: 1.5rem;
-      cursor: pointer;
-      font-family: 'Barlow Condensed', sans-serif;
-      letter-spacing: 0.1em;
-    }
-    .lightbox-caption {
-      margin-top: 1rem;
-      text-align: center;
-    }
-    .lightbox-caption h4 {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 1.2rem;
-      font-weight: 700;
-      color: #f4f1ea;
-      text-transform: uppercase;
-    }
-    .lightbox-caption p {
-      color: #888;
-      font-size: 0.9rem;
-      margin-top: 0.25rem;
-    }
-    @media (max-width: 900px) {
-      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-    @media (max-width: 600px) {
-      .gallery-grid { grid-template-columns: 1fr; }
+    .instagram-embed-wrap {
+      max-width: 960px;
+      margin: 0 auto;
     }
   </style>
 </head>
@@ -188,42 +91,23 @@
     </div>
   </section>
 
-  <div class="filter-bar">
-    <div class="container filter-inner">
-      <button class="filter-btn active" data-filter="all">All</button>
-      <button class="filter-btn" data-filter="marine">Marine</button>
-      <button class="filter-btn" data-filter="woodwork">Woodwork</button>
-      <button class="filter-btn" data-filter="furniture">Furniture</button>
-      <button class="filter-btn" data-filter="signage">Signage</button>
-      <button class="filter-btn" data-filter="automotive">Automotive</button>
-      <button class="filter-btn" data-filter="carbon">Carbon Fiber / G10</button>
-      <button class="filter-btn" data-filter="flatpack">Flat-Pack Plywood</button>
-      <button class="filter-btn" data-filter="custom">Custom / Other</button>
-    </div>
-  </div>
-
   <section class="section">
     <div class="container">
-      <div class="gallery-grid" id="gallery-grid">
-        <div class="gallery-empty">Photos coming soon — check back shortly.</div>
+      <!--
+        INSTAGRAM EMBED
+        Replace this whole .insta-follow-card block with the embed snippet
+        from your widget provider (e.g. SnapWidget) once it's set up —
+        wrap it in <div class="instagram-embed-wrap"> ... </div> so the
+        width/centering still matches the rest of the site.
+      -->
+      <div class="insta-follow-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        <h2>See Our Latest Work</h2>
+        <p>We post finished projects to Instagram as they leave the shop — marine hardware, custom dashboards, production runs, and everything in between.</p>
+        <a href="https://instagram.com/mengedohtcnc" target="_blank" rel="noopener" class="btn btn-accent btn-lg">View @mengedohtcnc on Instagram →</a>
       </div>
-      <div id="gallery-no-results" style="display:none; text-align:center; padding:3rem 0; color:var(--text-3); font-family:var(--font-display); font-size:0.9rem; letter-spacing:0.1em; text-transform:uppercase;">No photos in this category yet.</div>
-    </div>
-    <div style="text-align:center; margin-top:2.5rem;">
-      <button id="load-more-btn" class="btn btn-outline btn-lg" style="display:none;">Load More</button>
     </div>
   </section>
-
-  <div class="lightbox" id="lightbox">
-    <div class="lightbox-inner">
-      <button class="lightbox-close" id="lightbox-close">✕ Close</button>
-      <img id="lightbox-img" src="" alt="" />
-      <div class="lightbox-caption">
-        <h4 id="lightbox-title"></h4>
-        <p id="lightbox-desc"></p>
-      </div>
-    </div>
-  </div>
 
   <section class="cta-banner">
     <div class="container cta-inner">
@@ -257,150 +141,5 @@
   </footer>
 
   <script src="main.js?v=3"></script>
-  <script>
-    const PAGE_SIZE = 6;
-    let allItems = [];
-    let activeFilter = 'all';
-    let filteredItems = [];
-    let loaded = 0;
-
-    function shuffle(arr) {
-      for (let i = arr.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [arr[i], arr[j]] = [arr[j], arr[i]];
-      }
-      return arr;
-    }
-
-    function getFiltered() {
-      if (activeFilter === 'all') return allItems;
-      return allItems.filter(item => {
-        const cats = Array.isArray(item.categories) ? item.categories : (item.categories ? [item.categories] : []);
-        return cats.includes(activeFilter);
-      });
-    }
-
-    async function loadGallery() {
-      try {
-        const manifestRes = await fetch('/_data/gallery/manifest.json');
-        if (!manifestRes.ok) return;
-        const files = await manifestRes.json();
-        if (!files.length) return;
-        const items = await Promise.all(
-          files.map(f => fetch(`/_data/gallery/${f}`).then(r => r.json()).catch(() => null))
-        );
-        allItems = shuffle(items.filter(i => i && i.published !== false));
-        if (!allItems.length) return;
-        applyFilter();
-      } catch(e) {
-        console.log('Gallery not loaded.');
-      }
-    }
-
-    function applyFilter() {
-      filteredItems = getFiltered();
-      loaded = 0;
-      const grid = document.getElementById('gallery-grid');
-      grid.innerHTML = '';
-      const noResults = document.getElementById('gallery-no-results');
-      if (!filteredItems.length) {
-        grid.innerHTML = '';
-        noResults.style.display = 'block';
-        document.getElementById('load-more-btn').style.display = 'none';
-        return;
-      }
-      noResults.style.display = 'none';
-      renderBatch();
-      updateLoadMoreBtn();
-    }
-
-    function renderBatch() {
-      const grid = document.getElementById('gallery-grid');
-      const batch = filteredItems.slice(loaded, loaded + PAGE_SIZE);
-      const fragment = document.createDocumentFragment();
-      batch.forEach((item, i) => {
-        const actualIndex = loaded + i;
-        const cats = Array.isArray(item.categories) ? item.categories : [];
-        const div = document.createElement('div');
-        div.className = 'gallery-item';
-        div.dataset.categories = cats.join(' ');
-        div.dataset.index = actualIndex;
-        div.innerHTML = `
-          <img src="${item.image}" alt="${item.alt || item.title || 'CNC work by Mengedoht CNC, North Charleston SC'}" loading="lazy" decoding="async" />
-          <div class="gallery-item-overlay">
-            <div>
-              <h4>${item.title || ''}</h4>
-              <span>${item.description || ''}</span>
-            </div>
-          </div>`;
-        fragment.appendChild(div);
-      });
-      grid.appendChild(fragment);
-      loaded += batch.length;
-    }
-
-    function updateLoadMoreBtn() {
-      const btn = document.getElementById('load-more-btn');
-      if (!btn) return;
-      if (loaded >= filteredItems.length) {
-        btn.style.display = 'none';
-      } else {
-        btn.style.display = 'inline-flex';
-        btn.textContent = `Load More (${filteredItems.length - loaded} remaining)`;
-      }
-    }
-
-    function openLightbox(i) {
-      const item = filteredItems[i];
-      const img = document.getElementById('lightbox-img');
-      img.src = '';
-      img.src = item.image;
-      document.getElementById('lightbox-title').textContent = item.title || '';
-      document.getElementById('lightbox-desc').textContent = item.description || '';
-      document.getElementById('lightbox').classList.add('open');
-    }
-
-    function closeLightbox() {
-      document.getElementById('lightbox').classList.remove('open');
-      document.getElementById('lightbox-img').src = '';
-    }
-
-    document.querySelectorAll('.filter-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        activeFilter = btn.dataset.filter;
-        applyFilter();
-      });
-    });
-
-    document.getElementById('gallery-grid').addEventListener('click', (e) => {
-      const item = e.target.closest('.gallery-item');
-      if (item) openLightbox(Number(item.dataset.index));
-    });
-
-    document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
-    document.getElementById('lightbox').addEventListener('click', (e) => {
-      if (e.target === e.currentTarget) closeLightbox();
-    });
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closeLightbox();
-    });
-
-    document.getElementById('load-more-btn').addEventListener('click', (e) => {
-      const btn = e.currentTarget;
-      btn.disabled = true;
-      btn.textContent = 'Loading…';
-      // Yield to the browser so it can paint the "Loading…" state
-      // before doing the (heavier) batch render on the next task.
-      setTimeout(() => {
-        renderBatch();
-        updateLoadMoreBtn();
-        btn.disabled = false;
-      }, 0);
-    });
-
-    loadGallery();
-  </script>
 </body>
 </html>
