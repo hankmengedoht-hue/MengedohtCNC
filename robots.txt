@@ -4,6 +4,7 @@ Disallow: /admin/
 Disallow: /bulk-import.html
 Disallow: /_data/
 Disallow: /review-worker.js
+Disallow: /instagram-worker.js
 Disallow: /SITE-OVERVIEW.md
 
 Sitemap: https://mengedohtcnc.com/sitemap.xml

@@ -57,9 +57,32 @@
       color: var(--text-2);
       margin-bottom: 1.5rem;
     }
-    .instagram-embed-wrap {
-      max-width: 960px;
-      margin: 0 auto;
+    .ig-feed-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.25rem;
+    }
+    .ig-feed-item {
+      display: block;
+      position: relative;
+      aspect-ratio: 1;
+      background: var(--bg-3);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .ig-feed-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    .ig-feed-item:hover img { transform: scale(1.06); }
+    @media (max-width: 900px) {
+      .ig-feed-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .ig-feed-grid { grid-template-columns: repeat(2, 1fr); }
     }
   </style>
 </head>
@@ -94,13 +117,13 @@
   <section class="section">
     <div class="container">
       <!--
-        INSTAGRAM EMBED
-        Replace this whole .insta-follow-card block with the embed snippet
-        from your widget provider (e.g. SnapWidget) once it's set up —
-        wrap it in <div class="instagram-embed-wrap"> ... </div> so the
-        width/centering still matches the rest of the site.
+        Tries to load your live Instagram feed via instagram-worker.js
+        (see that file's setup instructions). Until INSTAGRAM_WORKER_URL
+        below is set, or if the fetch fails for any reason, this falls
+        back to the "View on Instagram" card automatically.
       -->
-      <div class="insta-follow-card">
+      <div id="ig-feed-grid" class="ig-feed-grid" style="display:none;"></div>
+      <div id="ig-fallback-card" class="insta-follow-card">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
         <h2>See Our Latest Work</h2>
         <p>We post finished projects to Instagram as they leave the shop — marine hardware, custom dashboards, production runs, and everything in between.</p>
@@ -141,5 +164,29 @@
   </footer>
 
   <script src="main.js?v=3"></script>
+  <script>
+    // Set this once instagram-worker.js is deployed and connected —
+    // see that file's header comment for the full one-time setup.
+    const INSTAGRAM_WORKER_URL = 'PASTE_YOUR_WORKER_URL_HERE';
+
+    (async function loadInstagramFeed() {
+      if (!INSTAGRAM_WORKER_URL || INSTAGRAM_WORKER_URL === 'PASTE_YOUR_WORKER_URL_HERE') return;
+      try {
+        const res = await fetch(INSTAGRAM_WORKER_URL);
+        if (!res.ok) throw new Error('worker not ready');
+        const data = await res.json();
+        if (!data.posts || !data.posts.length) throw new Error('no posts');
+        const grid = document.getElementById('ig-feed-grid');
+        grid.innerHTML = data.posts.map(p => `
+          <a href="${p.permalink}" target="_blank" rel="noopener" class="ig-feed-item">
+            <img src="${p.image}" alt="${(p.caption || 'Instagram post from Mengedoht CNC').replace(/"/g, '&quot;')}" loading="lazy" decoding="async" />
+          </a>`).join('');
+        grid.style.display = 'grid';
+        document.getElementById('ig-fallback-card').style.display = 'none';
+      } catch (e) {
+        // Leave the fallback "View on Instagram" card showing.
+      }
+    })();
+  </script>
 </body>
 </html>
