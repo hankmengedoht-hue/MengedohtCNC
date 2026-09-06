@@ -61,7 +61,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
   <link rel="manifest" href="/site.webmanifest" />
   <title>About — Mengedoht CNC</title>
-  <link rel="stylesheet" href="style.css?v=18" />
+  <link rel="stylesheet" href="style.css?v=19" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500;600&display=optional" rel="stylesheet">
@@ -86,9 +86,9 @@
       width: 100%;
       aspect-ratio: 4/3;
       background: #2a2a28;
-      border-radius: 4px;
+      border-radius: 0;
       overflow: hidden;
-      border: 1px solid #3a3a35;
+      border: 1px solid var(--border-2);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -107,13 +107,13 @@
       font-family: 'Barlow Condensed', sans-serif;
       font-size: 2.5rem;
       font-weight: 800;
-      color: #f4f1ea;
+      color: var(--text);
       text-transform: uppercase;
       line-height: 1.1;
       margin-bottom: 0.5rem;
     }
     .about-bio .bio-title {
-      color: #e8a020;
+      color: var(--accent);
       font-family: 'Barlow Condensed', sans-serif;
       font-size: 1rem;
       font-weight: 600;
@@ -135,15 +135,15 @@
     }
     .equipment-card {
       background: #2a2a28;
-      border: 1px solid #3a3a35;
-      border-radius: 4px;
+      border: 1px solid var(--border-2);
+      border-radius: 0;
       padding: 1.5rem;
     }
     .equipment-card h4 {
       font-family: 'Barlow Condensed', sans-serif;
       font-size: 1rem;
       font-weight: 700;
-      color: #e8a020;
+      color: var(--accent);
       text-transform: uppercase;
       letter-spacing: 0.05em;
       margin-bottom: 0.5rem;
@@ -161,7 +161,7 @@
       margin-bottom: 0.3rem;
     }
     .spec-row strong {
-      color: #f4f1ea;
+      color: var(--text);
       font-family: 'Barlow Condensed', sans-serif;
       font-weight: 700;
       text-transform: uppercase;
@@ -177,8 +177,8 @@
     .shop-photo {
       aspect-ratio: 4/3;
       background: #2a2a28;
-      border: 1px solid #3a3a35;
-      border-radius: 4px;
+      border: 1px solid var(--border-2);
+      border-radius: 0;
       overflow: hidden;
       display: flex;
       align-items: center;
@@ -202,16 +202,16 @@
     }
     .value-card {
       background: #2a2a28;
-      border: 1px solid #3a3a35;
-      border-top: 3px solid #e8a020;
-      border-radius: 4px;
+      border: 1px solid var(--border-2);
+      border-top: 3px solid var(--accent);
+      border-radius: 0;
       padding: 1.75rem 1.5rem;
     }
     .value-card h4 {
       font-family: 'Barlow Condensed', sans-serif;
       font-size: 1.1rem;
       font-weight: 700;
-      color: #f4f1ea;
+      color: var(--text);
       text-transform: uppercase;
       letter-spacing: 0.05em;
       margin-bottom: 0.5rem;
@@ -229,15 +229,15 @@
     }
     .faq-item {
       background: #2a2a28;
-      border: 1px solid #3a3a35;
-      border-radius: 4px;
+      border: 1px solid var(--border-2);
+      border-radius: 0;
       padding: 1.5rem;
     }
     .faq-item h4 {
       font-family: 'Barlow Condensed', sans-serif;
       font-size: 1rem;
       font-weight: 700;
-      color: #e8a020;
+      color: var(--accent);
       text-transform: uppercase;
       letter-spacing: 0.05em;
       margin-bottom: 0.5rem;
@@ -288,7 +288,7 @@
         <p>One shop. One machinist. Charleston, South Carolina.</p>
       </div>
       <div style="text-align:right; padding-bottom:0.25rem;">
-        <a href="https://instagram.com/mengedohtcnc" target="_blank" style="font-family:'Barlow Condensed',sans-serif; font-size:1.1rem; font-weight:600; letter-spacing:0.05em; color:#e8a020; text-decoration:none;">
+        <a href="https://instagram.com/mengedohtcnc" target="_blank" style="font-family:'Barlow Condensed',sans-serif; font-size:1.1rem; font-weight:600; letter-spacing:0.05em; color:var(--accent); text-decoration:none;">
           Follow us on Instagram<br>
           <span style="font-size:2.5rem; font-weight:800; text-transform:uppercase; letter-spacing:0.08em;">@mengedohtcnc</span>
         </a>
@@ -317,7 +317,7 @@
   <!-- What is CNC -->
   <section class="section" style="background:#222220;">
     <div class="container">
-      <h2 class="section-title" style="font-family:'Barlow Condensed',sans-serif; font-size:2rem; font-weight:800; color:#f4f1ea; text-transform:uppercase; line-height:1.1; margin-bottom:1.5rem;">What is CNC?</h2>
+      <h2 class="section-title" style="font-family:'Barlow Condensed',sans-serif; font-size:2rem; font-weight:800; color:var(--text); text-transform:uppercase; line-height:1.1; margin-bottom:1.5rem;">What is CNC?</h2>
       <p style="color:#b0aa9e; line-height:1.8; font-size:1rem; max-width:720px;">CNC stands for Computer Numerical Control, a process where a machine follows a precisely programmed digital path to cut, carve, and shape material to tolerances that hand tools cannot consistently match. Because every cut follows the same program, the process is well suited for repeatability and mass production. The machine here is a Camaster Cobra CR-510 ATC with a 60 by 120 inch full-sheet cutting bed, automatic tool changing, and tolerances held to plus or minus 0.005 inches, capable of running a huge selection of materials.</p>
     </div>
   </section>

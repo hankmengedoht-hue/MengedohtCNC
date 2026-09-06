@@ -57,7 +57,7 @@ Features:
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
   <link rel="manifest" href="/site.webmanifest" />
   <title>Collapsible Flat Pack Shelving &#8212; Mengedoht CNC</title>
-  <link rel="stylesheet" href="/style.css?v=18" />
+  <link rel="stylesheet" href="/style.css?v=19" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500;600&display=optional" rel="stylesheet">
@@ -113,7 +113,7 @@ Features:
       text-transform: uppercase;
     }
     .detail-breadcrumb a { color: #666; text-decoration: none; }
-    .detail-breadcrumb a:hover { color: #e8a020; }
+    .detail-breadcrumb a:hover { color: var(--accent); }
     .detail-layout {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -126,8 +126,8 @@ Features:
       position: relative;
       aspect-ratio: 4/3;
       background: #2a2a28;
-      border: 1px solid #3a3a35;
-      border-radius: 6px;
+      border: 1px solid var(--border-2);
+      border-radius: 0;
       overflow: hidden;
       display: flex;
       align-items: center;
@@ -152,7 +152,7 @@ Features:
       top: 50%;
       transform: translateY(-50%);
       background: rgba(0,0,0,0.6);
-      color: #f4f1ea;
+      color: var(--text);
       border: none;
       width: 44px;
       height: 44px;
@@ -166,7 +166,7 @@ Features:
       transition: background 0.2s;
       line-height: 1;
     }
-    .carousel-btn:hover { background: rgba(232,160,32,0.8); }
+    .carousel-btn:hover { background: rgba(181,84,26,0.8); }
     .carousel-prev { left: 12px; }
     .carousel-next { right: 12px; }
     .carousel-counter {
@@ -174,7 +174,7 @@ Features:
       bottom: 12px;
       right: 12px;
       background: rgba(0,0,0,0.6);
-      color: #f4f1ea;
+      color: var(--text);
       font-family: 'Barlow Condensed', sans-serif;
       font-size: 0.8rem;
       font-weight: 700;
@@ -192,7 +192,7 @@ Features:
       width: 70px;
       height: 55px;
       object-fit: cover;
-      border-radius: 3px;
+      border-radius: 0;
       border: 2px solid transparent;
       cursor: pointer;
       opacity: 0.6;
@@ -200,7 +200,7 @@ Features:
     }
     .carousel-thumb:hover { opacity: 1; }
     .carousel-thumb.active {
-      border-color: #e8a020;
+      border-color: var(--accent);
       opacity: 1;
     }
     /* DETAIL INFO */
@@ -211,14 +211,14 @@ Features:
       font-weight: 700;
       letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: #e8a020;
+      color: var(--accent);
       margin-bottom: 0.5rem;
     }
     .detail-title {
       font-family: 'Barlow Condensed', sans-serif;
       font-size: 2.5rem;
       font-weight: 800;
-      color: #f4f1ea;
+      color: var(--text);
       text-transform: uppercase;
       line-height: 1.1;
       margin-bottom: 1.5rem;
@@ -231,8 +231,8 @@ Features:
     }
     .detail-spec {
       background: #2a2a28;
-      border: 1px solid #3a3a35;
-      border-radius: 4px;
+      border: 1px solid var(--border-2);
+      border-radius: 0;
       padding: 0.75rem 1rem;
     }
     .detail-spec-label {
@@ -246,13 +246,13 @@ Features:
     }
     .detail-spec-value {
       font-size: 0.95rem;
-      color: #f4f1ea;
+      color: var(--text);
       font-weight: 500;
     }
     .detail-pricing {
       background: #2a2a28;
-      border: 1px solid #3a3a35;
-      border-radius: 4px;
+      border: 1px solid var(--border-2);
+      border-radius: 0;
       padding: 1rem 1.25rem;
       margin-bottom: 1.5rem;
     }
@@ -274,7 +274,7 @@ Features:
     }
     .detail-price-value {
       font-size: 0.95rem;
-      color: #f4f1ea;
+      color: var(--text);
       font-weight: 600;
     }
     .detail-actions {
@@ -290,7 +290,7 @@ Features:
       font-size: 1rem;
     }
     .detail-story-section {
-      border-top: 1px solid #3a3a35;
+      border-top: 1px solid var(--border-2);
       padding-top: 1.5rem;
       margin-top: 1.5rem;
     }
@@ -300,7 +300,7 @@ Features:
       font-weight: 700;
       letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: #e8a020;
+      color: var(--accent);
       margin-bottom: 0.75rem;
     }
     .detail-story {
@@ -315,7 +315,7 @@ Features:
       bottom: 10px;
       left: 10px;
       background: rgba(0,0,0,0.65);
-      color: #f4f1ea;
+      color: var(--text);
       font-family: 'Barlow Condensed', sans-serif;
       font-size: 0.7rem;
       font-weight: 700;
@@ -332,7 +332,7 @@ Features:
       font-weight: 700;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: #e8a020;
+      color: var(--accent);
     }
     @media (max-width: 900px) {
       .detail-layout { grid-template-columns: 1fr; gap: 2rem; }
@@ -444,7 +444,7 @@ Features:
 
   <script src="/main.js?v=6"></script>
   <div id="lightbox" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.92); z-index:9999; align-items:center; justify-content:center; padding:2rem;">
-    <button onclick="closeLightbox()" style="position:absolute; top:1.5rem; right:1.5rem; background:none; border:none; color:#f4f1ea; font-size:2rem; cursor:pointer; font-family:'Barlow Condensed',sans-serif; line-height:1;">&#10005;</button>
+    <button onclick="closeLightbox()" style="position:absolute; top:1.5rem; right:1.5rem; background:none; border:none; color:var(--text); font-size:2rem; cursor:pointer; font-family:'Barlow Condensed',sans-serif; line-height:1;">&#10005;</button>
     <img id="lightbox-img" src="" alt="" style="max-width:100%; max-height:90vh; object-fit:contain; border-radius:4px;" />
   </div>
   <script>

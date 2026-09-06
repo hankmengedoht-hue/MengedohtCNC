@@ -47,7 +47,7 @@
     ]
   }
   </script>
-  <link rel="stylesheet" href="style.css?v=18" />
+  <link rel="stylesheet" href="style.css?v=19" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500;600&display=optional" rel="stylesheet">
@@ -68,10 +68,10 @@
       font-weight: 700;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: #e8a020;
+      color: var(--accent);
       margin-bottom: 1.25rem;
       padding-bottom: 0.5rem;
-      border-bottom: 1px solid #3a3a35;
+      border-bottom: 1px solid var(--border-2);
     }
     .faq-group {
       display: flex;
@@ -80,10 +80,10 @@
       margin-bottom: 2.5rem;
     }
     .faq-item {
-      border-bottom: 1px solid #3a3a35;
+      border-bottom: 1px solid var(--border-2);
     }
     .faq-item:first-child {
-      border-top: 1px solid #3a3a35;
+      border-top: 1px solid var(--border-2);
     }
     .faq-q {
       width: 100%;
@@ -101,14 +101,14 @@
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.05em;
-      color: #f4f1ea;
+      color: var(--text);
       transition: color 0.2s;
     }
-    .faq-q:hover { color: #e8a020; }
-    .faq-q.open { color: #e8a020; }
+    .faq-q:hover { color: var(--accent); }
+    .faq-q.open { color: var(--accent); }
     .faq-chevron {
       font-size: 1rem;
-      color: #e8a020;
+      color: var(--accent);
       flex-shrink: 0;
       transition: transform 0.2s;
     }
@@ -116,13 +116,13 @@
     .faq-a {
       display: none;
       padding: 0 0 1.25rem 0;
-      color: #b8b4ab;
+      color: var(--text-2);
       font-size: 0.95rem;
       line-height: 1.75;
       max-width: 720px;
     }
     .faq-a.open { display: block; }
-    .faq-a a { color: #e8a020; }
+    .faq-a a { color: var(--accent); }
     .faq-sidebar {
       position: sticky;
       top: calc(72px + 2rem);

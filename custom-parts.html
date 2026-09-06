@@ -81,7 +81,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
   <link rel="manifest" href="/site.webmanifest" />
   <title>Custom Parts — Mengedoht CNC</title>
-  <link rel="stylesheet" href="style.css?v=18" />
+  <link rel="stylesheet" href="style.css?v=19" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500;600&display=optional" rel="stylesheet">
@@ -137,9 +137,9 @@
       text-transform: uppercase;
       color: var(--accent);
       background: var(--accent-dim);
-      border: 1px solid rgba(232,160,32,0.25);
+      border: 1px solid rgba(181,84,26,0.25);
       padding: 4px 12px;
-      border-radius: 2px;
+      border-radius: 0;
       margin-bottom: 20px;
     }
     .cp-hero-headline {
@@ -178,7 +178,7 @@
       background: var(--surface);
       border: 1px solid var(--border-2);
       padding: 6px 14px;
-      border-radius: 2px;
+      border-radius: 0;
     }
     .cp-hero-actions {
       display: flex;
@@ -222,7 +222,7 @@
       height: 28px;
       flex-shrink: 0;
       background: var(--accent-dim);
-      border: 1px solid rgba(232,160,32,0.2);
+      border: 1px solid rgba(181,84,26,0.2);
       border-radius: var(--radius);
       display: flex;
       align-items: center;
@@ -476,7 +476,7 @@
       background: var(--surface);
       border: 1px solid var(--border-2);
       padding: 6px 14px;
-      border-radius: 2px;
+      border-radius: 0;
       cursor: pointer;
       transition: all var(--trans);
     }
@@ -528,7 +528,7 @@
     .cp-example-card:hover .cp-example-desc-overlay { opacity: 1; }
     .cp-example-desc-overlay p {
       font-size: 0.88rem;
-      color: #f4f1ea;
+      color: var(--text);
       line-height: 1.65;
       text-align: center;
     }
@@ -561,11 +561,11 @@
       background: var(--bg-3);
       border: 1px solid var(--border);
       padding: 2px 8px;
-      border-radius: 2px;
+      border-radius: 0;
     }
     .cp-example-tag-material {
       color: var(--accent);
-      border-color: rgba(232,160,32,0.3);
+      border-color: rgba(181,84,26,0.3);
       background: var(--accent-dim);
     }
     .cp-example-empty {
@@ -589,7 +589,7 @@
     .faq-item {
       background: var(--bg-2);
       border: 1px solid var(--border);
-      border-radius: 4px;
+      border-radius: 0;
       padding: 1.5rem;
     }
     .faq-item h4 {
@@ -759,7 +759,7 @@
     <div class="container">
       <div class="section-header">
         <h2 class="section-title">Capabilities &amp; Materials</h2>
-        <p class="section-sub">Most CNC shops stick to the basics. Mengedoht CNC does not. <a href="capabilities.html" style="color:#e8a020; text-decoration:none; font-weight:600;">See the full Materials &amp; Capabilities guide →</a></p>
+        <p class="section-sub">Most CNC shops stick to the basics. Mengedoht CNC does not. <a href="capabilities.html" style="color:var(--accent); text-decoration:none; font-weight:600;">See the full Materials &amp; Capabilities guide →</a></p>
       </div>
       <div class="cp-cap-grid">
         <div class="cp-cap-card">
