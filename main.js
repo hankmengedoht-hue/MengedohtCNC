@@ -288,6 +288,34 @@ async function loadPageReviews(gridId, publishKey) {
   }
 }
 
+// ── HOME "RECENT WORK" PHOTO STRIP (real gallery photos, shuffled) ──
+async function loadHomeGalleryStrip(gridId, count) {
+  const grid = document.getElementById(gridId);
+  if (!grid) return;
+  try {
+    const res = await fetch('/_data/gallery/manifest.json');
+    if (!res.ok) throw new Error('no manifest');
+    const files = await res.json();
+    if (!files.length) throw new Error('empty');
+    const items = await Promise.all(
+      files.map(f => fetch('/_data/gallery/' + f).then(r => r.json()).catch(() => null))
+    );
+    const published = items.filter(i => i && i.published !== false);
+    if (!published.length) throw new Error('none');
+    for (let i = published.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [published[i], published[j]] = [published[j], published[i]];
+    }
+    const picks = published.slice(0, count);
+    grid.innerHTML = picks.map(item => `
+      <a href="gallery.html" class="home-gallery-item">
+        <img src="${item.image}" alt="${item.alt || item.title || 'CNC work by Mengedoht CNC'}" loading="lazy" decoding="async" />
+      </a>`).join('');
+  } catch(e) {
+    grid.innerHTML = '';
+  }
+}
+
 // ── REVIEW MODAL (injected into any page that needs it) ──
 function injectReviewModal() {
   if (document.getElementById('review-modal')) return;
@@ -419,6 +447,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   if (page === 'home') {
     await loadAndRenderProducts('home-featured-grid', p => p.featured);
+    await loadHomeGalleryStrip('home-gallery-strip', 6);
     await loadPageReviews('reviews-grid', 'publish_home');
     initReviewSystem();
   }

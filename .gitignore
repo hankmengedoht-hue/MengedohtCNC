@@ -7,3 +7,6 @@
 
 # separate nested project with its own git repo — not part of this site
 MengedohtAviationSupply/
+
+# local design-tooling state (Impeccable skill), not project source
+.impeccable/
