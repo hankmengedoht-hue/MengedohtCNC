@@ -139,6 +139,7 @@ function buildProductCard(p) {
         <p>${p.description}</p>
         ${p.fits ? `<div class="product-meta"><span class="meta-item">${p.fits}</span></div>` : ''}
         <div class="retail-price-display">${priceLabel}</div>
+        ${p.wholesale_available ? `<div class="wholesale-inquire-note">Inquire for wholesale pricing</div>` : ''}
         <div class="view-details-btn">View Details →</div>
       </div>
     </div>`;
