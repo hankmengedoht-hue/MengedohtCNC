@@ -156,7 +156,7 @@ jobs:
             h += '  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />\n'
             h += '  <link rel="manifest" href="/site.webmanifest" />\n'
             h += '  <title>' + title + ' | Mengedoht CNC</title>\n'
-            h += '  <link rel="stylesheet" href="/style.css?v=21" />\n'
+            h += '  <link rel="stylesheet" href="/style.css?v=22" />\n'
             h += '  <link rel="preconnect" href="https://fonts.googleapis.com">\n'
             h += '  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n'
             h += '  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@900&family=Wallpoet&display=swap" rel="stylesheet">\n'
@@ -240,7 +240,7 @@ jobs:
             h += '        <a href="/index.html">Home</a><a href="/custom-parts.html">Custom Parts</a><a href="/products.html">Products</a><a href="/mass-production.html">Mass Production</a><a href="/gallery.html">Gallery</a><a href="/about.html">About</a><a href="/contact.html">Contact</a>\n'
             h += '      </div>\n'
             h += '      <div class="footer-links"><h5>More Info</h5>\n'
-            h += '        <a href="/faq.html">FAQ</a><a href="/capabilities.html">Materials &amp; Capabilities</a><a href="/retail.html">Buy Direct</a>\n'
+            h += '        <a href="/faq.html">FAQ</a><a href="/capabilities.html">Materials &amp; Capabilities</a>\n'
             h += '      </div>\n'
             h += '      <div class="footer-contact"><h5>Contact</h5>\n'
             h += '        <a href="mailto:hankmengedoht@gmail.com" data-cms="email" class="footer-email">hankmengedoht@gmail.com</a>\n'
@@ -250,7 +250,7 @@ jobs:
             h += '    </div>\n'
             h += '    <div class="footer-bottom container"><p>&copy; 2026 Mengedoht CNC. All rights reserved.</p></div>\n'
             h += '  </footer>\n\n'
-            h += '  <script src="/main.js?v=7"></script>\n'
+            h += '  <script src="/main.js?v=8"></script>\n'
             h += '  <div id="lightbox" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.92); z-index:9999; align-items:center; justify-content:center; padding:2rem;">\n'
             h += '    <button onclick="closeLightbox()" style="position:absolute; top:1.5rem; right:1.5rem; background:none; border:none; color:#f4f1ea; font-size:2rem; cursor:pointer; font-family:\'Barlow Condensed\',sans-serif; line-height:1;">&#10005;</button>\n'
             h += '    <img id="lightbox-img" src="" alt="" style="max-width:100%; max-height:90vh; object-fit:contain; border-radius:4px;" />\n'
@@ -296,7 +296,6 @@ jobs:
             ('products.html', '0.9', 'weekly'),
             ('custom-parts.html', '0.8', 'monthly'),
             ('mass-production.html', '0.8', 'monthly'),
-            ('retail.html', '0.8', 'monthly'),
             ('gallery.html', '0.7', 'monthly'),
             ('about.html', '0.6', 'monthly'),
             ('contact.html', '0.7', 'monthly'),

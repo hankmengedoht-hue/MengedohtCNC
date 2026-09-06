@@ -21,8 +21,7 @@ A static website for **Mengedoht CNC**, a precision CNC manufacturing business. 
 | `products.html` | Product grid — all published products |
 | `product.html` | Single product detail page (URL param: `?id=...`) |
 | `custom-parts.html` | Custom manufacturing inquiry page |
-| `wholesale.html` | Wholesale info + product grid |
-| `retail.html` | Retail shop — products available for individual sale |
+| `mass-production.html` | Mass production info + pricing tiers |
 | `gallery.html` | Photo gallery |
 | `about.html` | About / founder page |
 | `contact.html` | Contact form |
@@ -35,8 +34,7 @@ A static website for **Mengedoht CNC**, a precision CNC manufacturing business. 
 - `gallery/` — one JSON per gallery photo (`image`, `published`)
 - `shop-photos/` — one JSON per shop photo (`image`, `published`)
 - `pages/home.json` — hero headline/sub/cta, stats, bottom CTA
-- `pages/wholesale.json` — wholesale page copy (headline, sub, moq_details, lead_time, payment_terms, shipping)
-- `pages/retail.json` — retail page copy (headline, sub, shipping, returns)
+- `pages/wholesale.json` — mass production page copy (headline, sub, moq_details, lead_time, payment_terms, shipping)
 - `pages/settings.json` — global settings (business_name, email, footer_tagline, materials list)
 - `founder.json` — founder photo path
 

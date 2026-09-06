@@ -119,15 +119,6 @@ collections:
           - { label: "Payment Terms", name: "payment_terms", widget: "text" }
           - { label: "Shipping Info", name: "shipping", widget: "text" }
 
-      - label: "Retail Page"
-        name: "retail"
-        file: "_data/pages/retail.json"
-        fields:
-          - { label: "Page Headline", name: "headline", widget: "string" }
-          - { label: "Page Subtext", name: "sub", widget: "text" }
-          - { label: "Shipping Info", name: "shipping", widget: "text" }
-          - { label: "Return Policy", name: "returns", widget: "text" }
-
       - label: "Site Settings"
         name: "settings"
         file: "_data/pages/settings.json"

@@ -98,17 +98,6 @@ async function applyWholesaleContent() {
   set('[data-cms="ws-shipping"]', ws.shipping);
 }
 
-// ── RETAIL PAGE ──
-async function applyRetailContent() {
-  const retail = await fetchJSON('/_data/pages/retail.json');
-  if (!retail) return;
-  const set = (sel, val) => document.querySelectorAll(sel).forEach(el => { el.textContent = val; });
-  set('[data-cms="retail-headline"]', retail.headline);
-  set('[data-cms="retail-sub"]', retail.sub);
-  set('[data-cms="retail-shipping"]', retail.shipping);
-  set('[data-cms="retail-returns"]', retail.returns);
-}
-
 // ── PRODUCT CARD BUILDER ──
 function buildProductCard(p) {
   // Use first image from images array, fall back to legacy image field
@@ -405,10 +394,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
   if (page === 'products') {
     await loadAndRenderProducts('products-grid', null);
-  }
-  if (page === 'retail') {
-    await applyRetailContent();
-    await loadAndRenderProducts('retail-products-grid', null);
   }
   if (page === 'mass-production') {
     await applyWholesaleContent();
