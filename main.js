@@ -1,5 +1,5 @@
 /* =====================================================
-   MENGEDOHT CNC — main.js
+   MENGEDOHT CNC - main.js
    Loads content from _data JSON files and renders
    products/pages dynamically so the CMS drives the site.
    ===================================================== */
@@ -115,7 +115,7 @@ function buildProductCard(p) {
   const primaryImg = p.image || (p.images && p.images.length > 0 ? (typeof p.images[0] === 'string' ? p.images[0] : p.images[0].image) : null);
 
   const imgHtml = primaryImg
-    ? `<img src="${primaryImg}" alt="${p.title}${p.keywords ? ', ' + p.keywords : ''} — Mengedoht CNC" loading="lazy" style="width:100%;height:100%;object-fit:cover;" />`
+    ? `<img src="${primaryImg}" alt="${p.title}${p.keywords ? ', ' + p.keywords : ''}, Mengedoht CNC" loading="lazy" style="width:100%;height:100%;object-fit:cover;" />`
     : `<div class="product-img-placeholder">
         <svg viewBox="0 0 120 100" fill="none" xmlns="http://www.w3.org/2000/svg">
           <rect x="20" y="20" width="80" height="60" rx="4" fill="currentColor" opacity=".15" stroke="currentColor" stroke-width="1.5"/>
@@ -307,7 +307,7 @@ function injectReviewModal() {
           <div class="review-field">
             <label for="review-image" class="review-label">Photo (optional)</label>
             <input type="file" id="review-image" name="image" class="review-input" accept="image/*">
-            <p class="review-hint">Max 5MB — JPG, PNG, or WebP.</p>
+            <p class="review-hint">Max 5MB. JPG, PNG, or WebP.</p>
           </div>
           <div id="review-msg" style="display:none;"></div>
           <div class="review-actions">
@@ -434,10 +434,10 @@ async function loadProductDetail() {
   if (!p) { window.location = '/products.html'; return; }
 
   // Set page title and meta tags
-  document.title = `${p.title} — Mengedoht CNC`;
+  document.title = `${p.title} | Mengedoht CNC`;
   const setMeta = (sel, val) => { const el = document.querySelector(sel); if (el) el.content = val; };
-  setMeta('meta[property="og:title"]', `${p.title} — Mengedoht CNC`);
-  setMeta('meta[name="twitter:title"]', `${p.title} — Mengedoht CNC`);
+  setMeta('meta[property="og:title"]', `${p.title} | Mengedoht CNC`);
+  setMeta('meta[name="twitter:title"]', `${p.title} | Mengedoht CNC`);
   if (p.description) {
     setMeta('meta[name="description"]', p.description);
     setMeta('meta[property="og:description"]', p.description);
@@ -453,11 +453,11 @@ async function loadProductDetail() {
   }
   const imgAlt = (n) => {
     const kw = p.keywords ? `, ${p.keywords}` : '';
-    return n ? `${p.title} photo ${n}${kw} — Mengedoht CNC` : `${p.title}${kw} — Mengedoht CNC`;
+    return n ? `${p.title} photo ${n}${kw}, Mengedoht CNC` : `${p.title}${kw}, Mengedoht CNC`;
   };
 
-  // Build image list — support both new images[] array and legacy image field
- // Build image list — combine thumbnail + images array
+  // Build image list - support both new images[] array and legacy image field
+ // Build image list - combine thumbnail + images array
   let images = [];
   // Add thumbnail first if it exists
   if (p.image) images.push(p.image);
@@ -531,7 +531,7 @@ async function loadProductDetail() {
   set('detail-weight', p.weight || 'Not specified');
   set('detail-description', p.description);
   set('detail-story', p.story || '');
-  set('detail-fits', p.fits || '—');
+  set('detail-fits', p.fits || 'Not specified');
 
   const storySection = document.getElementById('detail-story-section');
   if (storySection) storySection.style.display = p.story ? '' : 'none';
@@ -541,21 +541,21 @@ async function loadProductDetail() {
   if (pricingEl) {
     let html = '';
     if (p.retail_price) {
-      html += `<div class="detail-price-row"><span class="detail-price-label">Retail Price</span><span class="detail-price-value" style="color:#e8a020; font-size:1.2rem; font-weight:800;">${p.retail_price}</span></div>`;
+      html += `<div class="detail-price-row"><span class="detail-price-label">Retail Price</span><span class="detail-price-value" style="color:var(--accent); font-size:1.2rem; font-weight:800;">${p.retail_price}</span></div>`;
     }
-    html += `<div class="detail-price-row"><span class="detail-price-label">Individual Orders</span><span class="detail-price-value">Available — No minimum</span></div>`;
+    html += `<div class="detail-price-row"><span class="detail-price-label">Individual Orders</span><span class="detail-price-value">Available, no minimum</span></div>`;
     if (p.wholesale_available) {
-      html += `<div class="detail-price-row"><span class="detail-price-label">Wholesale / Bulk</span><span class="detail-price-value">Contact for pricing — MOQ 25 units</span></div>`;
+      html += `<div class="detail-price-row"><span class="detail-price-label">Wholesale / Bulk</span><span class="detail-price-value">Contact for pricing, 25-unit minimum</span></div>`;
     }
     pricingEl.innerHTML = html;
   }
 
-  // Actions — Stripe or contact
+  // Actions - Stripe or contact
   const actionsEl = document.getElementById('detail-actions');
   if (actionsEl) {
     if (p.stripe_link) {
       actionsEl.innerHTML = `
-        <a href="${p.stripe_link}" target="_blank" class="btn btn-accent btn-block" style="margin-bottom:0.75rem;">Buy Now — ${p.retail_price || 'Pay Online'}</a>
+        <a href="${p.stripe_link}" target="_blank" class="btn btn-accent btn-block" style="margin-bottom:0.75rem;">Buy Now: ${p.retail_price || 'Pay Online'}</a>
         <a href="contact.html" class="btn btn-outline btn-block">Request Wholesale Pricing</a>`;
     } else {
       actionsEl.innerHTML = `
