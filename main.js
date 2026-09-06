@@ -75,6 +75,15 @@ async function applySettings() {
   }
 }
 
+// ── HOME HERO PHOTO ──
+async function applyHeroPhoto() {
+  const photo = document.getElementById('hero-photo');
+  if (!photo) return;
+  const home = await fetchJSON('/_data/pages/home.json');
+  if (!home || !home.hero_image) return;
+  photo.src = home.hero_image;
+  photo.closest('.hero-visual').classList.add('has-photo');
+}
 
 // ── WHOLESALE PAGE ──
 async function applyWholesaleContent() {
@@ -446,6 +455,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   const page = document.body.dataset.page;
 
   if (page === 'home') {
+    await applyHeroPhoto();
     await loadAndRenderProducts('home-featured-grid', p => p.featured);
     await loadHomeGalleryStrip('home-gallery-strip', 6);
     await loadPageReviews('reviews-grid', 'publish_home');
