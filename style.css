@@ -286,7 +286,7 @@ strong { color: var(--text); }
 
 /* ── HERO (design-brief: light paper, bordered spec-sheet feel) ── */
 .hero {
-  padding: 76px 0 64px;
+  padding: 140px 0 64px;
   border-bottom: 1px solid var(--paper-line);
   background: var(--paper);
 }
