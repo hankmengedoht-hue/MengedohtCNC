@@ -296,16 +296,6 @@ strong { color: var(--text); }
   gap: 56px;
   align-items: center;
 }
-.hero-eyebrow {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 22px;
-  font-family: var(--font-ui);
-  font-size: 13.5px;
-  color: var(--ink-mute);
-}
-.hero-eyebrow .dot { width: 7px; height: 7px; background: var(--rust); border-radius: 50%; flex: none; }
 .hero-headline {
   font-family: var(--font-headline);
   font-size: clamp(2.2rem, 4.5vw, 3rem);
