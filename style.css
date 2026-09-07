@@ -646,6 +646,121 @@ strong { color: var(--text); }
 .page-hero h1 { max-width: 640px; margin-bottom: 20px; }
 .page-hero p { max-width: 560px; font-size: 1.1rem; }
 
+/* ── BIG HERO (shared large-format hero, matches Custom Parts page) ── */
+.big-hero {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  padding-top: var(--nav-h);
+  position: relative;
+  overflow: hidden;
+  background: var(--bg);
+}
+.big-hero-grid-bg {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.028) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.028) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse 80% 80% at 30% 50%, black 20%, transparent 80%);
+  pointer-events: none;
+}
+.big-hero-inner {
+  position: relative;
+  z-index: 2;
+  padding: 80px 24px;
+  max-width: var(--max-w);
+  width: 100%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+.big-hero-tag {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: var(--accent-dim);
+  border: 1px solid rgba(181,84,26,0.25);
+  padding: 4px 12px;
+  border-radius: 0;
+  margin-bottom: 20px;
+}
+.big-hero-headline {
+  font-family: var(--font-display);
+  font-size: clamp(2.8rem, 5vw, 4.5rem);
+  font-weight: 800;
+  color: var(--text);
+  text-transform: uppercase;
+  line-height: 1.0;
+  margin-bottom: 20px;
+}
+.big-hero-headline em { font-style: normal; color: var(--accent); }
+.big-hero-sub {
+  font-size: 1.1rem;
+  color: var(--text-2);
+  line-height: 1.7;
+  margin-bottom: 32px;
+  max-width: 480px;
+}
+.big-hero-pills { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 36px; }
+.big-hero-pill {
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-2);
+  background: var(--surface);
+  border: 1px solid var(--border-2);
+  padding: 6px 14px;
+  border-radius: 0;
+}
+.big-hero-actions { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+.big-hero-note { font-size: 0.82rem; color: var(--text-3); margin-top: 14px; }
+.big-hero-card {
+  background: var(--surface);
+  border: 1px solid var(--border-2);
+  border-top: 3px solid var(--accent);
+  border-radius: var(--radius-md);
+  padding: 2rem;
+}
+.big-hero-card-title {
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 20px;
+}
+.big-reassurance-list { display: flex; flex-direction: column; gap: 16px; }
+.big-reassurance-item { display: flex; gap: 12px; align-items: flex-start; }
+.big-reassurance-icon {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  background: var(--accent-dim);
+  border: 1px solid rgba(181,84,26,0.2);
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+  font-size: 0.9rem;
+}
+.big-reassurance-item strong { display: block; font-size: 0.9rem; color: var(--text); margin-bottom: 2px; }
+.big-reassurance-item p { font-size: 0.82rem; color: var(--text-3); line-height: 1.5; margin: 0; }
+@media (max-width: 900px) {
+  .big-hero-inner { grid-template-columns: 1fr; gap: 2rem; }
+}
+
 /* ── FILTER BAR ── */
 .filter-bar {
   background: var(--surface);

@@ -49,7 +49,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
   <link rel="manifest" href="/site.webmanifest" />
   <title>Mass Production | Mengedoht CNC</title>
-  <link rel="stylesheet" href="style.css?v=22" />
+  <link rel="stylesheet" href="style.css?v=23" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@900&family=Wallpoet&display=swap" rel="stylesheet">
@@ -111,10 +111,61 @@
     </div>
   </header>
 
-  <section class="page-hero" id="main-content">
-    <div class="container">
-      <h1 data-cms="ws-headline">Built to Produce<br><em style="font-style:normal; color:var(--accent);">at Volume</em></h1>
-      <p data-cms="ws-sub">We work with production-run accounts and individual customers alike.</p>
+  <!-- ── HERO ── -->
+  <section class="big-hero" id="main-content">
+    <div class="big-hero-grid-bg"></div>
+    <div class="big-hero-inner">
+      <div>
+        <div class="big-hero-tag">Mass Production</div>
+        <h1 class="big-hero-headline" data-cms="ws-headline">Built to Produce<br><em>at Volume</em></h1>
+        <p class="big-hero-sub" data-cms="ws-sub">We work with production-run accounts and individual customers alike.</p>
+        <div class="big-hero-pills">
+          <span class="big-hero-pill">25-Unit Minimum</span>
+          <span class="big-hero-pill">~3 Week Lead Time</span>
+          <span class="big-hero-pill">Tiered Pricing</span>
+          <span class="big-hero-pill">White-Label Available</span>
+        </div>
+        <div class="big-hero-actions">
+          <a href="contact.html" class="btn btn-accent btn-lg">Start Your Account</a>
+          <a href="#pricing-tiers" class="btn btn-ghost btn-lg">View Pricing Tiers</a>
+        </div>
+        <p class="big-hero-note">Tell us what you need made and how many. We'll have pricing to you within 24 hours.</p>
+      </div>
+      <div>
+        <div class="big-hero-card">
+          <div class="big-hero-card-title">Common Questions, Answered Upfront</div>
+          <div class="big-reassurance-list">
+            <div class="big-reassurance-item">
+              <div class="big-reassurance-icon">✓</div>
+              <div>
+                <strong>What's the minimum order?</strong>
+                <p>No minimum for one-off custom parts. For your own part design, tiers start at 25 units.</p>
+              </div>
+            </div>
+            <div class="big-reassurance-item">
+              <div class="big-reassurance-icon">✓</div>
+              <div>
+                <strong>How long does a production run take?</strong>
+                <p>Generally a 3-week lead time, often completed sooner depending on the job.</p>
+              </div>
+            </div>
+            <div class="big-reassurance-item">
+              <div class="big-reassurance-icon">✓</div>
+              <div>
+                <strong>Can I get custom branding or logo engraving?</strong>
+                <p>Yes. White-label branding and custom logo engraving are available.</p>
+              </div>
+            </div>
+            <div class="big-reassurance-item">
+              <div class="big-reassurance-icon">✓</div>
+              <div>
+                <strong>How does shipping work?</strong>
+                <p>Local delivery in North Charleston, SC, plus UPS/FedEx Ground nationwide. Freight available for large orders.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -124,7 +175,7 @@
         <h2 class="section-title">The More You Order,<br>The Lower Your Per-Unit Cost</h2>
         <p class="section-sub">Pricing is quoted per job based on your part, material, and quantity, not off a retail listing. Contact us for an exact quote.</p>
       </div>
-      <div class="pricing-tiers">
+      <div class="pricing-tiers" id="pricing-tiers">
         <div class="tier-card">
           <div class="tier-label">Starter</div>
           <div class="tier-qty">25–99 <span>units</span></div>
