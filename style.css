@@ -297,14 +297,14 @@ strong { color: var(--text); }
 }
 .hero-grid {
   display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
+  grid-template-columns: 1.3fr 0.7fr;
   gap: 56px;
   align-items: center;
 }
 .hero-headline {
   font-family: var(--font-headline);
-  font-size: clamp(2.2rem, 4.5vw, 3rem);
-  line-height: 1.08;
+  font-size: clamp(2.8rem, 6vw, 4.25rem);
+  line-height: 1.05;
   font-weight: 600;
   color: var(--charcoal);
   letter-spacing: -0.01em;
@@ -348,6 +348,8 @@ strong { color: var(--text); }
 }
 .btn-flat-primary { background: var(--charcoal); color: var(--paper); }
 .btn-flat-primary:hover { background: var(--rust-dim); border-color: var(--rust-dim); }
+.btn-flat-accent { background: var(--rust); color: var(--paper); border-color: var(--rust); }
+.btn-flat-accent:hover { background: var(--rust-dim); border-color: var(--rust-dim); }
 .btn-flat-secondary { background: transparent; color: var(--charcoal); }
 .btn-flat-secondary:hover { border-color: var(--rust); color: var(--rust); }
 .spec-strip { display: flex; gap: 32px; border-top: 1px solid var(--paper-line); }
