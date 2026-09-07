@@ -313,6 +313,21 @@ strong { color: var(--text); }
   text-transform: none;
 }
 .hero-headline em { color: var(--rust); font-style: normal; }
+.hero-name {
+  font-family: 'Big Shoulders Display', var(--font-headline);
+  font-weight: 900;
+  font-size: 1em;
+  letter-spacing: 0.005em;
+  text-transform: uppercase;
+  color: var(--charcoal);
+}
+.hero-cnc {
+  font-family: 'Wallpoet', var(--font-headline);
+  font-weight: 400;
+  font-size: 1.75em;
+  text-transform: uppercase;
+  color: var(--rust);
+}
 .hero-sub {
   font-family: var(--font-ui);
   font-size: 17.5px;
