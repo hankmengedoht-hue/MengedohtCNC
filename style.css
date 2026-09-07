@@ -807,6 +807,16 @@ strong { color: var(--text); }
 .product-info { padding: 24px; }
 .product-info h3 { font-size: 1.1rem; margin-bottom: 10px; }
 .product-info p { font-size: 0.9rem; line-height: 1.55; margin-bottom: 16px; }
+.read-more-toggle {
+  display: inline-block;
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--accent);
+  cursor: pointer;
+  white-space: nowrap;
+}
+.read-more-toggle:hover { text-decoration: underline; }
 .product-meta {
   display: flex;
   gap: 8px;

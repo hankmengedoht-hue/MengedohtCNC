@@ -99,6 +99,36 @@ async function applyWholesaleContent() {
 }
 
 // ── PRODUCT CARD BUILDER ──
+function escapeHtml(str) {
+  const div = document.createElement('div');
+  div.textContent = str == null ? '' : str;
+  return div.innerHTML;
+}
+
+function toggleProductDesc(evt, el) {
+  evt.stopPropagation();
+  const p = el.parentElement;
+  const short = p.querySelector('.desc-short');
+  const full = p.querySelector('.desc-full');
+  const expanded = full.style.display !== 'none';
+  full.style.display = expanded ? 'none' : 'inline';
+  short.style.display = expanded ? 'inline' : 'none';
+  el.textContent = expanded ? 'Read more' : 'See less';
+}
+
+function buildProductDesc(description) {
+  const text = description || '';
+  const words = text.trim().split(/\s+/).filter(Boolean);
+  if (words.length <= 30) {
+    return `<p>${escapeHtml(text)}</p>`;
+  }
+  const shortText = words.slice(0, 30).join(' ') + '…';
+  return `<p>
+    <span class="desc-short">${escapeHtml(shortText)}</span><span class="desc-full" style="display:none;">${escapeHtml(text)}</span>
+    <span class="read-more-toggle" onclick="toggleProductDesc(event, this)">Read more</span>
+  </p>`;
+}
+
 function buildProductCard(p) {
   // Use first image from images array, fall back to legacy image field
   const primaryImg = p.image || (p.images && p.images.length > 0 ? (typeof p.images[0] === 'string' ? p.images[0] : p.images[0].image) : null);
@@ -125,7 +155,7 @@ function buildProductCard(p) {
       </div>
       <div class="product-info">
         <h3>${p.title}</h3>
-        <p>${p.description}</p>
+        ${buildProductDesc(p.description)}
         ${p.fits ? `<div class="product-meta"><span class="meta-item">${p.fits}</span></div>` : ''}
         <div class="retail-price-display">${priceLabel}</div>
         <div class="view-details-btn">View Details →</div>
