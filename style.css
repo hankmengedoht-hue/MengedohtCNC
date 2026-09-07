@@ -200,18 +200,19 @@ strong { color: var(--text); }
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 100;
-  height: var(--nav-h);
+  height: 104px;
   background: var(--paper);
   border-bottom: 1px solid var(--paper-line);
-  transition: box-shadow var(--trans);
+  transition: height 0.25s ease, box-shadow var(--trans);
 }
 .site-header.scrolled {
+  height: var(--nav-h);
   box-shadow: 0 1px 0 var(--paper-line);
 }
 .nav-inner {
   display: flex;
   align-items: center;
-  height: var(--nav-h);
+  height: 100%;
   gap: 32px;
 }
 .logo {
@@ -224,19 +225,23 @@ strong { color: var(--text); }
 .logo-text {
   font-family: 'Big Shoulders Display', var(--font-display);
   font-weight: 900;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   letter-spacing: 0.01em;
   color: var(--charcoal);
   text-transform: uppercase;
+  transition: font-size 0.25s ease;
 }
 /* Independent from .logo-text on purpose: its own absolute size, tune here without affecting MENGEDOHT */
 .logo-cnc {
   font-family: 'Wallpoet', var(--font-display);
   font-weight: 400;
-  font-size: 2.1rem;
+  font-size: 2.6rem;
   color: var(--rust);
   text-transform: uppercase;
+  transition: font-size 0.25s ease;
 }
+.site-header.scrolled .logo-text { font-size: 1.2rem; }
+.site-header.scrolled .logo-cnc { font-size: 2.1rem; }
 .main-nav {
   display: flex;
   align-items: center;
