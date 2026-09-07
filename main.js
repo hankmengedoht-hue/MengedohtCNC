@@ -228,34 +228,6 @@ async function loadPageReviews(gridId, publishKey) {
   }
 }
 
-// ── HOME "RECENT WORK" PHOTO STRIP (real gallery photos, shuffled) ──
-async function loadHomeGalleryStrip(gridId, count) {
-  const grid = document.getElementById(gridId);
-  if (!grid) return;
-  try {
-    const res = await fetch('/_data/gallery/manifest.json');
-    if (!res.ok) throw new Error('no manifest');
-    const files = await res.json();
-    if (!files.length) throw new Error('empty');
-    const items = await Promise.all(
-      files.map(f => fetch('/_data/gallery/' + f).then(r => r.json()).catch(() => null))
-    );
-    const published = items.filter(i => i && i.published !== false);
-    if (!published.length) throw new Error('none');
-    for (let i = published.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [published[i], published[j]] = [published[j], published[i]];
-    }
-    const picks = published.slice(0, count);
-    grid.innerHTML = picks.map(item => `
-      <a href="gallery.html" class="home-gallery-item">
-        <img src="${item.image}" alt="${item.alt || item.title || 'CNC work by Mengedoht CNC'}" loading="lazy" decoding="async" />
-      </a>`).join('');
-  } catch(e) {
-    grid.innerHTML = '';
-  }
-}
-
 // ── REVIEW MODAL (injected into any page that needs it) ──
 function injectReviewModal() {
   if (document.getElementById('review-modal')) return;
@@ -272,7 +244,7 @@ function injectReviewModal() {
         </div>
         <form id="review-form" novalidate>
           <div class="review-field">
-            <label class="review-label">Rating <span style="color:#e8a020;">*</span></label>
+            <label class="review-label">Rating <span style="color:var(--accent);">*</span></label>
             <div class="star-rating">
               <input type="radio" id="star5" name="rating" value="5"><label for="star5" title="5 stars">★</label>
               <input type="radio" id="star4" name="rating" value="4"><label for="star4" title="4 stars">★</label>
@@ -282,7 +254,7 @@ function injectReviewModal() {
             </div>
           </div>
           <div class="review-field">
-            <label for="review-name" class="review-label">Your Name <span style="color:#e8a020;">*</span></label>
+            <label for="review-name" class="review-label">Your Name <span style="color:var(--accent);">*</span></label>
             <input type="text" id="review-name" name="name" class="review-input" placeholder="e.g. James R." required>
           </div>
           <div class="review-field">
@@ -290,7 +262,7 @@ function injectReviewModal() {
             <input type="text" id="review-title" name="title" class="review-input" placeholder="e.g. Hardware Store Owner, Ohio">
           </div>
           <div class="review-field">
-            <label for="review-body" class="review-label">Your Review <span style="color:#e8a020;">*</span></label>
+            <label for="review-body" class="review-label">Your Review <span style="color:var(--accent);">*</span></label>
             <textarea id="review-body" name="body" class="review-input review-textarea" placeholder="Share your experience with Mengedoht CNC…" required></textarea>
           </div>
           <div class="review-field">
@@ -388,7 +360,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   if (page === 'home') {
     await applyHeroPhoto();
     await loadAndRenderProducts('home-featured-grid', p => p.featured);
-    await loadHomeGalleryStrip('home-gallery-strip', 6);
     await loadPageReviews('reviews-grid', 'publish_home');
     initReviewSystem();
   }

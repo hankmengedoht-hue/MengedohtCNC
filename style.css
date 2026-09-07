@@ -502,34 +502,6 @@ strong { color: var(--text); }
 .benefit-item p { font-size: 0.88rem; line-height: 1.55; }
 
 /* ── HOME RECENT WORK STRIP ── */
-.home-gallery-strip {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 1rem;
-}
-.home-gallery-item {
-  display: block;
-  position: relative;
-  aspect-ratio: 1;
-  background: var(--bg-3);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  overflow: hidden;
-}
-.home-gallery-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform var(--trans);
-}
-.home-gallery-item:hover img { transform: scale(1.06); }
-@media (max-width: 900px) {
-  .home-gallery-strip { grid-template-columns: repeat(3, 1fr); }
-}
-@media (max-width: 560px) {
-  .home-gallery-strip { grid-template-columns: repeat(2, 1fr); }
-}
-
 /* ── PROCESS ── */
 .process-steps {
   display: flex;
