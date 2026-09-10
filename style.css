@@ -1052,8 +1052,15 @@ strong { color: var(--text); }
 .footer-bottom {
   border-top: 1px solid var(--paper-line);
   padding: 20px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 .footer-bottom p { font-family: var(--font-ui); font-size: 0.82rem; color: var(--ink-mute); }
+.footer-bottom-link { font-family: var(--font-ui); font-size: 0.82rem; color: var(--ink-mute); }
+.footer-bottom-link:hover { color: var(--accent); }
 .footer-contact .btn-ghost {
   font-family: var(--font-ui); text-transform: none; letter-spacing: 0;
   color: var(--charcoal); border-color: var(--paper-line);
