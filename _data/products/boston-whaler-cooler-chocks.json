@@ -1,19 +1,15 @@
 {
   "title": "Boston Whaler Cooler Chocks",
-  "categories": [
-    "marine"
-  ],
-  "material": "Starboard HDPE",
   "keywords": "boston whaler, cooler, chocks, plastic, tough, waterproof, replacement, marine, strong, UV resistant",
-  "description": "CNC-machined HDPE replacement chocks for Boston Whaler 15-17ft center console coolers. Drop-in fit replaces the original wooden chocks that rot, warp, and fail over time. UV-stable, non-absorbent, and built to last.",
-  "story": "This cooler chock was designed by Caleb Fisher who has since passed away.",
+  "description": "CNC-machined HDPE replacement chocks for Boston Whaler 15-19ft center console coolers. Drop-in fit replaces the original wooden chocks that rot, warp, and fail over time. UV-stable, non-absorbent, and built to last. Teak chocks are available for a limited time only.",
+  "story": "Originally designed by Boston Whaler, these chocks eventually degrade and rot. These starboard chocks will not rot.",
   "images": [
-    "/images/uploads/IMG_1602.jpg",
-    "/images/uploads/IMG_2930.jpg"
+    "/images/uploads/IMG_0366.jpg",
+    "/images/uploads/IMG_0255.jpg",
+    "/images/uploads/IMG_0256.jpg"
   ],
-  "image": "/images/uploads/IMG_0218.JPEG",
+  "image": "/images/uploads/IMG_0365.jpg",
   "weight": "2.2 lbs",
-  "retail_available": true,
   "retail_price": "$75",
   "stripe_link": "https://buy.stripe.com/test_28E00k6zO8qZ1rU4crb3q00",
   "wholesale_available": true,
@@ -21,5 +17,10 @@
   "featured": true,
   "published": true,
   "order": 1,
-  "moq": "25"
+  "categories": [
+    "marine"
+  ],
+  "material": "Starboard HDPE",
+  "moq": "25",
+  "retail_available": true
 }
