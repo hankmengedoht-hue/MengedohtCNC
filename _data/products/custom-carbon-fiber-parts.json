@@ -14,7 +14,7 @@
   "stripe_link": "",
   "wholesale_available": true,
   "fits": "",
-  "featured": false,
+  "featured": true,
   "published": true,
   "order": 99
 }
