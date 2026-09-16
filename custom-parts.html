@@ -495,6 +495,7 @@
       border: 1px solid var(--border);
       border-radius: var(--radius);
       overflow: hidden;
+      cursor: pointer;
       transition: border-color var(--trans), transform var(--trans);
     }
     .cp-example-card:hover {
@@ -513,24 +514,6 @@
       transition: transform 0.4s ease;
     }
     .cp-example-card:hover .cp-example-img-wrap img { transform: scale(1.04); }
-    .cp-example-desc-overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(0,0,0,0.78);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 1.5rem;
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-    .cp-example-card:hover .cp-example-desc-overlay { opacity: 1; }
-    .cp-example-desc-overlay p {
-      font-size: 0.88rem;
-      color: var(--text);
-      line-height: 1.65;
-      text-align: center;
-    }
     .cp-example-info {
       padding: 0.875rem 1rem;
       border-top: 1px solid var(--border);
@@ -578,6 +561,72 @@
       text-transform: uppercase;
       border: 1px dashed var(--border-2);
       border-radius: var(--radius);
+    }
+    /* ── EXAMPLE MODAL ── */
+    .example-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.75);
+      z-index: 9000;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+    }
+    .example-modal.open { display: flex; }
+    .example-modal-inner {
+      background: var(--surface);
+      border: 1px solid var(--border-2);
+      max-width: 640px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      position: relative;
+    }
+    .example-modal-close {
+      position: absolute;
+      top: 0.75rem;
+      right: 0.75rem;
+      width: 34px;
+      height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--paper);
+      border: 1px solid var(--border-2);
+      color: var(--text);
+      font-size: 1.1rem;
+      cursor: pointer;
+      z-index: 2;
+    }
+    .example-modal-close:hover { border-color: var(--accent); color: var(--accent); }
+    .example-modal-img-wrap {
+      width: 100%;
+      aspect-ratio: 4/3;
+      overflow: hidden;
+      background: var(--bg);
+    }
+    .example-modal-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+    .example-modal-body { padding: 1.75rem; }
+    .example-modal-title {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--text);
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      margin-bottom: 0.75rem;
+    }
+    .example-modal-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-bottom: 1rem;
+    }
+    .example-modal-desc {
+      font-size: 0.95rem;
+      line-height: 1.75;
+      color: var(--text-2);
     }
     .faq-list {
       display: flex;
@@ -751,6 +800,18 @@
     </div>
   </section>
 
+  <div class="example-modal" id="example-modal" onclick="closeExampleModal(event)">
+    <div class="example-modal-inner" onclick="event.stopPropagation()">
+      <button class="example-modal-close" onclick="closeExampleModal(event)" aria-label="Close">✕</button>
+      <div class="example-modal-img-wrap"><img id="example-modal-img" src="" alt="" /></div>
+      <div class="example-modal-body">
+        <div class="example-modal-title" id="example-modal-title"></div>
+        <div class="example-modal-tags" id="example-modal-tags"></div>
+        <p class="example-modal-desc" id="example-modal-desc"></p>
+      </div>
+    </div>
+  </div>
+
   <!-- ── CAPABILITIES ── -->
   <section class="section">
     <div class="container">
@@ -914,6 +975,7 @@
       };
 
       let allExamples = [];
+      let currentFiltered = [];
       let activeFilter = 'all';
 
       function getCats(item) {
@@ -926,16 +988,17 @@
           ? allExamples
           : allExamples.filter(ex => getCats(ex).includes(activeFilter));
 
+        currentFiltered = filtered;
+
         if (!filtered.length) {
           grid.innerHTML = '<div class="cp-example-empty">No examples in this category yet.</div>';
           return;
         }
 
-        grid.innerHTML = filtered.map(item => {
+        grid.innerHTML = filtered.map((item, i) => {
           const cats = getCats(item);
           const title = item.title || item.caption || '';
           const material = item.material || '';
-          const description = item.description || '';
           const alt = item.alt || title || 'Custom CNC work by Mengedoht CNC, North Charleston SC';
 
           const catTags = cats.map(c =>
@@ -946,10 +1009,6 @@
             : '';
           const tagsHtml = catTags + materialTag;
 
-          const descOverlay = description
-            ? `<div class="cp-example-desc-overlay"><p>${description}</p></div>`
-            : '';
-
           const infoBar = (title || tagsHtml) ? `
             <div class="cp-example-info">
               ${title ? `<div class="cp-example-title">${title}</div>` : ''}
@@ -957,15 +1016,49 @@
             </div>` : '';
 
           return `
-            <div class="cp-example-card">
+            <div class="cp-example-card" onclick="openExampleModal(${i})">
               <div class="cp-example-img-wrap">
                 <img src="${item.image}" alt="${alt}" loading="lazy" decoding="async" />
-                ${descOverlay}
               </div>
               ${infoBar}
             </div>`;
         }).join('');
       }
+
+      window.openExampleModal = function(i) {
+        const item = currentFiltered[i];
+        if (!item) return;
+        const cats = getCats(item);
+        const title = item.title || item.caption || '';
+        const material = item.material || '';
+        const description = item.description || '';
+        const alt = item.alt || title || 'Custom CNC work by Mengedoht CNC, North Charleston SC';
+
+        const catTags = cats.map(c =>
+          `<span class="cp-example-tag">${CATEGORY_LABELS[c] || c}</span>`
+        ).join('');
+        const materialTag = material
+          ? `<span class="cp-example-tag cp-example-tag-material">${material}</span>`
+          : '';
+
+        document.getElementById('example-modal-img').src = item.image;
+        document.getElementById('example-modal-img').alt = alt;
+        document.getElementById('example-modal-title').textContent = title;
+        document.getElementById('example-modal-tags').innerHTML = catTags + materialTag;
+        document.getElementById('example-modal-desc').textContent = description;
+        document.getElementById('example-modal').classList.add('open');
+        document.body.style.overflow = 'hidden';
+      };
+
+      window.closeExampleModal = function(evt) {
+        if (evt) evt.stopPropagation();
+        document.getElementById('example-modal').classList.remove('open');
+        document.body.style.overflow = '';
+      };
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') window.closeExampleModal();
+      });
 
       async function loadExamples() {
         const grid = document.getElementById('cp-photos-grid');
