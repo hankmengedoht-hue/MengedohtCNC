@@ -338,9 +338,12 @@ jobs:
           if git diff --staged --quiet; then
             echo "Everything already up to date."
           else
-            git pull --no-rebase
             git commit -m "Auto-rebuild manifests, product pages, and sitemap"
-            git push
+            for i in 1 2 3 4 5; do
+              git pull --no-rebase --no-edit && git push && break
+              echo "Push attempt $i failed (likely a concurrent update) -- retrying..."
+              sleep 5
+            done
           fi
 
       - name: Ping IndexNow (Bing)
