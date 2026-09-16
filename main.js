@@ -145,6 +145,7 @@ function buildProductCard(p) {
 
   const slug = p._filename ? p._filename.replace('.json','') : p.title.toLowerCase().replace(/[^a-z0-9]+/g,'-');
 
+  const showPrice = p.show_retail_price !== false;
   const priceLabel = p.retail_price || 'Contact for price';
 
   return `
@@ -156,8 +157,8 @@ function buildProductCard(p) {
       <div class="product-info">
         <h3>${p.title}</h3>
         ${buildProductDesc(p.description)}
-        ${p.fits ? `<div class="product-meta"><span class="meta-item">${p.fits}</span></div>` : ''}
-        <div class="retail-price-display">${priceLabel}</div>
+        ${(p.fits && p.show_fits !== false) ? `<div class="product-meta"><span class="meta-item">${p.fits}</span></div>` : ''}
+        ${showPrice ? `<div class="retail-price-display">${priceLabel}</div>` : ''}
         <div class="view-details-btn">View Details →</div>
       </div>
     </div>`;
@@ -514,10 +515,24 @@ async function loadProductDetail() {
   const detailCats = Array.isArray(p.categories) ? p.categories : (p.category ? [p.category] : []);
   set('detail-category', detailCats.map(c => categoryLabel(c)).join(' · '));
   set('detail-material', p.material);
-  set('detail-weight', p.weight || 'Not specified');
   set('detail-description', p.description);
   set('detail-story', p.story || '');
-  set('detail-fits', p.fits || 'Not specified');
+
+  const showWeight = p.show_weight !== false && !!p.weight;
+  const weightEl = document.getElementById('detail-weight');
+  if (weightEl) {
+    const weightRow = weightEl.closest('.detail-spec');
+    if (weightRow) weightRow.style.display = showWeight ? '' : 'none';
+    weightEl.textContent = p.weight || '';
+  }
+
+  const showFits = p.show_fits !== false && !!p.fits;
+  const fitsEl = document.getElementById('detail-fits');
+  if (fitsEl) {
+    const fitsRow = fitsEl.closest('.detail-spec');
+    if (fitsRow) fitsRow.style.display = showFits ? '' : 'none';
+    fitsEl.textContent = p.fits || '';
+  }
 
   const storySection = document.getElementById('detail-story-section');
   if (storySection) storySection.style.display = p.story ? '' : 'none';
@@ -526,7 +541,7 @@ async function loadProductDetail() {
  const pricingEl = document.getElementById('detail-pricing');
   if (pricingEl) {
     let html = '';
-    if (p.retail_price) {
+    if (p.retail_price && p.show_retail_price !== false) {
       html += `<div class="detail-price-row"><span class="detail-price-label">Retail Price</span><span class="detail-price-value" style="color:var(--accent); font-size:1.2rem; font-weight:800;">${p.retail_price}</span></div>`;
     }
     html += `<div class="detail-price-row"><span class="detail-price-label">Individual Orders</span><span class="detail-price-value">Available, no minimum</span></div>`;
@@ -539,7 +554,7 @@ async function loadProductDetail() {
   // Actions - Stripe or contact
   const actionsEl = document.getElementById('detail-actions');
   if (actionsEl) {
-    if (p.stripe_link) {
+    if (p.stripe_link && p.show_stripe_link !== false) {
       actionsEl.innerHTML = `
         <a href="${p.stripe_link}" target="_blank" class="btn btn-accent btn-block" style="margin-bottom:0.75rem;">Buy Now: ${p.retail_price || 'Pay Online'}</a>
         <a href="contact.html" class="btn btn-outline btn-block">Request Wholesale Pricing</a>`;
