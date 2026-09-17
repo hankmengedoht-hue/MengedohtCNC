@@ -82,6 +82,7 @@ jobs:
             keywords = esc(p.get('keywords', ''))
             story    = esc(p.get('story', ''))
             weight   = esc(p.get('weight', ''))
+            show_material = p.get('show_material', True) and bool(p.get('material'))
             show_weight = p.get('show_weight', True) and bool(p.get('weight'))
             show_fits   = p.get('show_fits', True) and bool(p.get('fits'))
             show_retail_price = p.get('show_retail_price', True)
@@ -209,7 +210,7 @@ jobs:
             h += '          <div class="detail-category" id="detail-category">' + cat_str + '</div>\n'
             h += '          <h1 class="detail-title" id="detail-title">' + title + '</h1>\n'
             h += '          <div class="detail-specs">\n'
-            h += '            <div class="detail-spec"><div class="detail-spec-label">Material</div><div class="detail-spec-value" id="detail-material">' + material + '</div></div>\n'
+            h += '            <div class="detail-spec"' + ('' if show_material else ' style="display:none;"') + '><div class="detail-spec-label">Material</div><div class="detail-spec-value" id="detail-material">' + material + '</div></div>\n'
             h += '            <div class="detail-spec"' + ('' if show_weight else ' style="display:none;"') + '><div class="detail-spec-label">Approx. Weight</div><div class="detail-spec-value" id="detail-weight">' + weight + '</div></div>\n'
             h += '            <div class="detail-spec" style="grid-column: 1 / -1;' + ('' if show_fits else ' display:none;') + '"><div class="detail-spec-label">Fits / Compatible With</div><div class="detail-spec-value" id="detail-fits">' + fits + '</div></div>\n'
             h += '          </div>\n'

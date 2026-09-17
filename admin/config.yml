@@ -49,6 +49,16 @@ collections:
         hint: "Add multiple photos. First image is shown on the product card."
         field: { label: "Image", name: "image", widget: "image" }
       - { label: "Primary Image (card thumbnail)", name: "image", widget: "image", required: false, hint: "Used on product cards and featured grids." }
+      - label: "Material"
+        name: "material"
+        widget: "string"
+        required: false
+        hint: "e.g. Starboard HDPE, Baltic Birch Plywood, Carbon Fiber / G10"
+      - label: "Show Material on Product Page"
+        name: "show_material"
+        widget: "boolean"
+        default: true
+        hint: "Turn off if not applicable for this product — leave the field above empty too."
       - label: "Approximate Weight"
         name: "weight"
         widget: "string"

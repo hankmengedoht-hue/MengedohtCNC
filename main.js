@@ -514,9 +514,16 @@ async function loadProductDetail() {
   set('detail-title', p.title);
   const detailCats = Array.isArray(p.categories) ? p.categories : (p.category ? [p.category] : []);
   set('detail-category', detailCats.map(c => categoryLabel(c)).join(' · '));
-  set('detail-material', p.material);
   set('detail-description', p.description);
   set('detail-story', p.story || '');
+
+  const showMaterial = p.show_material !== false && !!p.material;
+  const materialEl = document.getElementById('detail-material');
+  if (materialEl) {
+    const materialRow = materialEl.closest('.detail-spec');
+    if (materialRow) materialRow.style.display = showMaterial ? '' : 'none';
+    materialEl.textContent = p.material || '';
+  }
 
   const showWeight = p.show_weight !== false && !!p.weight;
   const weightEl = document.getElementById('detail-weight');
